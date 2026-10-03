@@ -988,7 +988,7 @@ impl Widget for CodeViewerView {
                 toolbar_user_interface.add_space(12.0);
                 let target_architecture = self.get_target_architecture().unwrap_or_default();
                 toolbar_user_interface.label(
-                    RichText::new(format!("{} code", target_architecture.get_instruction_set_id()))
+                    RichText::new(format!("{} 指令集", target_architecture.get_instruction_set_id()))
                         .font(theme.font_library.font_noto_sans.font_normal.clone())
                         .color(theme.foreground_preview),
                 );

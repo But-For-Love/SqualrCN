@@ -449,7 +449,7 @@ impl Widget for SettingsTabScanView {
 
                             user_interface.add_space(8.0);
                             user_interface.label(
-                                RichText::new("Page source")
+                                RichText::new("分页来源")
                                     .font(theme.font_library.font_noto_sans.font_normal.clone())
                                     .color(theme.foreground),
                             );

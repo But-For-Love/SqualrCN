@@ -1,4 +1,4 @@
-use crate::{app_context::AppContext, ui::widgets::controls::state_layer::StateLayer};
+use crate::{app_context::AppContext, ui::converters::anonymous_value_string_format_to_string_converter::AnonymousValueStringFormatToStringConverter, ui::widgets::controls::state_layer::StateLayer};
 use eframe::egui::{Align2, Rect, Response, Sense, Ui, Widget, pos2, vec2};
 use epaint::{Color32, CornerRadius, StrokeKind};
 use squalr_engine_api::structures::data_values::{anonymous_value_string::AnonymousValueString, anonymous_value_string_format::AnonymousValueStringFormat};
@@ -132,12 +132,13 @@ impl<'a> Widget for DataValueBoxConvertItemView<'a> {
             allocated_size_rectangle.center().y,
         );
 
+        let target_format_label = AnonymousValueStringFormatToStringConverter::convert_anonymous_value_string_format_to_string(*self.target_anonymous_value_string_format);
         let text = if self.is_conversion_available {
-            format!("转换为 {}", self.target_anonymous_value_string_format)
+            format!("转换为 {}", target_format_label)
         } else if self.is_value_owned {
-            format!("解释为 {}", self.target_anonymous_value_string_format)
+            format!("解释为 {}", target_format_label)
         } else {
-            format!("显示为 {}", self.target_anonymous_value_string_format)
+            format!("显示为 {}", target_format_label)
         };
 
         user_interface.painter().text(
