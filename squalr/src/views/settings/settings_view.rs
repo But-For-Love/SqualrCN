@@ -29,7 +29,7 @@ impl SettingsView {
 
     pub fn new(app_context: Arc<AppContext>) -> Self {
         let tab_menu_data = TabMenuData {
-            headers: vec!["General".to_string(), "Memory".to_string(), "Scan".to_string()].into(),
+            headers: vec!["常规".to_string(), "内存".to_string(), "扫描".to_string()].into(),
             active_tab_index: Rc::new(AtomicI32::new(1)),
         };
         let settings_tab_general_view = Rc::new(SettingsTabGeneralView::new(app_context.clone()));

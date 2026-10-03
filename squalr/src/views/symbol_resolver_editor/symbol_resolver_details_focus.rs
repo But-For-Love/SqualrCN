@@ -195,16 +195,16 @@ impl SymbolResolverDetailsFocus {
         details_edit: &DetailsEdit,
     ) -> Result<(Option<String>, SymbolicResolverDescriptor), String> {
         let SymbolResolverDetailsEditOperation::UpdateResolverId(edited_resolver_id) = SymbolResolverDetails::plan_edit(details_edit) else {
-            return Err(String::from("Edited details field is not the resolver name."));
+            return Err(String::from("编辑的详情字段不是解析器名称。"));
         };
         let edited_resolver_id = edited_resolver_id.trim().to_string();
         if edited_resolver_id == current_resolver_id {
-            return Err(String::from("Resolver name is unchanged."));
+            return Err(String::from("解析器名称未改变。"));
         }
 
         let resolver_descriptor = project_symbol_catalog
             .find_symbolic_resolver_descriptor(current_resolver_id)
-            .ok_or_else(|| String::from("Resolver no longer exists."))?;
+            .ok_or_else(|| String::from("解析器已不存在。"))?;
         let draft = SymbolResolverEditDraft {
             original_resolver_id: Some(current_resolver_id.to_string()),
             resolver_id: edited_resolver_id,

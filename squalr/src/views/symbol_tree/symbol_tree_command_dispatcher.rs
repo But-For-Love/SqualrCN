@@ -348,7 +348,7 @@ impl SymbolTreeCommandDispatcher {
                         "Symbol Tree plugin action failed: {}",
                         project_symbols_execute_plugin_action_response
                             .error
-                            .unwrap_or_else(|| String::from("unknown error"))
+                            .unwrap_or_else(|| String::from("未知错误"))
                     );
                     return;
                 }

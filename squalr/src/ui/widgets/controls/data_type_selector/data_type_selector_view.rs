@@ -170,7 +170,7 @@ impl<'lifetime> DataTypeSelectorView<'lifetime> {
                     DataTypeToStringConverter::convert_data_type_to_string(data_type_selection.visible_data_type().get_data_type_id());
 
                 match data_type_selection.selected_data_type_count() {
-                    0 => "Select types".to_string(),
+                    0 => "选择类型".to_string(),
                     1 => visible_data_type_label.to_string(),
                     selected_data_type_count => format!("{} +{}", visible_data_type_label, selected_data_type_count - 1),
                 }

@@ -63,7 +63,7 @@ impl ProjectHierarchyCommandDispatcher {
                         project_items_strip_symbol_response
                             .error
                             .as_deref()
-                            .unwrap_or("unknown error")
+                            .unwrap_or("未知错误")
                     );
                     return;
                 }

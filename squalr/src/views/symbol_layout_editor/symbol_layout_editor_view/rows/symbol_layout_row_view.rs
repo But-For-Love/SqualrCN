@@ -95,7 +95,7 @@ impl<'view> SymbolLayoutRowView<'view> {
             &self.app_context,
             &mut row_user_interface,
             &theme.icon_library.icon_handle_common_edit,
-            "Rename this symbol layout.",
+            "重命名此符号布局。",
             false,
             SymbolLayoutEditorView::ICON_BUTTON_WIDTH,
             SymbolLayoutEditorView::FIELD_ROW_HEIGHT,

@@ -112,7 +112,7 @@ impl<'lifetime> SymbolResolverTakeoverHostView<'lifetime> {
 
                 let cancel_response = user_interface.add_sized(
                     button_size,
-                    EguiButton::new(RichText::new("Cancel").color(theme.foreground))
+                    EguiButton::new(RichText::new("取消").color(theme.foreground))
                         .fill(theme.background_control_secondary)
                         .stroke(Stroke::new(1.0, theme.background_control_secondary_dark)),
                 );
@@ -160,14 +160,14 @@ impl<'lifetime> SymbolResolverTakeoverHostView<'lifetime> {
 
                 let delete_response = user_interface.add_sized(
                     button_size,
-                    EguiButton::new(RichText::new("Delete").color(theme.foreground))
+                    EguiButton::new(RichText::new("删除").color(theme.foreground))
                         .fill(theme.background_control_danger)
                         .stroke(Stroke::new(1.0, theme.background_control_danger_dark)),
                 );
 
                 let cancel_response = user_interface.add_sized(
                     button_size,
-                    EguiButton::new(RichText::new("Cancel").color(theme.foreground))
+                    EguiButton::new(RichText::new("取消").color(theme.foreground))
                         .fill(theme.background_control_secondary)
                         .stroke(Stroke::new(1.0, theme.background_control_secondary_dark)),
                 );
@@ -222,7 +222,7 @@ impl<'lifetime> SymbolResolverTakeoverHostView<'lifetime> {
         header_user_interface.painter().text(
             pos2(title_rect.left() + Self::TAKE_OVER_TITLE_PADDING_X, title_rect.center().y),
             Align2::LEFT_CENTER,
-            if is_existing_resolver { "Rename resolver" } else { "Create resolver" },
+            if is_existing_resolver { "重命名解析器" } else { "创建解析器" },
             theme.font_library.font_noto_sans.font_window_title.clone(),
             theme.foreground,
         );
@@ -237,7 +237,7 @@ impl<'lifetime> SymbolResolverTakeoverHostView<'lifetime> {
                 ),
                 Layout::top_down(Align::Min),
                 |user_interface| {
-                    user_interface.label(RichText::new("Name").strong().color(theme.foreground));
+                    user_interface.label(RichText::new("名称").strong().color(theme.foreground));
                     user_interface.add_space(Self::TAKE_OVER_ROW_SPACING);
 
                     let mut resolver_id_value = AnonymousValueString::new(draft.resolver_id.clone(), AnonymousValueStringFormat::String, ContainerType::None);
@@ -253,7 +253,7 @@ impl<'lifetime> SymbolResolverTakeoverHostView<'lifetime> {
                                 &string_data_type_ref,
                                 false,
                                 true,
-                                "Resolver name",
+                                "解析器名称",
                                 Self::RESOLVER_ID_EDITOR_ID,
                             )
                             .width(resolver_id_editor_width)
@@ -283,7 +283,7 @@ impl<'lifetime> SymbolResolverTakeoverHostView<'lifetime> {
                     }
 
                     user_interface.add_space(Self::TAKE_OVER_ROW_SPACING + Self::TAKE_OVER_ROW_SPACING);
-                    let (cancel_response, accept_response) = self.render_take_over_action_buttons(user_interface, "Accept", self.can_save);
+                    let (cancel_response, accept_response) = self.render_take_over_action_buttons(user_interface, "确定", self.can_save);
                     if cancel_response.clicked() {
                         action = SymbolResolverTakeoverAction::CancelDraft;
                     }
@@ -370,7 +370,7 @@ impl<'lifetime> SymbolResolverTakeoverHostView<'lifetime> {
             },
         );
         panel_user_interface.add_space(Self::TAKE_OVER_ROW_SPACING);
-        let (cancel_response, accept_response) = self.render_take_over_action_buttons(&mut panel_user_interface, "Accept", self.can_save);
+        let (cancel_response, accept_response) = self.render_take_over_action_buttons(&mut panel_user_interface, "确定", self.can_save);
         if cancel_response.clicked() {
             action = SymbolResolverTakeoverAction::CancelDraft;
         }
@@ -428,13 +428,13 @@ impl<'lifetime> SymbolResolverTakeoverHostView<'lifetime> {
                 Layout::top_down(Align::Min),
                 |user_interface| {
                     user_interface.add(
-                        GroupBox::new_from_theme(theme, "Delete Resolver", |user_interface| {
-                            user_interface.label(RichText::new(format!("Delete `{}`?", resolver_id)).color(theme.foreground));
+                        GroupBox::new_from_theme(theme, "删除解析器", |user_interface| {
+                            user_interface.label(RichText::new(format!("删除 `{}`？", resolver_id)).color(theme.foreground));
                             user_interface.add_space(4.0);
                             let (usage_text, usage_text_color) = if usage_count == 0 {
-                                (String::from("No existing fields reference this resolver."), theme.foreground_preview)
+                                (String::from("没有任何字段引用此解析器。"), theme.foreground_preview)
                             } else if usage_count == 1 {
-                                (String::from("1 existing resolver reference will become unresolved."), theme.warning)
+                                (String::from("1 个已有的解析器引用将变为未解析。"), theme.warning)
                             } else {
                                 (format!("{} existing resolver references will become unresolved.", usage_count), theme.warning)
                             };

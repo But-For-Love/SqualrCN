@@ -23,7 +23,7 @@ pub(in crate::views::symbol_layout_editor::symbol_layout_editor_view) fn render_
                 .add(
                     ToolbarMenuItemView::new(
                         symbol_layout_editor_view.app_context.clone(),
-                        "Split Range",
+                        "拆分范围",
                         "symbol_layout_unassigned_ctx_split_range",
                         &None,
                         SymbolLayoutEditorView::FIELD_CONTEXT_MENU_WIDTH,
@@ -41,7 +41,7 @@ pub(in crate::views::symbol_layout_editor::symbol_layout_editor_view) fn render_
                 .add(
                     ToolbarMenuItemView::new(
                         symbol_layout_editor_view.app_context.clone(),
-                        "Merge with Above",
+                        "与上方合并",
                         "symbol_layout_unassigned_ctx_merge_above",
                         &None,
                         SymbolLayoutEditorView::FIELD_CONTEXT_MENU_WIDTH,
@@ -58,7 +58,7 @@ pub(in crate::views::symbol_layout_editor::symbol_layout_editor_view) fn render_
                 .add(
                     ToolbarMenuItemView::new(
                         symbol_layout_editor_view.app_context.clone(),
-                        "Merge with Below",
+                        "与下方合并",
                         "symbol_layout_unassigned_ctx_merge_below",
                         &None,
                         SymbolLayoutEditorView::FIELD_CONTEXT_MENU_WIDTH,
@@ -78,7 +78,7 @@ pub(in crate::views::symbol_layout_editor::symbol_layout_editor_view) fn render_
                     .add(
                         ToolbarMenuItemView::new(
                             symbol_layout_editor_view.app_context.clone(),
-                            "Define Field...",
+                            "定义字段...",
                             "symbol_layout_unassigned_ctx_define_field_at",
                             &None,
                             SymbolLayoutEditorView::FIELD_CONTEXT_MENU_WIDTH,

@@ -60,30 +60,30 @@ impl MainToolbarView {
 
         let menus = vec![
             ToolbarHeaderItemData {
-                header: "File".into(),
+                header: "文件".into(),
                 items: vec![
-                    ToolbarMenuItemData::new(MainToolbarView::ACTION_ID_SELECT_PROJECT, "Select Project", None),
-                    ToolbarMenuItemData::new(MainToolbarView::ACTION_ID_EXPORT_PROJECT, "Export Project as Table...", None)
+                    ToolbarMenuItemData::new(MainToolbarView::ACTION_ID_SELECT_PROJECT, "选择项目", None),
+                    ToolbarMenuItemData::new(MainToolbarView::ACTION_ID_EXPORT_PROJECT, "导出项目为表格...", None)
                         .with_enabled_state(Box::new(move || MainToolbarView::has_opened_project(app_context_for_project_export.as_ref()))),
-                    ToolbarMenuItemData::new(MainToolbarView::ACTION_ID_EXIT, "Exit Squalr", None).with_separator(),
+                    ToolbarMenuItemData::new(MainToolbarView::ACTION_ID_EXIT, "退出 Squalr", None).with_separator(),
                 ]
                 .into(),
             },
             ToolbarHeaderItemData {
-                header: "Layout".into(),
+                header: "布局".into(),
                 items: vec![ToolbarMenuItemData::new(
                     MainToolbarView::ACTION_ID_RESET_LAYOUT,
-                    "Reset Layout",
+                    "重置布局",
                     None,
                 )]
                 .into(),
             },
             ToolbarHeaderItemData {
-                header: "Windows".into(),
+                header: "窗口".into(),
                 items: vec![
                     ToolbarMenuItemData::new(
                         ProcessSelectorView::WINDOW_ID,
-                        "Process Selector",
+                        "进程选择器",
                         Some(Box::new(move || {
                             if let Ok(docking_manager) = docking_manager_for_process_selector.read() {
                                 if let Some(docked_node) = docking_manager.get_node_by_id(ProcessSelectorView::WINDOW_ID) {
@@ -96,7 +96,7 @@ impl MainToolbarView {
                     ),
                     ToolbarMenuItemData::new(
                         ProjectExplorerView::WINDOW_ID,
-                        "Project Explorer",
+                        "项目浏览器",
                         Some(Box::new(move || {
                             if let Ok(docking_manager) = docking_manager_for_project_explorer.read() {
                                 if let Some(docked_node) = docking_manager.get_node_by_id(ProjectExplorerView::WINDOW_ID) {
@@ -109,7 +109,7 @@ impl MainToolbarView {
                     ),
                     ToolbarMenuItemData::new(
                         StructViewerView::WINDOW_ID,
-                        "Details Viewer",
+                        "详情查看器",
                         Some(Box::new(move || {
                             if let Ok(docking_manager) = docking_manager_for_struct_viewer.read() {
                                 if let Some(docked_node) = docking_manager.get_node_by_id(StructViewerView::WINDOW_ID) {
@@ -122,7 +122,7 @@ impl MainToolbarView {
                     ),
                     ToolbarMenuItemData::new(
                         SymbolTreeView::WINDOW_ID,
-                        "Symbol Tree",
+                        "符号树",
                         Some(Box::new(move || {
                             if let Ok(docking_manager) = docking_manager_for_symbol_tree.read() {
                                 if let Some(docked_node) = docking_manager.get_node_by_id(SymbolTreeView::WINDOW_ID) {
@@ -136,7 +136,7 @@ impl MainToolbarView {
                     .with_separator(),
                     ToolbarMenuItemData::new(
                         SymbolLayoutEditorView::WINDOW_ID,
-                        "Symbol Layouts",
+                        "符号布局",
                         Some(Box::new(move || {
                             if let Ok(docking_manager) = docking_manager_for_symbol_layout_editor.read() {
                                 if let Some(docked_node) = docking_manager.get_node_by_id(SymbolLayoutEditorView::WINDOW_ID) {
@@ -149,7 +149,7 @@ impl MainToolbarView {
                     ),
                     ToolbarMenuItemData::new(
                         SymbolResolverEditorView::WINDOW_ID,
-                        "Symbol Resolvers",
+                        "符号解析器",
                         Some(Box::new(move || {
                             if let Ok(docking_manager) = docking_manager_for_symbol_resolver_editor.read() {
                                 if let Some(docked_node) = docking_manager.get_node_by_id(SymbolResolverEditorView::WINDOW_ID) {
@@ -162,7 +162,7 @@ impl MainToolbarView {
                     ),
                     ToolbarMenuItemData::new(
                         MemoryViewerView::WINDOW_ID,
-                        "Memory Viewer",
+                        "内存查看器",
                         Some(Box::new(move || {
                             if let Ok(docking_manager) = docking_manager_for_memory_viewer.read() {
                                 if let Some(docked_node) = docking_manager.get_node_by_id(MemoryViewerView::WINDOW_ID) {
@@ -176,7 +176,7 @@ impl MainToolbarView {
                     .with_separator(),
                     ToolbarMenuItemData::new(
                         CodeViewerView::WINDOW_ID,
-                        "Code Viewer",
+                        "代码查看器",
                         Some(Box::new(move || {
                             if let Ok(docking_manager) = docking_manager_for_code_viewer.read() {
                                 if let Some(docked_node) = docking_manager.get_node_by_id(CodeViewerView::WINDOW_ID) {
@@ -189,7 +189,7 @@ impl MainToolbarView {
                     ),
                     ToolbarMenuItemData::new(
                         ElementScannerView::WINDOW_ID,
-                        "Element Scanner",
+                        "扫描器",
                         Some(Box::new(move || {
                             if let Ok(docking_manager) = docking_manager_for_element_scanner.read() {
                                 if let Some(docked_node) = docking_manager.get_node_by_id(ElementScannerView::WINDOW_ID) {
@@ -203,7 +203,7 @@ impl MainToolbarView {
                     .with_separator(),
                     ToolbarMenuItemData::new(
                         PointerScannerView::WINDOW_ID,
-                        "Pointer Scanner",
+                        "指针扫描器",
                         Some(Box::new(move || {
                             if let Ok(docking_manager) = docking_manager_for_pointer_scanner.read() {
                                 if let Some(docked_node) = docking_manager.get_node_by_id(PointerScannerView::WINDOW_ID) {
@@ -216,7 +216,7 @@ impl MainToolbarView {
                     ),
                     ToolbarMenuItemData::new(
                         OutputView::WINDOW_ID,
-                        "Output",
+                        "输出",
                         Some(Box::new(move || {
                             if let Ok(docking_manager) = docking_manager_for_output.read() {
                                 if let Some(docked_node) = docking_manager.get_node_by_id(OutputView::WINDOW_ID) {
@@ -230,7 +230,7 @@ impl MainToolbarView {
                     .with_separator(),
                     ToolbarMenuItemData::new(
                         PluginsView::WINDOW_ID,
-                        "Plugins",
+                        "插件",
                         Some(Box::new(move || {
                             if let Ok(docking_manager) = docking_manager_for_plugins.read() {
                                 if let Some(docked_node) = docking_manager.get_node_by_id(PluginsView::WINDOW_ID) {
@@ -243,7 +243,7 @@ impl MainToolbarView {
                     ),
                     ToolbarMenuItemData::new(
                         SettingsView::WINDOW_ID,
-                        "Settings",
+                        "设置",
                         Some(Box::new(move || {
                             if let Ok(docking_manager) = docking_manager_for_settings.read() {
                                 if let Some(docked_node) = docking_manager.get_node_by_id(SettingsView::WINDOW_ID) {
@@ -258,10 +258,10 @@ impl MainToolbarView {
                 .into(),
             },
             ToolbarHeaderItemData {
-                header: "Help".into(),
+                header: "帮助".into(),
                 items: vec![ToolbarMenuItemData::new(
                     MainToolbarView::ACTION_ID_SHOW_ABOUT,
-                    "About",
+                    "关于",
                     None,
                 )]
                 .into(),

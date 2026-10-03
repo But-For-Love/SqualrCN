@@ -49,7 +49,7 @@ impl SymbolLayoutEditorView {
                 let panel_width = user_interface.available_width();
 
                 user_interface.add(
-                    GroupBox::new_from_theme(theme, "Define Field", |user_interface| {
+                    GroupBox::new_from_theme(theme, "定义字段", |user_interface| {
                         user_interface.horizontal(|user_interface| {
                             user_interface.add_space(Self::DEFINE_FIELD_GROUPBOX_SIDE_PADDING);
                             let content_width = (user_interface.available_width() - Self::DEFINE_FIELD_GROUPBOX_SIDE_PADDING).max(1.0);
@@ -57,7 +57,7 @@ impl SymbolLayoutEditorView {
                                 user_interface.label(RichText::new(format!("{} + 0x{:X}", layout_id, span_offset_in_bytes)).color(theme.foreground_preview));
                                 user_interface.add_space(8.0);
 
-                                user_interface.label(RichText::new("Name").color(theme.foreground));
+                                user_interface.label(RichText::new("名称").color(theme.foreground));
                                 user_interface.add_space(2.0);
                                 render_symbol_layout_string_value_box(
                                     self.app_context.clone(),
@@ -71,7 +71,7 @@ impl SymbolLayoutEditorView {
                                 user_interface.add_space(8.0);
 
                                 let max_relative_offset = span_size_in_bytes.saturating_sub(1);
-                                user_interface.label(RichText::new(format!("Offset in UNASSIGNED (0 to {})", max_relative_offset)).color(theme.foreground));
+                                user_interface.label(RichText::new(format!("在未分配区间中的偏移（0 到 {}）", max_relative_offset)).color(theme.foreground));
                                 user_interface.add_space(2.0);
                                 render_symbol_layout_string_value_box(
                                     self.app_context.clone(),
@@ -91,7 +91,7 @@ impl SymbolLayoutEditorView {
                                     |data_type_ref| self.resolve_data_type_size_in_bytes(data_type_ref),
                                 );
                                 if let Err(validation_error) = validation_result.as_ref()
-                                    && validation_error != "Field name is required."
+                                    && validation_error != "字段名称为必填项。"
                                 {
                                     user_interface.add_space(4.0);
                                     user_interface.label(RichText::new(validation_error).color(theme.warning));
@@ -131,7 +131,7 @@ impl SymbolLayoutEditorView {
                                 );
 
                                 if let Err(validation_error) = validation_result.as_ref()
-                                    && validation_error == "Field name is required."
+                                    && validation_error == "字段名称为必填项。"
                                 {
                                     user_interface.add_space(6.0);
                                     user_interface.label(RichText::new(validation_error).color(theme.error_red));
@@ -150,7 +150,7 @@ impl SymbolLayoutEditorView {
 
                                         let cancel_response = user_interface.add_sized(
                                             button_size,
-                                            EguiButton::new(RichText::new("Cancel").color(theme.foreground))
+                                            EguiButton::new(RichText::new("取消").color(theme.foreground))
                                                 .fill(theme.background_control_secondary)
                                                 .stroke(Stroke::new(1.0, theme.background_control_secondary_dark)),
                                         );
@@ -171,7 +171,7 @@ impl SymbolLayoutEditorView {
                                         };
                                         let create_response = user_interface.add_sized(
                                             button_size,
-                                            EguiButton::new(RichText::new("Create").color(if can_create {
+                                            EguiButton::new(RichText::new("创建").color(if can_create {
                                                 theme.foreground
                                             } else {
                                                 theme.foreground_preview

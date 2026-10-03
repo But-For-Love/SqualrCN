@@ -64,7 +64,7 @@ impl Widget for CodeViewerFooterView {
             .code_viewer_view_data
             .read("Code viewer footer stats")
             .map(|code_viewer_view_data| code_viewer_view_data.stats_string.clone())
-            .unwrap_or_else(|| String::from("No page selected."));
+            .unwrap_or_else(|| String::from("未选择分页。"));
         let mut top_row_user_interface = user_interface.new_child(UiBuilder::new().max_rect(top_row).sense(Sense::click()));
         let page_number_edit_rectangle = Rect::from_center_size(pos2(center_x, center_y), vec2(page_box_width, page_box_height));
         let mut page_index_text = CodeViewerViewData::get_current_page_index_string(self.code_viewer_view_data.clone());
@@ -90,7 +90,7 @@ impl Widget for CodeViewerFooterView {
             Rect::from_min_size(pos2(first_page_button_x, center_y - button_height * 0.5), vec2(button_width, button_height)),
             Button::new_from_theme(theme)
                 .background_color(Color32::TRANSPARENT)
-                .with_tooltip_text("First page."),
+                .with_tooltip_text("第一页。"),
         );
         IconDraw::draw(
             &top_row_user_interface,
@@ -103,7 +103,7 @@ impl Widget for CodeViewerFooterView {
             Rect::from_min_size(pos2(previous_page_button_x, center_y - button_height * 0.5), vec2(button_width, button_height)),
             Button::new_from_theme(theme)
                 .background_color(Color32::TRANSPARENT)
-                .with_tooltip_text("Previous page."),
+                .with_tooltip_text("上一页。"),
         );
         IconDraw::draw(
             &top_row_user_interface,
@@ -116,7 +116,7 @@ impl Widget for CodeViewerFooterView {
             Rect::from_min_size(pos2(next_page_button_x, center_y - button_height * 0.5), vec2(button_width, button_height)),
             Button::new_from_theme(theme)
                 .background_color(Color32::TRANSPARENT)
-                .with_tooltip_text("Next page."),
+                .with_tooltip_text("下一页。"),
         );
         IconDraw::draw(
             &top_row_user_interface,
@@ -129,7 +129,7 @@ impl Widget for CodeViewerFooterView {
             Rect::from_min_size(pos2(last_page_button_x, center_y - button_height * 0.5), vec2(button_width, button_height)),
             Button::new_from_theme(theme)
                 .background_color(Color32::TRANSPARENT)
-                .with_tooltip_text("Last page."),
+                .with_tooltip_text("最后一页。"),
         );
         IconDraw::draw(
             &top_row_user_interface,

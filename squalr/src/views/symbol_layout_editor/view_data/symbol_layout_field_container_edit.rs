@@ -28,13 +28,13 @@ impl SymbolLayoutFieldContainerKind {
 
     pub fn label(&self) -> &'static str {
         match self {
-            Self::Element => "Element",
-            Self::Array => "Array",
-            Self::FixedArray => "Fixed Array",
-            Self::DynamicArray => "Dynamic Array",
-            Self::Pointer => "Pointer",
-            Self::FixedPointerArray => "Fixed Pointer Array",
-            Self::DynamicPointerArray => "Dynamic Pointer Array",
+            Self::Element => "元素",
+            Self::Array => "数组",
+            Self::FixedArray => "固定数组",
+            Self::DynamicArray => "动态数组",
+            Self::Pointer => "指针",
+            Self::FixedPointerArray => "固定指针数组",
+            Self::DynamicPointerArray => "动态指针数组",
         }
     }
 }
@@ -125,7 +125,7 @@ impl SymbolLayoutFieldContainerEdit {
 
                 let fixed_array_length = trimmed_length
                     .parse::<u64>()
-                    .map_err(|_| format!("Invalid array length: {}.", trimmed_length))?;
+                    .map_err(|_| format!("数组长度无效：{}。", trimmed_length))?;
 
                 Ok(ContainerType::ArrayFixed(fixed_array_length))
             }
@@ -137,7 +137,7 @@ impl SymbolLayoutFieldContainerEdit {
 
                 let fixed_array_length = trimmed_length
                     .parse::<u64>()
-                    .map_err(|_| format!("Invalid pointer array length: {}.", trimmed_length))?;
+                    .map_err(|_| format!("指针数组长度无效：{}。", trimmed_length))?;
 
                 Ok(ContainerType::PointerArrayFixed(self.pointer_size, fixed_array_length))
             }

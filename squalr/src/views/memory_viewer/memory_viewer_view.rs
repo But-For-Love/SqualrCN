@@ -279,7 +279,7 @@ impl MemoryViewerView {
         Self::draw_column_header_text(
             user_interface,
             Rect::from_min_max(header_rect.min, pos2(header_rect.min.x + Self::ADDRESS_COLUMN_WIDTH, header_rect.max.y)),
-            "Address",
+            "地址",
             pos2(header_rect.min.x + Self::ADDRESS_TEXT_LEFT_PADDING, header_text_y),
             theme,
         );
@@ -289,7 +289,7 @@ impl MemoryViewerView {
                 pos2(column_layout.hex_columns_left, header_rect.min.y),
                 pos2(column_layout.hex_columns_right, header_rect.max.y),
             ),
-            "Bytes",
+            "字节",
             pos2(column_layout.hex_columns_left, header_text_y),
             theme,
         );
@@ -299,7 +299,7 @@ impl MemoryViewerView {
                 pos2(column_layout.ascii_columns_left, header_rect.min.y),
                 pos2(column_layout.ascii_columns_right, header_rect.max.y),
             ),
-            "String UTF-8",
+            "字符串 UTF-8",
             pos2(column_layout.ascii_columns_left, header_text_y),
             theme,
         );
@@ -458,12 +458,12 @@ impl MemoryViewerView {
                     .saturating_add(1);
 
                 if selected_byte_count > 1 {
-                    format!("Add Selection As u8[{}]", selected_byte_count)
+                    format!("将所选内容添加为 u8[{}]", selected_byte_count)
                 } else {
-                    String::from("Add Selection As u8")
+                    String::from("将所选内容添加为 u8")
                 }
             }
-            _ => String::from("Add Byte As u8"),
+            _ => String::from("将字节添加为 u8"),
         }
     }
 }
@@ -510,7 +510,7 @@ impl Widget for MemoryViewerView {
                     vec2(36.0, Self::TOOLBAR_ROW_HEIGHT),
                     Button::new_from_theme(theme)
                         .background_color(Color32::TRANSPARENT)
-                        .with_tooltip_text("Refresh memory pages."),
+                        .with_tooltip_text("刷新内存分页。"),
                 );
 
                 IconDraw::draw(&toolbar_user_interface, refresh_button.rect, &theme.icon_library.icon_handle_navigation_refresh);
@@ -559,7 +559,7 @@ impl Widget for MemoryViewerView {
                     vec2(36.0, Self::TOOLBAR_ROW_HEIGHT),
                     Button::new_from_theme(theme)
                         .background_color(Color32::TRANSPARENT)
-                        .with_tooltip_text("Seek the memory viewer to the requested address."),
+                        .with_tooltip_text("将内存查看器定位到请求的地址。"),
                 );
                 IconDraw::draw(
                     &toolbar_user_interface,

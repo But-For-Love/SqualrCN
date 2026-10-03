@@ -348,7 +348,7 @@ impl StructViewerView {
             Layout::left_to_right(Align::Center),
             |user_interface| {
                 user_interface.label(
-                    RichText::new(format!("Offset {}", pointer_offset_index + 1))
+                    RichText::new(format!("偏移 {}", pointer_offset_index + 1))
                         .strong()
                         .color(theme.foreground),
                 );
@@ -384,7 +384,7 @@ impl StructViewerView {
                 let remove_offset_response = self.render_pointer_offset_icon_button(
                     user_interface,
                     &theme.icon_library.icon_handle_common_remove,
-                    "Remove this offset.",
+                    "移除此偏移。",
                     !can_remove_offset,
                 );
                 if remove_offset_response.clicked() {
@@ -394,7 +394,7 @@ impl StructViewerView {
                 user_interface.add_space(Self::POINTER_OFFSET_INPUT_SPACING);
 
                 let append_offset_response =
-                    self.render_pointer_offset_icon_button(user_interface, &theme.icon_library.icon_handle_common_add, "Append a new offset.", false);
+                    self.render_pointer_offset_icon_button(user_interface, &theme.icon_library.icon_handle_common_add, "追加新的偏移。", false);
                 if append_offset_response.clicked() {
                     pending_row_action = Some(PointerOffsetRowAction::AppendOffset);
                 }
@@ -442,9 +442,9 @@ impl StructViewerView {
         let pointer_offset_data_type_ref = Self::pointer_offset_data_type_ref();
         let mut should_save_offsets = false;
 
-        self.render_take_over_panel(user_interface, "Edit pointer offsets", |user_interface| {
+        self.render_take_over_panel(user_interface, "编辑指针偏移", |user_interface| {
             user_interface.add(
-                GroupBox::new_from_theme(theme, "Offsets", |user_interface| {
+                GroupBox::new_from_theme(theme, "偏移列表", |user_interface| {
                     let mut pending_pointer_offset_row_action = None;
                     let pointer_offset_count = pointer_offset_values.len();
 
@@ -470,7 +470,7 @@ impl StructViewerView {
 
                     if pointer_offset_count == 0 {
                         let add_response =
-                            self.render_pointer_offset_icon_button(user_interface, &theme.icon_library.icon_handle_common_add, "Append a new offset.", false);
+                            self.render_pointer_offset_icon_button(user_interface, &theme.icon_library.icon_handle_common_add, "追加新的偏移。", false);
 
                         if add_response.clicked() {
                             pending_pointer_offset_row_action = Some((0, PointerOffsetRowAction::AppendOffset));
@@ -500,7 +500,7 @@ impl StructViewerView {
 
                         let cancel_response = user_interface.add_sized(
                             button_size,
-                            EguiButton::new(RichText::new("Cancel").color(theme.foreground))
+                            EguiButton::new(RichText::new("取消").color(theme.foreground))
                                 .fill(theme.background_control_secondary)
                                 .stroke(Stroke::new(1.0, theme.background_control_secondary_dark)),
                         );
@@ -508,7 +508,7 @@ impl StructViewerView {
                             *should_cancel_take_over = true;
                         }
 
-                        let accept_button = EguiButton::new(RichText::new("Accept").color(theme.foreground))
+                        let accept_button = EguiButton::new(RichText::new("确定").color(theme.foreground))
                             .fill(theme.background_control_primary)
                             .stroke(Stroke::new(1.0, theme.background_control_primary_dark));
                         let accept_response = user_interface
@@ -578,9 +578,9 @@ impl StructViewerView {
         let mut should_save_instruction = false;
         let mut is_instruction_edit_valid = false;
 
-        self.render_take_over_panel(user_interface, "Edit instruction", |user_interface| {
+        self.render_take_over_panel(user_interface, "编辑指令", |user_interface| {
             user_interface.add(
-                GroupBox::new_from_theme(theme, "Instruction", |user_interface| {
+                GroupBox::new_from_theme(theme, "指令", |user_interface| {
                     let editor_width = user_interface.available_width().max(260.0);
 
                     user_interface.add(
@@ -619,7 +619,7 @@ impl StructViewerView {
 
                         let cancel_response = user_interface.add_sized(
                             button_size,
-                            EguiButton::new(RichText::new("Cancel").color(theme.foreground))
+                            EguiButton::new(RichText::new("取消").color(theme.foreground))
                                 .fill(theme.background_control_secondary)
                                 .stroke(Stroke::new(1.0, theme.background_control_secondary_dark)),
                         );
@@ -627,7 +627,7 @@ impl StructViewerView {
                             *should_cancel_take_over = true;
                         }
 
-                        let commit_button = EguiButton::new(RichText::new("Commit").color(theme.foreground))
+                        let commit_button = EguiButton::new(RichText::new("提交").color(theme.foreground))
                             .fill(theme.background_control_primary)
                             .stroke(Stroke::new(1.0, theme.background_control_primary_dark));
                         let commit_response = user_interface

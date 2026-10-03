@@ -124,7 +124,7 @@ impl Widget for SettingsTabGeneralView {
             .allocate_ui_with_layout(user_interface.available_size(), Layout::top_down(Align::Min), |user_interface| {
                 user_interface.add_space(4.0);
                 user_interface.add(
-                    GroupBox::new_from_theme(theme, "Developer Debugging", |user_interface| {
+                    GroupBox::new_from_theme(theme, "开发者调试", |user_interface| {
                         user_interface.horizontal(|user_interface| {
                             let mut value: i64 = cached_general_settings.debug_engine_request_delay_ms as i64;
                             let slider = Slider::new_from_theme(theme)
@@ -160,7 +160,7 @@ impl Widget for SettingsTabGeneralView {
 
                             user_interface.add_space(8.0);
                             user_interface.label(
-                                RichText::new("Engine Request Delay")
+                                RichText::new("引擎请求延迟")
                                     .font(theme.font_library.font_noto_sans.font_normal.clone())
                                     .color(theme.foreground),
                             );

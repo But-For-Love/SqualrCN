@@ -82,7 +82,7 @@ impl MainWindowView {
             app_context_for_output.clone(),
             dock_view_data.clone(),
             OutputView::new(app_context_for_output.clone()),
-            Rc::new("Output".to_string()),
+            Rc::new("输出".to_string()),
             Rc::new("window_output".to_string()),
         );
 
@@ -91,7 +91,7 @@ impl MainWindowView {
             app_context_for_settings.clone(),
             dock_view_data.clone(),
             SettingsView::new(app_context_for_settings.clone()),
-            Rc::new("Settings".to_string()),
+            Rc::new("设置".to_string()),
             Rc::new("window_settings".to_string()),
         );
 
@@ -100,7 +100,7 @@ impl MainWindowView {
             app_context_for_struct_viewer.clone(),
             dock_view_data.clone(),
             StructViewerView::new(app_context_for_struct_viewer.clone()),
-            Rc::new("Details Viewer".to_string()),
+            Rc::new("详情查看器".to_string()),
             Rc::new(StructViewerView::WINDOW_ID.to_string()),
         );
 
@@ -109,7 +109,7 @@ impl MainWindowView {
             app_context_for_symbol_layout_editor.clone(),
             dock_view_data.clone(),
             SymbolLayoutEditorView::new(app_context_for_symbol_layout_editor.clone()),
-            Rc::new("Symbol Layout Editor".to_string()),
+            Rc::new("符号布局编辑器".to_string()),
             Rc::new(SymbolLayoutEditorView::WINDOW_ID.to_string()),
         );
 
@@ -118,7 +118,7 @@ impl MainWindowView {
             app_context_for_symbol_resolver_editor.clone(),
             dock_view_data.clone(),
             SymbolResolverEditorView::new(app_context_for_symbol_resolver_editor.clone()),
-            Rc::new("Symbol Resolvers".to_string()),
+            Rc::new("符号解析器".to_string()),
             Rc::new(SymbolResolverEditorView::WINDOW_ID.to_string()),
         );
 
@@ -127,7 +127,7 @@ impl MainWindowView {
             app_context_for_memory_viewer.clone(),
             dock_view_data.clone(),
             MemoryViewerView::new(app_context_for_memory_viewer.clone()),
-            Rc::new("Memory Viewer".to_string()),
+            Rc::new("内存查看器".to_string()),
             Rc::new(MemoryViewerView::WINDOW_ID.to_string()),
         );
 
@@ -136,7 +136,7 @@ impl MainWindowView {
             app_context_for_code_viewer.clone(),
             dock_view_data.clone(),
             CodeViewerView::new(app_context_for_code_viewer.clone()),
-            Rc::new("Code Viewer".to_string()),
+            Rc::new("代码查看器".to_string()),
             Rc::new(CodeViewerView::WINDOW_ID.to_string()),
         );
 
@@ -145,7 +145,7 @@ impl MainWindowView {
             app_context_for_debugger_trace.clone(),
             dock_view_data.clone(),
             DebuggerTraceView::new(app_context_for_debugger_trace.clone()),
-            Rc::new("Debugger Trace".to_string()),
+            Rc::new("调试跟踪".to_string()),
             Rc::new(DebuggerTraceView::WINDOW_ID.to_string()),
         );
 
@@ -154,7 +154,7 @@ impl MainWindowView {
             app_context_for_project_explorer.clone(),
             dock_view_data.clone(),
             ProjectExplorerView::new(app_context_for_project_explorer.clone()),
-            Rc::new("Project Explorer".to_string()),
+            Rc::new("项目浏览器".to_string()),
             Rc::new("window_project_explorer".to_string()),
         );
 
@@ -163,7 +163,7 @@ impl MainWindowView {
             app_context_for_symbol_tree.clone(),
             dock_view_data.clone(),
             SymbolTreeView::new(app_context_for_symbol_tree.clone()),
-            Rc::new("Symbol Tree".to_string()),
+            Rc::new("符号树".to_string()),
             Rc::new(SymbolTreeView::WINDOW_ID.to_string()),
         );
 
@@ -172,7 +172,7 @@ impl MainWindowView {
             app_context_for_process_selector.clone(),
             dock_view_data.clone(),
             ProcessSelectorView::new(app_context_for_process_selector.clone()),
-            Rc::new("Process Selector".to_string()),
+            Rc::new("进程选择器".to_string()),
             Rc::new("window_process_selector".to_string()),
         );
 
@@ -181,7 +181,7 @@ impl MainWindowView {
             app_context_for_element_scanner.clone(),
             dock_view_data.clone(),
             ElementScannerView::new(app_context_for_element_scanner.clone()),
-            Rc::new("Element Scanner".to_string()),
+            Rc::new("扫描器".to_string()),
             Rc::new("window_element_scanner".to_string()),
         );
 
@@ -190,7 +190,7 @@ impl MainWindowView {
             app_context_for_pointer_scanner.clone(),
             dock_view_data.clone(),
             PointerScannerView::new(app_context_for_pointer_scanner.clone()),
-            Rc::new("Pointer Scanner".to_string()),
+            Rc::new("指针扫描器".to_string()),
             Rc::new("window_pointer_scanner".to_string()),
         );
 
@@ -199,7 +199,7 @@ impl MainWindowView {
             app_context_for_plugins.clone(),
             dock_view_data.clone(),
             PluginsView::new(app_context_for_plugins.clone()),
-            Rc::new("Plugins".to_string()),
+            Rc::new("插件".to_string()),
             Rc::new(PluginsView::WINDOW_ID.to_string()),
         );
 

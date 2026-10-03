@@ -148,7 +148,7 @@ pub(in crate::views::symbol_layout_editor::symbol_layout_editor_view) fn render_
                 popup_user_interface.add_space(4.0);
                 let search_box_id = format!("symbol_layout_define_field_type_search_{}", menu_id);
                 popup_user_interface.add(
-                    SearchBoxView::new(app_context.clone(), &mut search_text, "Search types", &search_box_id)
+                    SearchBoxView::new(app_context.clone(), &mut search_text, "搜索类型", &search_box_id)
                         .width((popup_width - 8.0).max(1.0))
                         .height(height),
                 );
@@ -160,7 +160,7 @@ pub(in crate::views::symbol_layout_editor::symbol_layout_editor_view) fn render_
                 let filtered_type_options = filter_field_type_options(&type_options, &search_text);
 
                 if filtered_type_options.is_empty() {
-                    popup_user_interface.label(RichText::new("No matching types").color(app_context.theme.foreground_preview));
+                    popup_user_interface.label(RichText::new("没有匹配的类型").color(app_context.theme.foreground_preview));
                     return;
                 }
 

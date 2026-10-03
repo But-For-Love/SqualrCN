@@ -123,7 +123,7 @@ impl SymbolResolverEditorView {
                 .layout(Layout::left_to_right(Align::Center)),
         );
 
-        let add_response = self.render_icon_button(&mut toolbar_user_interface, &theme.icon_library.icon_handle_common_add, "Add resolver.", false);
+        let add_response = self.render_icon_button(&mut toolbar_user_interface, &theme.icon_library.icon_handle_common_add, "添加解析器。", false);
         if add_response.clicked() {
             action = ResolverFrameAction::BeginCreateResolver;
         }
@@ -328,7 +328,7 @@ impl SymbolResolverEditorView {
                 user_interface.available_size(),
                 Layout::centered_and_justified(Direction::TopDown),
                 |user_interface| {
-                    user_interface.label(RichText::new("Open a project to author reusable symbol resolvers.").color(self.app_context.theme.foreground_preview));
+                    user_interface.label(RichText::new("打开一个项目以编写可复用的符号解析器。").color(self.app_context.theme.foreground_preview));
                 },
             )
             .response

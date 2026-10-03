@@ -171,7 +171,7 @@ impl Widget for PointerScannerFooterView {
             first_page_button_rectangle,
             Button::new_from_theme(theme)
                 .background_color(Color32::TRANSPARENT)
-                .with_tooltip_text("First page in the current pointer context."),
+                .with_tooltip_text("当前指针上下文的第一页。"),
         );
         IconDraw::draw(
             &top_row_user_interface,
@@ -186,7 +186,7 @@ impl Widget for PointerScannerFooterView {
             previous_page_button_rectangle,
             Button::new_from_theme(theme)
                 .background_color(Color32::TRANSPARENT)
-                .with_tooltip_text("Previous page in the current pointer context."),
+                .with_tooltip_text("当前指针上下文的上一页。"),
         );
         IconDraw::draw(
             &top_row_user_interface,
@@ -212,7 +212,7 @@ impl Widget for PointerScannerFooterView {
             next_page_button_rectangle,
             Button::new_from_theme(theme)
                 .background_color(Color32::TRANSPARENT)
-                .with_tooltip_text("Next page in the current pointer context."),
+                .with_tooltip_text("当前指针上下文的下一页。"),
         );
         IconDraw::draw(
             &top_row_user_interface,
@@ -227,7 +227,7 @@ impl Widget for PointerScannerFooterView {
             last_page_button_rectangle,
             Button::new_from_theme(theme)
                 .background_color(Color32::TRANSPARENT)
-                .with_tooltip_text("Last page in the current pointer context."),
+                .with_tooltip_text("当前指针上下文的最后一页。"),
         );
         IconDraw::draw(
             &top_row_user_interface,

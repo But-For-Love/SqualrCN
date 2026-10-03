@@ -174,20 +174,20 @@ impl SettingsTabScanView {
 
     fn page_retrieval_mode_label(page_retrieval_mode: PageRetrievalMode) -> &'static str {
         match page_retrieval_mode {
-            PageRetrievalMode::FromSettings => "Auto",
-            PageRetrievalMode::FromUserMode => "Host usermode",
-            PageRetrievalMode::FromNonModules => "Host non-modules",
-            PageRetrievalMode::FromModules => "All modules",
-            PageRetrievalMode::FromVirtualModules => "Virtual modules",
+            PageRetrievalMode::FromSettings => "自动",
+            PageRetrievalMode::FromUserMode => "宿主用户态",
+            PageRetrievalMode::FromNonModules => "宿主非模块区域",
+            PageRetrievalMode::FromModules => "所有模块",
+            PageRetrievalMode::FromVirtualModules => "虚拟模块",
         }
     }
 
     fn memory_alignment_label(memory_alignment: MemoryAlignment) -> &'static str {
         match memory_alignment {
-            MemoryAlignment::Alignment1 => "1 byte",
-            MemoryAlignment::Alignment2 => "2 bytes",
-            MemoryAlignment::Alignment4 => "4 bytes",
-            MemoryAlignment::Alignment8 => "8 bytes",
+            MemoryAlignment::Alignment1 => "1 字节",
+            MemoryAlignment::Alignment2 => "2 字节",
+            MemoryAlignment::Alignment4 => "4 字节",
+            MemoryAlignment::Alignment8 => "8 字节",
         }
     }
 }
@@ -207,7 +207,7 @@ impl Widget for SettingsTabScanView {
             .allocate_ui_with_layout(user_interface.available_size(), Layout::top_down(Align::Min), |user_interface| {
                 user_interface.add_space(4.0);
                 user_interface.add(
-                    GroupBox::new_from_theme(theme, "Scan Results", |user_interface| {
+                    GroupBox::new_from_theme(theme, "扫描结果", |user_interface| {
                         user_interface.horizontal(|user_interface| {
                             let mut value: i64 = cached_scan_settings.results_page_size as i64;
                             let slider = Slider::new_from_theme(theme)
@@ -243,7 +243,7 @@ impl Widget for SettingsTabScanView {
 
                             user_interface.add_space(8.0);
                             user_interface.label(
-                                RichText::new("Results page size")
+                                RichText::new("结果分页大小")
                                     .font(theme.font_library.font_noto_sans.font_normal.clone())
                                     .color(theme.foreground),
                             );
@@ -253,7 +253,7 @@ impl Widget for SettingsTabScanView {
                 );
                 user_interface.add_space(4.0);
                 user_interface.add(
-                    GroupBox::new_from_theme(theme, "Memory Read Intervals", |user_interface| {
+                    GroupBox::new_from_theme(theme, "内存读取间隔", |user_interface| {
                         user_interface.horizontal(|user_interface| {
                             let mut value: i64 = cached_scan_settings.freeze_interval_ms as i64;
                             let slider = Slider::new_from_theme(theme)
@@ -289,7 +289,7 @@ impl Widget for SettingsTabScanView {
 
                             user_interface.add_space(8.0);
                             user_interface.label(
-                                RichText::new("Freeze interval (ms)")
+                                RichText::new("冻结间隔（毫秒）")
                                     .font(theme.font_library.font_noto_sans.font_normal.clone())
                                     .color(theme.foreground),
                             );
@@ -329,7 +329,7 @@ impl Widget for SettingsTabScanView {
 
                             user_interface.add_space(8.0);
                             user_interface.label(
-                                RichText::new("Project read interval (ms)")
+                                RichText::new("项目读取间隔（毫秒）")
                                     .font(theme.font_library.font_noto_sans.font_normal.clone())
                                     .color(theme.foreground),
                             );
@@ -357,7 +357,7 @@ impl Widget for SettingsTabScanView {
 
                             user_interface.add_space(8.0);
                             user_interface.label(
-                                RichText::new("Watch project files for changes")
+                                RichText::new("监视项目文件变更")
                                     .font(theme.font_library.font_noto_sans.font_normal.clone())
                                     .color(theme.foreground),
                             );
@@ -397,7 +397,7 @@ impl Widget for SettingsTabScanView {
 
                             user_interface.add_space(8.0);
                             user_interface.label(
-                                RichText::new("Result read interval (ms)")
+                                RichText::new("结果读取间隔（毫秒）")
                                     .font(theme.font_library.font_noto_sans.font_normal.clone())
                                     .color(theme.foreground),
                             );
@@ -407,7 +407,7 @@ impl Widget for SettingsTabScanView {
                 );
                 user_interface.add_space(4.0);
                 user_interface.add(
-                    GroupBox::new_from_theme(theme, "Scan Params", |user_interface| {
+                    GroupBox::new_from_theme(theme, "扫描参数", |user_interface| {
                         user_interface.horizontal(|user_interface| {
                             let selected_page_retrieval_mode = cached_scan_settings.page_retrieval_mode;
 
@@ -498,7 +498,7 @@ impl Widget for SettingsTabScanView {
 
                             user_interface.add_space(8.0);
                             user_interface.label(
-                                RichText::new("Scan alignment")
+                                RichText::new("扫描对齐")
                                     .font(theme.font_library.font_noto_sans.font_normal.clone())
                                     .color(theme.foreground),
                             );
@@ -508,7 +508,7 @@ impl Widget for SettingsTabScanView {
                 );
                 user_interface.add_space(4.0);
                 user_interface.add(
-                    GroupBox::new_from_theme(theme, "Scan Internals", |user_interface| {
+                    GroupBox::new_from_theme(theme, "扫描内部设置", |user_interface| {
                         user_interface.horizontal(|user_interface| {
                             if user_interface
                                 .add(Checkbox::new_from_theme(theme).with_check_state_bool(cached_scan_settings.is_single_threaded_scan))
@@ -528,7 +528,7 @@ impl Widget for SettingsTabScanView {
 
                             user_interface.add_space(8.0);
                             user_interface.label(
-                                RichText::new("Force single threaded scan")
+                                RichText::new("强制单线程扫描")
                                     .font(theme.font_library.font_noto_sans.font_normal.clone())
                                     .color(theme.foreground),
                             );
@@ -554,7 +554,7 @@ impl Widget for SettingsTabScanView {
 
                             user_interface.add_space(8.0);
                             user_interface.label(
-                                RichText::new("Perform extra debug validation scan")
+                                RichText::new("执行额外的调试校验扫描")
                                     .font(theme.font_library.font_noto_sans.font_normal.clone())
                                     .color(theme.foreground),
                             );

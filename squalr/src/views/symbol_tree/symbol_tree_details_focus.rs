@@ -135,7 +135,7 @@ impl SymbolTreeDetailsFocus {
                             project_symbols_write_value_response
                                 .error
                                 .as_deref()
-                                .unwrap_or("unknown error")
+                                .unwrap_or("未知错误")
                         );
                     }
                 });

@@ -57,7 +57,7 @@ impl DataTypeToStringConverter {
             DataTypeF32be::DATA_TYPE_ID => String::from("f32be"),
             DataTypeF64::DATA_TYPE_ID => String::from("f64"),
             DataTypeF64be::DATA_TYPE_ID => String::from("f64be"),
-            DataTypeStringUtf8::DATA_TYPE_ID => String::from("String (UTF-8)"),
+            DataTypeStringUtf8::DATA_TYPE_ID => String::from("字符串 (UTF-8)"),
             DATA_TYPE_ID_I_X86 => String::from("i_x86"),
             DATA_TYPE_ID_I_X64 => String::from("i_x64"),
             DATA_TYPE_ID_I_ARM => String::from("i_arm"),
@@ -87,7 +87,7 @@ mod tests {
     fn parameterized_string_type_uses_base_label_with_container_suffix() {
         assert_eq!(
             DataTypeToStringConverter::convert_data_type_to_string("string_utf8{null_terminated}[16]"),
-            "String (UTF-8)[16]"
+            "字符串 (UTF-8)[16]"
         );
     }
 

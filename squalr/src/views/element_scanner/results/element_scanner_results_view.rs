@@ -385,7 +385,7 @@ impl Widget for ElementScannerResultsView {
             user_interface.painter().text(
                 address_header_position,
                 Align2::LEFT_CENTER,
-                "Address",
+                "地址",
                 theme.font_library.font_noto_sans.font_header.clone(),
                 theme.foreground,
             );
@@ -406,7 +406,7 @@ impl Widget for ElementScannerResultsView {
                 .text(
                     value_header_position,
                     Align2::LEFT_CENTER,
-                    "Value",
+                    "数值",
                     theme.font_library.font_noto_sans.font_header.clone(),
                     theme.foreground,
                 );
@@ -486,7 +486,7 @@ impl Widget for ElementScannerResultsView {
             user_interface.painter().text(
                 previous_value_label_position,
                 Align2::LEFT_CENTER,
-                "Previous Value",
+                "上一次数值",
                 theme.font_library.font_noto_sans.font_header.clone(),
                 theme.foreground,
             );

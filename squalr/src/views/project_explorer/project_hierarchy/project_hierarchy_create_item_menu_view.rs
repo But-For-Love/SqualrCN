@@ -12,8 +12,8 @@ use std::sync::Arc;
 pub struct ProjectHierarchyCreateItemMenuView;
 
 impl ProjectHierarchyCreateItemMenuView {
-    pub const NEW_ADDRESS_LABEL: &'static str = "New Address";
-    pub const NEW_FOLDER_LABEL: &'static str = "New Folder";
+    pub const NEW_ADDRESS_LABEL: &'static str = "新建地址";
+    pub const NEW_FOLDER_LABEL: &'static str = "新建文件夹";
     const NEW_ADDRESS_ID: &'static str = "project_hierarchy_ctx_new_project_item";
     const NEW_FOLDER_ID: &'static str = "project_hierarchy_ctx_new_folder";
 

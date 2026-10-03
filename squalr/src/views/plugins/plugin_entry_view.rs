@@ -109,7 +109,7 @@ impl<'lifetime> PluginEntryView<'lifetime> {
                     ),
                     Checkbox::new_from_theme(theme)
                         .with_check_state_bool(self.plugin_state.get_is_enabled())
-                        .with_tooltip_text("Enable plugin."),
+                        .with_tooltip_text("启用插件。"),
                 );
 
                 if checkbox_response.clicked() {
@@ -162,7 +162,7 @@ impl<'lifetime> PluginEntryView<'lifetime> {
         };
         let increase_priority_response = render_priority_button(
             &theme.icon_library.icon_handle_navigation_up_arrow_small,
-            "Increase priority.",
+            "提高优先级。",
             !self.can_increase_priority,
         );
         if increase_priority_response.clicked() {
@@ -170,7 +170,7 @@ impl<'lifetime> PluginEntryView<'lifetime> {
         }
         let decrease_priority_response = render_priority_button(
             &theme.icon_library.icon_handle_navigation_down_arrow_small,
-            "Decrease priority.",
+            "降低优先级。",
             !self.can_decrease_priority,
         );
         if decrease_priority_response.clicked() {
@@ -196,17 +196,17 @@ impl<'lifetime> PluginEntryView<'lifetime> {
         let mut status_parts = vec![Self::format_plugin_capabilities(plugin_state)];
 
         if plugin_state.get_metadata().get_is_built_in() {
-            status_parts.push(String::from("Built in"));
+            status_parts.push(String::from("内置"));
         }
 
         if !plugin_state.get_is_enabled() {
-            status_parts.push(String::from("Disabled"));
+            status_parts.push(String::from("已禁用"));
         } else {
             status_parts.push(match plugin_state.get_activation_state() {
-                PluginActivationState::Idle => String::from("Idle"),
-                PluginActivationState::Available => String::from("Available on current target"),
-                PluginActivationState::Activating => String::from("Activating on current target"),
-                PluginActivationState::Activated => String::from("Activated on current target"),
+                PluginActivationState::Idle => String::from("空闲"),
+                PluginActivationState::Available => String::from("当前目标可用"),
+                PluginActivationState::Activating => String::from("正在当前目标上激活"),
+                PluginActivationState::Activated => String::from("已在当前目标上激活"),
             });
         }
 

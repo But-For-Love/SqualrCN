@@ -65,7 +65,7 @@ impl ProjectItemCreateRequestBuilder {
         project_items: &[(ProjectItemRef, ProjectItem)],
         parent_directory_path: &Path,
     ) -> String {
-        const BASE_DIRECTORY_NAME: &str = "New Folder";
+        const BASE_DIRECTORY_NAME: &str = "新建文件夹";
         let existing_children: HashSet<String> = project_items
             .iter()
             .map(|(project_item_ref, _)| project_item_ref.get_project_item_path())

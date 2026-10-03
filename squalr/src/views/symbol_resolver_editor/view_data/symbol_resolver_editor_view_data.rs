@@ -411,7 +411,7 @@ impl SymbolResolverEditorViewData {
                 resolver_descriptor.get_resolver_id() == trimmed_resolver_id && draft.original_resolver_id.as_deref() != Some(trimmed_resolver_id)
             });
         if conflicts_with_existing_resolver {
-            return Err(String::from("Resolver id must be unique."));
+            return Err(String::from("解析器 ID 必须唯一。"));
         }
 
         Ok(SymbolicResolverDescriptor::new(

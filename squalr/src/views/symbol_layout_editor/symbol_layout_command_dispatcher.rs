@@ -31,7 +31,7 @@ impl SymbolLayoutCommandDispatcher {
                     log::error!(
                         "Failed to persist symbol layout `{}` through project-symbols upsert-layout command: {}.",
                         response.struct_layout_id,
-                        response.error.as_deref().unwrap_or("unknown error")
+                        response.error.as_deref().unwrap_or("未知错误")
                     );
                 }
             },
@@ -47,7 +47,7 @@ impl SymbolLayoutCommandDispatcher {
                 log::error!(
                     "Failed to delete symbol layout `{}` through project-symbols delete-layout command: {}.",
                     response.struct_layout_id,
-                    response.error.as_deref().unwrap_or("unknown error")
+                    response.error.as_deref().unwrap_or("未知错误")
                 );
             }
         });

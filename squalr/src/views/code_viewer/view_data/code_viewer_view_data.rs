@@ -406,7 +406,7 @@ impl CodeViewerViewData {
                     })
                     .map(format_absolute_address)
             })
-            .unwrap_or_else(|| String::from("Go to address"))
+            .unwrap_or_else(|| String::from("跳转到地址"))
     }
 
     pub fn seek_to_input_address(code_viewer_view_data: Dependency<Self>) {
@@ -906,7 +906,7 @@ impl CodeViewerViewData {
                     selection_end_index,
                     CodeViewerInstructionEditMode::PastedInstruction,
                     AnonymousValueString::new(copied_instruction_text, AnonymousValueStringFormat::String, ContainerType::None),
-                    CodeViewerInstructionEditStatus::Invalid(String::from("No instruction set plugin is enabled for this target.")),
+                    CodeViewerInstructionEditStatus::Invalid(String::from("此目标未启用任何指令集插件。")),
                 );
                 return None;
             }
@@ -958,7 +958,7 @@ impl CodeViewerViewData {
         };
         let Some(instruction_set) = instruction_set else {
             instruction_edit_state.status = Some(CodeViewerInstructionEditStatus::Invalid(String::from(
-                "No instruction set plugin is enabled for this target.",
+                "此目标未启用任何指令集插件。",
             )));
             return None;
         };
@@ -1024,7 +1024,7 @@ impl CodeViewerViewData {
         };
         let Some(instruction_set) = instruction_set else {
             instruction_edit_state.status = Some(CodeViewerInstructionEditStatus::Invalid(String::from(
-                "No instruction set plugin is enabled for this target.",
+                "此目标未启用任何指令集插件。",
             )));
             return None;
         };
@@ -1068,7 +1068,7 @@ impl CodeViewerViewData {
         if nop_fill_byte_count > 0 {
             let Some(instruction_set) = instruction_set else {
                 instruction_edit_state.status = Some(CodeViewerInstructionEditStatus::Invalid(String::from(
-                    "No instruction set plugin is enabled for this target.",
+                    "此目标未启用任何指令集插件。",
                 )));
                 return None;
             };
@@ -1331,7 +1331,7 @@ impl CodeViewerViewData {
                 selection_end_index,
                 edit_mode,
                 edit_value,
-                CodeViewerInstructionEditStatus::Invalid(String::from("Copied code bytes cannot be empty.")),
+                CodeViewerInstructionEditStatus::Invalid(String::from("复制的代码字节不能为空。")),
             );
             return None;
         }
@@ -1875,7 +1875,7 @@ impl CodeViewerViewData {
         viewport_start_address: Option<u64>,
     ) -> String {
         let Some(current_page) = current_page else {
-            return String::from("No page selected.");
+            return String::from("未选择分页。");
         };
         let page_base_address = current_page.get_base_address();
         let page_end_address = current_page.get_end_address();
@@ -1883,12 +1883,12 @@ impl CodeViewerViewData {
             .iter()
             .find(|normalized_module| normalized_module.contains_address(page_base_address))
             .map(|normalized_module| normalized_module.get_module_name().to_string())
-            .unwrap_or_else(|| String::from("(No Module)"));
+            .unwrap_or_else(|| String::from("（无模块）"));
         let viewport_window = viewport_start_address
             .map(|viewport_start_address| Self::resolve_viewport_window_for_address(current_page, viewport_start_address))
             .unwrap_or_else(|| page_base_address..page_base_address);
         let unreadable_suffix = if unreadable_page_base_addresses.contains(&page_base_address) {
-            " | Unreadable"
+            " | 不可读"
         } else {
             ""
         };

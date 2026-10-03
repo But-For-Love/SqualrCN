@@ -1523,14 +1523,14 @@ mod tests {
     #[test]
     fn instruction_project_item_empty_preview_stays_empty() {
         let project_item =
-            ProjectItemTypeAddress::new_project_item("Instruction", 0x1234, "game.exe", "", DataValue::new(DataTypeRef::new("i_x64"), vec![0x90]));
+            ProjectItemTypeAddress::new_project_item("指令", 0x1234, "game.exe", "", DataValue::new(DataTypeRef::new("i_x64"), vec![0x90]));
 
         assert_eq!(ProjectHierarchyViewData::build_preview_value(&project_item), "");
     }
 
     #[test]
     fn data_project_item_empty_preview_uses_unknown_placeholder() {
-        let project_item = ProjectItemTypeAddress::new_project_item("Value", 0x1234, "game.exe", "", DataValue::new(DataTypeRef::new("u32"), vec![0; 4]));
+        let project_item = ProjectItemTypeAddress::new_project_item("数值", 0x1234, "game.exe", "", DataValue::new(DataTypeRef::new("u32"), vec![0; 4]));
 
         assert_eq!(ProjectHierarchyViewData::build_preview_value(&project_item), "??");
     }

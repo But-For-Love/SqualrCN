@@ -7,8 +7,8 @@ use std::sync::Arc;
 
 fn container_label(container_edit: &SymbolLayoutFieldContainerEdit) -> String {
     match container_edit.kind {
-        SymbolLayoutFieldContainerKind::Element => String::from("Value"),
-        SymbolLayoutFieldContainerKind::Pointer => format!("Ptr {}", container_edit.pointer_size),
+        SymbolLayoutFieldContainerKind::Element => String::from("数值"),
+        SymbolLayoutFieldContainerKind::Pointer => format!("指针 {}", container_edit.pointer_size),
         _ => container_edit.kind.label().to_string(),
     }
 }
@@ -31,7 +31,7 @@ pub(in crate::views::symbol_layout_editor::symbol_layout_editor_view) fn render_
             menu_id,
             None,
             |popup_user_interface: &mut Ui, should_close: &mut bool| {
-                let value_response = popup_user_interface.add(ComboBoxItemView::new(app_context.clone(), "Value", None, width));
+                let value_response = popup_user_interface.add(ComboBoxItemView::new(app_context.clone(), "数值", None, width));
 
                 if value_response.clicked() {
                     selected_container_edit = Some(SymbolLayoutFieldContainerEdit::default());
@@ -41,7 +41,7 @@ pub(in crate::views::symbol_layout_editor::symbol_layout_editor_view) fn render_
                 popup_user_interface.separator();
 
                 for pointer_size in PointerScanPointerSize::ALL {
-                    let pointer_label = format!("Ptr {}", pointer_size);
+                    let pointer_label = format!("指针 {}", pointer_size);
                     let pointer_response = popup_user_interface.add(ComboBoxItemView::new(app_context.clone(), &pointer_label, None, width));
 
                     if pointer_response.clicked() {

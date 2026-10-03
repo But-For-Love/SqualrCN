@@ -120,7 +120,7 @@ impl<'lifetime> SymbolResolverListView<'lifetime> {
                     .is_empty()
                 {
                     user_interface.add_space(6.0);
-                    user_interface.label(RichText::new("No resolvers.").color(self.app_context.theme.foreground_preview));
+                    user_interface.label(RichText::new("没有解析器。").color(self.app_context.theme.foreground_preview));
                 }
             });
 
@@ -146,7 +146,7 @@ impl<'lifetime> SymbolResolverListView<'lifetime> {
                     .add(
                         ToolbarMenuItemView::new(
                             self.app_context.clone(),
-                            "Rename",
+                            "重命名",
                             "symbol_resolver_ctx_rename",
                             &None,
                             Self::RESOLVER_CONTEXT_MENU_WIDTH,
@@ -163,7 +163,7 @@ impl<'lifetime> SymbolResolverListView<'lifetime> {
                     .add(
                         ToolbarMenuItemView::new(
                             self.app_context.clone(),
-                            "Delete",
+                            "删除",
                             "symbol_resolver_ctx_delete",
                             &None,
                             Self::RESOLVER_CONTEXT_MENU_WIDTH,
@@ -207,14 +207,14 @@ impl<'lifetime> SymbolResolverListView<'lifetime> {
         user_interface.painter().text(
             pos2(header_rect.min.x + Self::ROW_LEFT_PADDING, header_rect.center().y),
             Align2::LEFT_CENTER,
-            "Resolver",
+            "解析器",
             theme.font_library.font_noto_sans.font_normal.clone(),
             theme.foreground_preview,
         );
         user_interface.painter().text(
             pos2(header_rect.max.x - Self::ICON_BUTTON_WIDTH - Self::ROW_LEFT_PADDING, header_rect.center().y),
             Align2::RIGHT_CENTER,
-            "Uses",
+            "引用次数",
             theme.font_library.font_noto_sans.font_normal.clone(),
             theme.foreground_preview,
         );
@@ -267,7 +267,7 @@ impl<'lifetime> SymbolResolverListView<'lifetime> {
             edit_button_rect,
             ThemeButton::new_from_theme(theme)
                 .background_color(Color32::TRANSPARENT)
-                .with_tooltip_text("Edit resolver."),
+                .with_tooltip_text("编辑解析器。"),
         );
         IconDraw::draw(user_interface, edit_response.rect, &theme.icon_library.icon_handle_common_edit);
 
@@ -308,7 +308,7 @@ impl<'lifetime> SymbolResolverListView<'lifetime> {
 
     fn resolver_usage_preview_text(usage_count: usize) -> String {
         if usage_count == 1 {
-            return String::from("1 use");
+            return String::from("1 次引用");
         }
 
         format!("{} uses", usage_count)

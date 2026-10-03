@@ -70,11 +70,11 @@ struct TraceColumnSplitters {
 impl DebuggerTraceView {
     pub const WINDOW_ID: &'static str = "window_debugger_trace";
     const PENDING_TRACE_START_TIMEOUT: Duration = Duration::from_secs(15);
-    const ADD_TO_PROJECT_LABEL: &'static str = "Add to Project";
+    const ADD_TO_PROJECT_LABEL: &'static str = "添加到项目";
     const ADD_TO_PROJECT_ID: &'static str = "debugger_trace_ctx_add_to_project";
-    const REPLACE_WITH_NO_OPERATION_LABEL: &'static str = "Replace with Code That Does Nothing";
+    const REPLACE_WITH_NO_OPERATION_LABEL: &'static str = "替换为空操作代码";
     const REPLACE_WITH_NO_OPERATION_ID: &'static str = "debugger_trace_ctx_replace_with_nop";
-    const RESTORE_ORIGINAL_CODE_LABEL: &'static str = "Restore Original Code";
+    const RESTORE_ORIGINAL_CODE_LABEL: &'static str = "恢复原始代码";
     const RESTORE_ORIGINAL_CODE_ID: &'static str = "debugger_trace_ctx_restore_original_code";
     const TRACE_PREVIEW_VIRTUAL_SNAPSHOT_ID: &'static str = "debugger_trace_preview";
     const TRACE_PREVIEW_REFRESH_INTERVAL: Duration = Duration::from_millis(250);
@@ -158,7 +158,7 @@ impl DebuggerTraceView {
                     debugger_trace_stop_response
                         .status
                         .get_message()
-                        .unwrap_or("unknown error")
+                        .unwrap_or("未知错误")
                 );
             }
         });
@@ -205,7 +205,7 @@ impl DebuggerTraceView {
                     debugger_trace_pause_response
                         .status
                         .get_message()
-                        .unwrap_or("unknown error")
+                        .unwrap_or("未知错误")
                 );
             }
         });
@@ -252,7 +252,7 @@ impl DebuggerTraceView {
                     debugger_trace_resume_response
                         .status
                         .get_message()
-                        .unwrap_or("unknown error")
+                        .unwrap_or("未知错误")
                 );
             }
         });
@@ -270,33 +270,33 @@ impl DebuggerTraceView {
 
     fn access_label(access: DebuggerDataBreakpointAccess) -> &'static str {
         match access {
-            DebuggerDataBreakpointAccess::Read => "Reads",
-            DebuggerDataBreakpointAccess::Write => "Writes",
-            DebuggerDataBreakpointAccess::ReadWrite => "Accesses",
+            DebuggerDataBreakpointAccess::Read => "读取",
+            DebuggerDataBreakpointAccess::Write => "写入",
+            DebuggerDataBreakpointAccess::ReadWrite => "访问",
         }
     }
 
     fn prompt_action_label(access: DebuggerDataBreakpointAccess) -> &'static str {
         match access {
-            DebuggerDataBreakpointAccess::Read => "Find What Reads",
-            DebuggerDataBreakpointAccess::Write => "Find What Writes",
-            DebuggerDataBreakpointAccess::ReadWrite => "Find What Accesses",
+            DebuggerDataBreakpointAccess::Read => "查找读取该值的位置",
+            DebuggerDataBreakpointAccess::Write => "查找写入该值的位置",
+            DebuggerDataBreakpointAccess::ReadWrite => "查找访问该值的位置",
         }
     }
 
     fn instruction_access_label(access: DebuggerDataBreakpointAccess) -> &'static str {
         match access {
-            DebuggerDataBreakpointAccess::Read => "Reads From",
-            DebuggerDataBreakpointAccess::Write => "Writes To",
-            DebuggerDataBreakpointAccess::ReadWrite => "Accesses",
+            DebuggerDataBreakpointAccess::Read => "读取来源",
+            DebuggerDataBreakpointAccess::Write => "写入目标",
+            DebuggerDataBreakpointAccess::ReadWrite => "访问",
         }
     }
 
     fn instruction_prompt_action_label(access: DebuggerDataBreakpointAccess) -> &'static str {
         match access {
-            DebuggerDataBreakpointAccess::Read => "Find What This Reads From",
-            DebuggerDataBreakpointAccess::Write => "Find What This Writes To",
-            DebuggerDataBreakpointAccess::ReadWrite => "Find What This Accesses",
+            DebuggerDataBreakpointAccess::Read => "查找此地址读取的内容",
+            DebuggerDataBreakpointAccess::Write => "查找此地址写入的内容",
+            DebuggerDataBreakpointAccess::ReadWrite => "查找此地址访问的内容",
         }
     }
 
@@ -318,7 +318,7 @@ impl DebuggerTraceView {
     fn format_trace_target(trace_session: &DebuggerTraceSessionDescriptor) -> String {
         match trace_session.get_target_kind() {
             DebuggerTraceTargetKind::Instruction => format!(
-                "Instruction at 0x{:X} {}",
+                "位于 0x{:X} 的指令 {}",
                 trace_session.get_address(),
                 Self::instruction_access_label(trace_session.get_access())
             ),
@@ -542,7 +542,7 @@ impl DebuggerTraceView {
                     let side_spacing = ((user_interface.available_width() - panel_width) * 0.5).max(0.0);
                     user_interface.add_space(side_spacing);
                     user_interface.add(
-                        GroupBox::new_from_theme(theme, "Attach debugger?", |user_interface| {
+                        GroupBox::new_from_theme(theme, "附加调试器？", |user_interface| {
                             user_interface.label(
                                 RichText::new(Self::format_pending_trace_target(pending_trace_start_request))
                                     .font(theme.font_library.font_noto_sans.font_normal.clone())
@@ -550,7 +550,7 @@ impl DebuggerTraceView {
                             );
                             user_interface.add_space(8.0);
                             user_interface.label(
-                                RichText::new("Starting this trace requires attaching a debugger to the opened process.")
+                                RichText::new("开始此跟踪需要将调试器附加到已打开的进程。")
                                     .font(theme.font_library.font_noto_sans.font_small.clone())
                                     .color(theme.foreground_preview),
                             );
@@ -601,7 +601,7 @@ impl DebuggerTraceView {
 
                 let cancel_response = user_interface.add_sized(
                     button_size,
-                    Button::new(RichText::new("Cancel").color(theme.foreground))
+                    Button::new(RichText::new("取消").color(theme.foreground))
                         .fill(theme.background_control_secondary)
                         .stroke(Stroke::new(1.0, theme.background_control_secondary_dark)),
                 );
@@ -617,7 +617,7 @@ impl DebuggerTraceView {
 
                 let start_response = user_interface.add_sized(
                     button_size,
-                    Button::new(RichText::new("Start").color(theme.foreground))
+                    Button::new(RichText::new("起始").color(theme.foreground))
                         .fill(theme.background_control_primary)
                         .stroke(Stroke::new(1.0, theme.background_control_primary_dark)),
                 );
@@ -664,7 +664,7 @@ impl DebuggerTraceView {
                 debugger_trace_start_response
                     .status
                     .get_message()
-                    .unwrap_or("unknown error")
+                    .unwrap_or("未知错误")
             );
 
             if let Some(debugger_trace_view_data) = debugger_trace_view_data.read("Debugger trace start failed") {
@@ -714,8 +714,8 @@ impl DebuggerTraceView {
 
         // A compact "#" keeps the hit-count column narrow.
         paint_header_label(user_interface, column_splitters.hit_count, "#");
-        paint_header_label(user_interface, column_splitters.instruction, "Instruction");
-        paint_header_label(user_interface, column_splitters.address, "Address");
+        paint_header_label(user_interface, column_splitters.instruction, "指令");
+        paint_header_label(user_interface, column_splitters.address, "地址");
 
         // Type and Value are a single column: its header hosts the data-type selector (showing the active type) on the
         // left and a compact display-format picker on the far right. The rows below show only the formatted value.
@@ -926,11 +926,11 @@ impl DebuggerTraceView {
         let button_spacing = 4.0;
         let (header_rectangle, _) = user_interface.allocate_exact_size(vec2(user_interface.available_width(), header_height), Sense::hover());
         let status_label = if !trace_session.get_is_active() {
-            "Stopped"
+            "已停止"
         } else if trace_session.get_breakpoint().get_is_enabled() {
-            "Collecting"
+            "采集中"
         } else {
-            "Collection Paused"
+            "采集已暂停"
         };
         let header_label = format!(
             "{} | {} | {}",
@@ -950,7 +950,7 @@ impl DebuggerTraceView {
         );
         let stop_response = user_interface.place(
             stop_button_rectangle,
-            IconButtonView::new(theme, &theme.icon_library.icon_handle_navigation_stop, "Stop trace.").disabled(controls_are_disabled),
+            IconButtonView::new(theme, &theme.icon_library.icon_handle_navigation_stop, "停止跟踪。").disabled(controls_are_disabled),
         );
 
         if stop_response.clicked() && !controls_are_disabled {
@@ -965,7 +965,7 @@ impl DebuggerTraceView {
         if trace_session.get_is_active() && !trace_session.get_breakpoint().get_is_enabled() {
             let resume_response = user_interface.place(
                 control_button_rectangle,
-                IconButtonView::new(theme, &theme.icon_library.icon_handle_navigation_right_arrows, "Resume collection.").disabled(controls_are_disabled),
+                IconButtonView::new(theme, &theme.icon_library.icon_handle_navigation_right_arrows, "继续采集。").disabled(controls_are_disabled),
             );
 
             if resume_response.clicked() && !controls_are_disabled {
@@ -974,7 +974,7 @@ impl DebuggerTraceView {
         } else {
             let pause_response = user_interface.place(
                 control_button_rectangle,
-                IconButtonView::new(theme, &theme.icon_library.icon_handle_navigation_pause, "Pause collection.").disabled(controls_are_disabled),
+                IconButtonView::new(theme, &theme.icon_library.icon_handle_navigation_pause, "暂停采集。").disabled(controls_are_disabled),
             );
 
             if pause_response.clicked() && !controls_are_disabled {
@@ -1010,7 +1010,7 @@ impl DebuggerTraceView {
                 Layout::centered_and_justified(Direction::LeftToRight),
                 |user_interface| {
                     user_interface.label(
-                        RichText::new("Waiting for breakpoint hits.")
+                        RichText::new("正在等待断点命中。")
                             .font(theme.font_library.font_noto_sans.font_small.clone())
                             .color(theme.foreground_preview),
                     );
@@ -1226,7 +1226,7 @@ impl DebuggerTraceView {
             target_address,
         );
         let (project_item_name, data_type_id, initial_preview_value) = if is_accessed_address_record {
-            (format!("Accessed 0x{:X}", project_item_address), String::from("i32"), None)
+            (format!("已访问 0x{:X}", project_item_address), String::from("i32"), None)
         } else {
             (
                 Self::build_instruction_project_item_name(project_item_address, &project_item_module_name, instruction_record),
@@ -1308,7 +1308,7 @@ impl DebuggerTraceView {
         let instruction_text = Self::instruction_text(instruction_record);
 
         if instruction_text.is_empty() {
-            format!("Instruction {}", address_text)
+            format!("指令 {}", address_text)
         } else {
             format!("{} {}", instruction_text, address_text)
         }
@@ -1346,7 +1346,7 @@ impl Widget for DebuggerTraceView {
                         Layout::centered_and_justified(Direction::TopDown),
                         |user_interface| {
                             user_interface.label(
-                                RichText::new("No debugger trace sessions.")
+                                RichText::new("没有调试跟踪会话。")
                                     .font(theme.font_library.font_noto_sans.font_normal.clone())
                                     .color(theme.foreground_preview),
                             );

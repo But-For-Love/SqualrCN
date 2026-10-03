@@ -80,20 +80,20 @@ impl MemoryViewerInterpretationPanelView {
         let selected_byte_count = selection_summary.selected_bytes.len();
 
         interpretation_entries.push(MemoryViewerInterpretationEntry {
-            label: String::from("Bytes"),
+            label: String::from("字节"),
             value: selected_byte_count.to_string(),
             add_data_type_id: None,
         });
         interpretation_entries.push(MemoryViewerInterpretationEntry {
-            label: String::from("Hex"),
+            label: String::from("十六进制"),
             value: Self::format_hex_preview(&selection_summary.selected_bytes),
             add_data_type_id: None,
         });
 
         let Some(readable_bytes) = readable_bytes else {
             interpretation_entries.push(MemoryViewerInterpretationEntry {
-                label: String::from("Interpretation"),
-                value: String::from("Selected bytes are not fully readable yet."),
+                label: String::from("解释方式"),
+                value: String::from("所选字节尚不能完全读取。"),
                 add_data_type_id: None,
             });
 
@@ -164,7 +164,7 @@ impl MemoryViewerInterpretationPanelView {
                 Some(String::from("f64")),
             ));
             interpretation_entries.push(MemoryViewerInterpretationEntry {
-                label: String::from("Pointer (LE)"),
+                label: String::from("指针（小端）"),
                 value: format!("0x{:X}", interpreted_value),
                 add_data_type_id: None,
             });
@@ -348,7 +348,7 @@ impl MemoryViewerInterpretationPanelView {
                     .replace('\r', "\\r")
                     .replace('\t', "\\t")
             })
-            .unwrap_or_else(|_| String::from("(Invalid UTF-8)"));
+            .unwrap_or_else(|_| String::from("（无效的 UTF-8）"));
 
         Self::truncate_text(&utf8_display_text, Self::MAX_UTF8_PREVIEW_CHARACTERS)
     }
@@ -413,7 +413,7 @@ impl MemoryViewerInterpretationPanelView {
                         Button::new_from_theme(theme)
                             .disabled(!has_open_project)
                             .background_color(theme.background_control_secondary)
-                            .with_tooltip_text(&format!("Create a project item from the current selection as `{}`.", add_data_type_id)),
+                            .with_tooltip_text(&format!("以 `{}` 形式从当前选择创建项目条目。", add_data_type_id)),
                     );
 
                     IconDraw::draw_tinted(
@@ -457,7 +457,7 @@ impl Widget for MemoryViewerInterpretationPanelView {
         let selection_summary = MemoryViewerViewData::get_selection_summary(self.memory_viewer_view_data.clone());
 
         panel_user_interface.label(
-            RichText::new("Interpretation")
+            RichText::new("解释方式")
                 .font(theme.font_library.font_noto_sans.font_header.clone())
                 .color(theme.foreground),
         );
@@ -495,7 +495,7 @@ impl Widget for MemoryViewerInterpretationPanelView {
             }
             None => {
                 panel_user_interface.label(
-                    RichText::new("Select bytes in the memory viewer to inspect them here.")
+                    RichText::new("在内存查看器中选择字节以在此查看。")
                         .font(theme.font_library.font_noto_sans.font_normal.clone())
                         .color(theme.foreground_preview),
                 );

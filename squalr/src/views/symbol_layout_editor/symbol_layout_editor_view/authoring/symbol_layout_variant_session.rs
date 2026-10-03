@@ -276,7 +276,7 @@ impl SymbolLayoutVariantSession {
                     resolve_data_type_size_in_bytes,
                 )
                 .map(|struct_layout_descriptor| (variant_draft.original_layout_id.clone(), struct_layout_descriptor))
-                .map_err(|error| format!("Variant layout `{}`: {}", variant_draft.layout_id, error))
+                .map_err(|error| format!("变体布局 `{}`：{}", variant_draft.layout_id, error))
             })
             .collect()
     }

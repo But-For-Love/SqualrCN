@@ -223,31 +223,31 @@ impl<'lifetime> SymbolResolverNodeTreeView<'lifetime> {
 
     fn node_tree_text(resolver_node: &SymbolicResolverNode) -> (String, String, TreeEntryKind) {
         match resolver_node {
-            SymbolicResolverNode::Literal(value) => (String::from("Literal"), value.to_string(), TreeEntryKind::Literal),
-            SymbolicResolverNode::LocalField { field_name } => (String::from("Local Field"), field_name.to_string(), TreeEntryKind::LocalField),
+            SymbolicResolverNode::Literal(value) => (String::from("字面量"), value.to_string(), TreeEntryKind::Literal),
+            SymbolicResolverNode::LocalField { field_name } => (String::from("局部字段"), field_name.to_string(), TreeEntryKind::LocalField),
             SymbolicResolverNode::RelativeSymbolField { symbol_path } => (
-                String::from("Relative Symbol Field"),
+                String::from("相对符号字段"),
                 symbol_path.to_string(),
                 TreeEntryKind::RelativeSymbolField,
             ),
             SymbolicResolverNode::GlobalSymbolField { module_name, symbol_path } => (
-                String::from("Global Symbol Field"),
+                String::from("全局符号字段"),
                 format!("{}.{}", module_name, symbol_path),
                 TreeEntryKind::GlobalSymbolField,
             ),
             SymbolicResolverNode::RelativePointerChain { pointer_chain } => (
-                String::from("Relative Pointer Chain"),
+                String::from("相对指针链"),
                 SymbolicPointerChainLink::display_text_list(pointer_chain.get_links()),
                 TreeEntryKind::RelativeSymbolField,
             ),
             SymbolicResolverNode::GlobalPointerChain { pointer_chain } => (
-                String::from("Global Pointer Chain"),
+                String::from("全局指针链"),
                 pointer_chain.to_string(),
                 TreeEntryKind::GlobalSymbolField,
             ),
-            SymbolicResolverNode::TypeSize { data_type_ref } => (String::from("Type Size"), data_type_ref.to_string(), TreeEntryKind::TypeSize),
-            SymbolicResolverNode::Binary { operator, .. } => (format!("Operation {}", operator.label()), String::new(), TreeEntryKind::Operation),
-            SymbolicResolverNode::Conditional { .. } => (String::from("Conditional"), String::new(), TreeEntryKind::Conditional),
+            SymbolicResolverNode::TypeSize { data_type_ref } => (String::from("类型大小"), data_type_ref.to_string(), TreeEntryKind::TypeSize),
+            SymbolicResolverNode::Binary { operator, .. } => (format!("操作 {}", operator.label()), String::new(), TreeEntryKind::Operation),
+            SymbolicResolverNode::Conditional { .. } => (String::from("条件"), String::new(), TreeEntryKind::Conditional),
         }
     }
 }

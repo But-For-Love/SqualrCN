@@ -300,7 +300,7 @@ impl ProjectSelectorViewData {
             if !project_rename_response.success {
                 log::error!("Failed to rename project!");
             } else {
-                log::info!("Renamed project to: {}", new_project_name);
+                log::info!("项目已重命名为：{}", new_project_name);
 
                 Self::refresh_project_list(project_selector_view_data.clone(), app_context_clone);
                 Self::select_project(
@@ -328,11 +328,11 @@ impl ProjectSelectorViewData {
         if project_name.chars().any(|project_name_character| {
             project_name_character.is_control() || matches!(project_name_character, '<' | '>' | ':' | '"' | '/' | '\\' | '|' | '?' | '*')
         }) {
-            return Err(String::from("Project name contains invalid path characters."));
+            return Err(String::from("项目名称包含无效的路径字符。"));
         }
 
         if project_name == "." || project_name == ".." {
-            return Err(String::from("Project name cannot be a relative path segment."));
+            return Err(String::from("项目名称不能是相对路径片段。"));
         }
 
         if project_name.eq_ignore_ascii_case(current_project_name) {
@@ -343,7 +343,7 @@ impl ProjectSelectorViewData {
             .iter()
             .any(|project_info| project_info.get_project_file_path() != current_project_file_path && project_info.get_name().eq_ignore_ascii_case(project_name))
         {
-            return Err(String::from("A project with this name already exists."));
+            return Err(String::from("已存在同名项目。"));
         }
 
         Ok(())
@@ -393,7 +393,7 @@ impl ProjectSelectorViewData {
             if !project_open_response.success {
                 log::error!("Failed to open project!");
             } else {
-                log::info!("Opened project: {}", project_name);
+                log::info!("已打开项目：{}", project_name);
 
                 Self::cancel_renaming_project(project_selector_view_data.clone());
                 Self::cancel_editing_project(project_selector_view_data);
@@ -413,7 +413,7 @@ impl ProjectSelectorViewData {
             if !project_list_response.success {
                 log::error!("Failed to close project!");
             } else {
-                log::info!("Closed project.");
+                log::info!("已关闭项目。");
             }
         });
     }
@@ -434,7 +434,7 @@ impl ProjectSelectorViewData {
             if !project_delete_response.success {
                 log::error!("Failed to delete project!");
             } else {
-                log::info!("Deleted project: {}", project_name);
+                log::info!("已删除项目：{}", project_name);
 
                 Self::cancel_delete_confirmation(project_selector_view_data.clone());
                 Self::cancel_renaming_project(project_selector_view_data.clone());

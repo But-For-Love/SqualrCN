@@ -38,12 +38,12 @@ impl SymbolLayoutEditorView {
             })
             .unwrap_or_else(|| String::from("<unnamed>"));
         let is_union_layout = draft.layout_kind.is_union();
-        let action_label = if is_union_layout { "Remove" } else { "Unassign" };
-        let title = if is_union_layout { "Remove Variant" } else { "Unassign Field" };
+        let action_label = if is_union_layout { "移除" } else { "取消分配" };
+        let title = if is_union_layout { "移除变体" } else { "取消分配字段" };
         let prompt = if is_union_layout {
-            format!("Remove `{}`?", field_label)
+            format!("移除 `{}`？", field_label)
         } else {
-            format!("Unassign `{}`?", field_label)
+            format!("取消分配 `{}`？", field_label)
         };
 
         let mut should_cancel_unassign = false;
@@ -67,7 +67,7 @@ impl SymbolLayoutEditorView {
             |user_interface| {
                 let theme = &self.app_context.theme;
                 user_interface.add(
-                    GroupBox::new_from_theme(theme, "Confirmation", |user_interface| {
+                    GroupBox::new_from_theme(theme, "确认", |user_interface| {
                         user_interface.label(RichText::new(prompt).color(theme.foreground));
                     })
                     .desired_width(user_interface.available_width()),

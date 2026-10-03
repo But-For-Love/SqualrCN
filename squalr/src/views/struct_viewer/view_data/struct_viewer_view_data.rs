@@ -85,7 +85,7 @@ impl StructViewerViewData {
         struct_viewer_view_data: Dependency<Self>,
         valued_struct_field_name: String,
     ) {
-        let mut struct_viewer_view_data = match struct_viewer_view_data.write("Set selected field") {
+        let mut struct_viewer_view_data = match struct_viewer_view_data.write("设置选中的字段") {
             Some(struct_viewer_view_data) => struct_viewer_view_data,
             None => return,
         };
@@ -94,7 +94,7 @@ impl StructViewerViewData {
     }
 
     pub fn clear_selected_field(struct_viewer_view_data: Dependency<Self>) {
-        let mut struct_viewer_view_data = match struct_viewer_view_data.write("Clear selected field") {
+        let mut struct_viewer_view_data = match struct_viewer_view_data.write("清除选中的字段") {
             Some(struct_viewer_view_data) => struct_viewer_view_data,
             None => return,
         };
@@ -350,7 +350,7 @@ impl StructViewerViewData {
     }
 
     pub fn cancel_take_over_state(struct_viewer_view_data: Dependency<Self>) {
-        if let Some(mut struct_viewer_view_data) = struct_viewer_view_data.write("Cancel Struct Viewer takeover state") {
+        if let Some(mut struct_viewer_view_data) = struct_viewer_view_data.write("取消结构查看器接管状态") {
             struct_viewer_view_data.take_over_state = None;
         }
     }
@@ -666,30 +666,30 @@ impl StructViewerViewData {
         for valued_struct_field in valued_struct.get_fields() {
             let field_presentation = if Self::is_data_type_reference_field(valued_struct_field) {
                 if valued_struct_field.get_is_read_only() {
-                    StructViewerFieldPresentation::new(String::from("Type"), StructViewerFieldEditorKind::ValueBox)
+                    StructViewerFieldPresentation::new(String::from("类型"), StructViewerFieldEditorKind::ValueBox)
                 } else {
-                    StructViewerFieldPresentation::new(String::from("Data Type"), StructViewerFieldEditorKind::DataTypeSelector)
+                    StructViewerFieldPresentation::new(String::from("数据类型"), StructViewerFieldEditorKind::DataTypeSelector)
                 }
             } else if Self::is_virtual_container_type_field(valued_struct_field) {
                 if valued_struct_field.get_is_read_only() {
-                    StructViewerFieldPresentation::new(String::from("Container Type"), StructViewerFieldEditorKind::ValueBox)
+                    StructViewerFieldPresentation::new(String::from("容器类型"), StructViewerFieldEditorKind::ValueBox)
                 } else {
-                    StructViewerFieldPresentation::new(String::from("Container Type"), StructViewerFieldEditorKind::ContainerTypeSelector)
+                    StructViewerFieldPresentation::new(String::from("容器类型"), StructViewerFieldEditorKind::ContainerTypeSelector)
                 }
             } else if Self::is_virtual_array_size_field(valued_struct_field) {
-                StructViewerFieldPresentation::new(String::from("Array Size"), StructViewerFieldEditorKind::ValueBox)
+                StructViewerFieldPresentation::new(String::from("数组长度"), StructViewerFieldEditorKind::ValueBox)
             } else if Self::is_project_item_pointer_size_field(valued_struct_field) {
-                StructViewerFieldPresentation::new(String::from("Pointer Size"), StructViewerFieldEditorKind::ProjectItemPointerSizeSelector)
+                StructViewerFieldPresentation::new(String::from("指针大小"), StructViewerFieldEditorKind::ProjectItemPointerSizeSelector)
             } else if Self::is_project_item_pointer_offsets_field(valued_struct_field) {
-                StructViewerFieldPresentation::new(String::from("Offsets"), StructViewerFieldEditorKind::ProjectItemPointerOffsetsEditor)
+                StructViewerFieldPresentation::new(String::from("偏移列表"), StructViewerFieldEditorKind::ProjectItemPointerOffsetsEditor)
             } else if Self::is_live_value_instruction_field(valued_struct_field, &Self::read_symbolic_struct_definition_reference(valued_struct)) {
-                StructViewerFieldPresentation::new(String::from("Value"), StructViewerFieldEditorKind::InstructionValueEditor)
+                StructViewerFieldPresentation::new(String::from("数值"), StructViewerFieldEditorKind::InstructionValueEditor)
             } else if Self::is_live_value_field(valued_struct_field) && live_value_uses_code_viewer {
-                StructViewerFieldPresentation::new(String::from("Value"), StructViewerFieldEditorKind::CodeViewerButton)
+                StructViewerFieldPresentation::new(String::from("数值"), StructViewerFieldEditorKind::CodeViewerButton)
             } else if Self::is_live_value_field(valued_struct_field) && live_value_uses_external_viewer {
-                StructViewerFieldPresentation::new(String::from("Value"), StructViewerFieldEditorKind::MemoryViewerButton)
+                StructViewerFieldPresentation::new(String::from("数值"), StructViewerFieldEditorKind::MemoryViewerButton)
             } else if Self::is_live_value_field(valued_struct_field) {
-                StructViewerFieldPresentation::new(String::from("Value"), StructViewerFieldEditorKind::ValueBox)
+                StructViewerFieldPresentation::new(String::from("数值"), StructViewerFieldEditorKind::ValueBox)
             } else {
                 StructViewerFieldPresentation::new(Self::field_display_name(valued_struct_field.get_name()), StructViewerFieldEditorKind::ValueBox)
             };
@@ -702,13 +702,13 @@ impl StructViewerViewData {
 
     fn field_display_name(field_name: &str) -> String {
         match field_name {
-            ProjectItem::PROPERTY_NAME => String::from("Name"),
-            ProjectItem::PROPERTY_ICON_ID => String::from("Icon ID"),
-            ProjectItem::PROPERTY_DESCRIPTION => String::from("Description"),
-            ProjectItemTypeAddress::PROPERTY_ADDRESS => String::from("Address"),
-            ProjectItemTypeAddress::PROPERTY_MODULE => String::from("Module"),
-            "__address_target_pointer_offsets" => String::from("Pointer Offsets"),
-            "__address_target_pointer_size" => String::from("Pointer Size"),
+            ProjectItem::PROPERTY_NAME => String::from("名称"),
+            ProjectItem::PROPERTY_ICON_ID => String::from("图标 ID"),
+            ProjectItem::PROPERTY_DESCRIPTION => String::from("描述"),
+            ProjectItemTypeAddress::PROPERTY_ADDRESS => String::from("地址"),
+            ProjectItemTypeAddress::PROPERTY_MODULE => String::from("模块"),
+            "__address_target_pointer_offsets" => String::from("指针偏移"),
+            "__address_target_pointer_size" => String::from("指针大小"),
             _ => Self::humanize_field_key(field_name),
         }
     }
@@ -732,7 +732,7 @@ impl StructViewerViewData {
             }
         }
 
-        if display_name.is_empty() { String::from("Field") } else { display_name }
+        if display_name.is_empty() { String::from("字段") } else { display_name }
     }
 
     fn create_field_validation_data_type_refs(
@@ -989,7 +989,7 @@ mod tests {
                 .expect("Expected StructViewerViewData write guard.");
             struct_viewer_view_data_guard.field_presentations.insert(
                 projected_offsets_field_name.to_string(),
-                StructViewerFieldPresentation::new(String::from("Offsets"), StructViewerFieldEditorKind::ProjectItemPointerOffsetsEditor),
+                StructViewerFieldPresentation::new(String::from("偏移列表"), StructViewerFieldEditorKind::ProjectItemPointerOffsetsEditor),
             );
         }
 

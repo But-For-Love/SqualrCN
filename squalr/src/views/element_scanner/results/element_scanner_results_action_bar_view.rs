@@ -183,7 +183,7 @@ impl Widget for ElementScannerResultsActionBarView {
             add_selection_button_rect,
             Button::new_from_theme(theme)
                 .background_color(Color32::TRANSPARENT)
-                .with_tooltip_text("Add selection to project."),
+                .with_tooltip_text("将所选内容添加到项目。"),
         );
         IconDraw::draw(&toolbar_user_interface, add_selection_response.rect, &theme.icon_library.icon_handle_common_add);
         if add_selection_response.clicked() {
@@ -196,7 +196,7 @@ impl Widget for ElementScannerResultsActionBarView {
                 .background_color(theme.background_control_danger)
                 .border_color(theme.background_control_danger_dark)
                 .border_width(1.0)
-                .with_tooltip_text("Delete selection from results."),
+                .with_tooltip_text("从结果中删除所选内容。"),
         );
         IconDraw::draw(
             &toolbar_user_interface,
@@ -223,7 +223,7 @@ impl Widget for ElementScannerResultsActionBarView {
                     &validation_data_type_ref,
                     false,
                     true,
-                    "Edit selected values...",
+                    "编辑选中的数值...",
                     "data_value_box_edit_value",
                 )
                 .width(edit_value_box_rect.width())
@@ -236,7 +236,7 @@ impl Widget for ElementScannerResultsActionBarView {
             commit_value_button_rect,
             Button::new_from_theme(theme)
                 .background_color(Color32::TRANSPARENT)
-                .with_tooltip_text("Commit value to selected scan results."),
+                .with_tooltip_text("将数值提交到选中的扫描结果。"),
         );
         IconDraw::draw(
             &toolbar_user_interface,

@@ -52,7 +52,7 @@ impl SymbolLayoutFieldDraftFactory {
                     .map(DataTypeRef::new)
                     .unwrap_or_else(|| Self::default_data_type_ref(app_context)),
             );
-            field_draft.field_name = format!("Variant {}", field_position + 1);
+            field_draft.field_name = format!("变体 {}", field_position + 1);
             field_draft.container_edit.kind = SymbolLayoutFieldContainerKind::Element;
             field_draft.offset_mode = SymbolLayoutFieldOffsetMode::Sequential;
 

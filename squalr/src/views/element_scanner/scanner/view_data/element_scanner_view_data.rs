@@ -35,9 +35,9 @@ impl ElementScannerScanMode {
 
     pub fn label(&self) -> &'static str {
         match self {
-            Self::Element => "Element",
-            Self::Array => "Array",
-            Self::Pattern => "Pattern",
+            Self::Element => "元素",
+            Self::Array => "数组",
+            Self::Pattern => "模式",
         }
     }
 }
@@ -149,7 +149,7 @@ impl ElementScannerViewData {
         };
 
         if !has_selected_data_types {
-            log::error!("Cannot start an element scan without at least one selected data type.");
+            log::error!("未选择任何数据类型，无法开始数值扫描。");
             return;
         }
 
@@ -161,7 +161,7 @@ impl ElementScannerViewData {
                 Self::new_scan(element_scanner_view_data, engine_unprivileged_state);
             }
             ElementScannerViewState::ScanInProgress => {
-                log::error!("Cannot start a new scan while a scan is in progress.");
+                log::error!("扫描进行中，无法开始新的扫描。");
             }
         };
     }
@@ -212,7 +212,7 @@ impl ElementScannerViewData {
         );
 
         if data_type_refs.is_empty() {
-            log::error!("Cannot start an element scan without at least one selected data type.");
+            log::error!("未选择任何数据类型，无法开始数值扫描。");
             return;
         }
 
@@ -373,7 +373,7 @@ impl ElementScannerViewData {
         scan_mode: ElementScannerScanMode,
     ) -> &'static str {
         if Self::is_instruction_sequence_data_type(data_type_ref) {
-            "Sequence"
+            "顺序"
         } else {
             scan_mode.label()
         }

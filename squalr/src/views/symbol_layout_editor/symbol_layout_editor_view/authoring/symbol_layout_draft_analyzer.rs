@@ -48,17 +48,17 @@ impl SymbolLayoutDraftAnalyzer {
         resolve_data_type_size_in_bytes: impl Fn(&DataTypeRef) -> Option<u64> + Copy,
     ) -> Result<(u64, u64), String> {
         if field_draft.field_name.trim().is_empty() {
-            return Err(String::from("Field name is required."));
+            return Err(String::from("字段名称为必填项。"));
         }
 
         if field_draft.offset_mode != crate::views::symbol_layout_editor::view_data::symbol_layout_editor_view_data::SymbolLayoutFieldOffsetMode::Static {
-            return Err(String::from("Field offset must be static."));
+            return Err(String::from("字段偏移必须是静态的。"));
         }
 
         let symbolic_field_definition = Self::build_symbolic_field_definition_from_draft(field_draft)?;
         let relative_offset_in_bytes = match symbolic_field_definition.get_offset_resolution() {
             SymbolicFieldOffsetResolution::Static(relative_offset_in_bytes) => *relative_offset_in_bytes,
-            _ => return Err(String::from("Field offset must be static.")),
+            _ => return Err(String::from("字段偏移必须是静态的。")),
         };
         let field_size_in_bytes = SymbolLayoutEditorViewData::resolve_symbolic_field_size_in_bytes(
             project_symbol_catalog,
@@ -68,17 +68,17 @@ impl SymbolLayoutDraftAnalyzer {
         );
 
         if field_size_in_bytes == 0 {
-            return Err(String::from("Field has no byte size."));
+            return Err(String::from("字段没有字节大小。"));
         }
 
         let relative_field_end_in_bytes = relative_offset_in_bytes
             .checked_add(field_size_in_bytes)
-            .ok_or_else(|| String::from("Field range is too large."))?;
+            .ok_or_else(|| String::from("字段范围过大。"))?;
 
         if relative_field_end_in_bytes > span_size_in_bytes {
             if field_size_in_bytes > span_size_in_bytes {
                 return Err(format!(
-                    "`{}` uses {} byte(s); selected span has {}.",
+                    "`{}` 占用 {} 个字节；所选范围有 {}。",
                     symbolic_field_definition.get_data_type_ref().get_data_type_id(),
                     field_size_in_bytes,
                     span_size_in_bytes
@@ -86,7 +86,7 @@ impl SymbolLayoutDraftAnalyzer {
             }
 
             return Err(format!(
-                "`{}` uses {} byte(s); choose 0 to {}.",
+                "`{}` 占用 {} 个字节；请选择 0 到 {}。",
                 symbolic_field_definition.get_data_type_ref().get_data_type_id(),
                 field_size_in_bytes,
                 span_size_in_bytes.saturating_sub(field_size_in_bytes)
@@ -95,7 +95,7 @@ impl SymbolLayoutDraftAnalyzer {
 
         let field_offset_in_bytes = span_offset_in_bytes
             .checked_add(relative_offset_in_bytes)
-            .ok_or_else(|| String::from("Field offset is too large."))?;
+            .ok_or_else(|| String::from("字段偏移过大。"))?;
 
         Ok((field_offset_in_bytes, field_size_in_bytes))
     }

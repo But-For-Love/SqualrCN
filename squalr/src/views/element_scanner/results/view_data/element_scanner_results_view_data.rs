@@ -514,7 +514,7 @@ impl ElementScannerResultsViewData {
         play_sound: bool,
     ) {
         if element_scanner_results_view_data
-            .read("Query scan results")
+            .read("查询扫描结果")
             .map(|element_scanner_results_view_data| element_scanner_results_view_data.is_querying_scan_results)
             .unwrap_or(false)
         {
@@ -522,7 +522,7 @@ impl ElementScannerResultsViewData {
         }
 
         let element_scanner_results_view_data_clone = element_scanner_results_view_data.clone();
-        let mut element_scanner_results_view_data = match element_scanner_results_view_data.write("Query scan results") {
+        let mut element_scanner_results_view_data = match element_scanner_results_view_data.write("查询扫描结果") {
             Some(element_scanner_results_view_data) => element_scanner_results_view_data,
             None => return,
         };
@@ -761,7 +761,7 @@ impl ElementScannerResultsViewData {
         engine_unprivileged_state: Arc<EngineUnprivilegedState>,
     ) {
         if element_scanner_results_view_data
-            .read("Refresh scan results")
+            .read("刷新扫描结果")
             .map(|element_scanner_results_view_data| {
                 element_scanner_results_view_data.is_querying_scan_results || element_scanner_results_view_data.is_refreshing_scan_results
             })
@@ -771,7 +771,7 @@ impl ElementScannerResultsViewData {
         }
 
         let element_scanner_results_view_data_clone = element_scanner_results_view_data.clone();
-        let mut element_scanner_results_view_data = match element_scanner_results_view_data.write("Refresh scan results") {
+        let mut element_scanner_results_view_data = match element_scanner_results_view_data.write("刷新扫描结果") {
             Some(element_scanner_results_view_data) => element_scanner_results_view_data,
             None => return,
         };
@@ -913,7 +913,7 @@ impl ElementScannerResultsViewData {
             .map(|scan_result_ref| scan_result_ref.get_scan_result_global_index())
             .collect::<BTreeSet<_>>();
 
-        let Some(mut element_scanner_results_view_data) = element_scanner_results_view_data.write("Remove current scan results by refs") else {
+        let Some(mut element_scanner_results_view_data) = element_scanner_results_view_data.write("按引用移除当前扫描结果") else {
             return 0;
         };
 
@@ -940,7 +940,7 @@ impl ElementScannerResultsViewData {
         new_page_index: u64,
     ) {
         if element_scanner_results_view_data
-            .read("Set page index")
+            .read("设置分页索引")
             .map(|element_scanner_results_view_data| element_scanner_results_view_data.is_querying_scan_results)
             .unwrap_or(false)
         {
@@ -948,7 +948,7 @@ impl ElementScannerResultsViewData {
         }
 
         let element_scanner_results_view_data_clone = element_scanner_results_view_data.clone();
-        let mut element_scanner_results_view_data = match element_scanner_results_view_data.write("Set page index") {
+        let mut element_scanner_results_view_data = match element_scanner_results_view_data.write("设置分页索引") {
             Some(element_scanner_results_view_data) => element_scanner_results_view_data,
             None => return,
         };
@@ -1197,13 +1197,13 @@ impl ElementScannerResultsViewData {
             let engine_unprivileged_state_for_response = engine_unprivileged_state.clone();
 
             if removed_visible_result_count == 0 {
-                log::warn!("Scan results delete request had selected refs, but none were visible on the current page.");
+                log::warn!("扫描结果删除请求包含选中的引用，但当前页面上没有可见项。");
             }
 
             let did_dispatch = scan_results_delete_request.send(&engine_unprivileged_state, move |scan_results_delete_response| {
                 if scan_results_delete_response.deleted_result_count < requested_result_count {
                     log::warn!(
-                        "Scan results delete completed with {} of {} requested result(s) deleted.",
+                        "扫描结果删除完成：已删除 {} / {} 个请求的结果。",
                         scan_results_delete_response.deleted_result_count,
                         requested_result_count
                     );

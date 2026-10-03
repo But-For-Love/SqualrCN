@@ -75,36 +75,36 @@ impl PointerScannerContextAction {
 }
 
 impl<'lifetime> ProjectHierarchyProjectItemContextMenuView<'lifetime> {
-    const STRIP_SYMBOL_INFORMATION_LABEL: &'static str = "Strip Symbol Information";
+    const STRIP_SYMBOL_INFORMATION_LABEL: &'static str = "剥离符号信息";
     const PROJECT_ITEM_CTX_OPEN_MEMORY_VIEWER_LABEL: &'static str = OPEN_IN_MEMORY_VIEWER_LABEL;
     const PROJECT_ITEM_CTX_OPEN_CODE_VIEWER_LABEL: &'static str = OPEN_IN_CODE_VIEWER_LABEL;
     const PROJECT_ITEM_CTX_OPEN_RUNTIME_VIEWER_ID: &'static str = "project_hierarchy_ctx_open_runtime_viewer";
-    const PROJECT_ITEM_CTX_FIND_READS_LABEL: &'static str = "Find What Reads from this Address";
-    const PROJECT_ITEM_CTX_FIND_WRITES_LABEL: &'static str = "Find What Writes to this Address";
-    const PROJECT_ITEM_CTX_FIND_ACCESSES_LABEL: &'static str = "Find What Accesses this Address";
+    const PROJECT_ITEM_CTX_FIND_READS_LABEL: &'static str = "查找读取此地址的位置";
+    const PROJECT_ITEM_CTX_FIND_WRITES_LABEL: &'static str = "查找写入此地址的位置";
+    const PROJECT_ITEM_CTX_FIND_ACCESSES_LABEL: &'static str = "查找访问此地址的位置";
     const PROJECT_ITEM_CTX_FIND_READS_ID: &'static str = "project_hierarchy_ctx_find_reads";
     const PROJECT_ITEM_CTX_FIND_WRITES_ID: &'static str = "project_hierarchy_ctx_find_writes";
     const PROJECT_ITEM_CTX_FIND_ACCESSES_ID: &'static str = "project_hierarchy_ctx_find_accesses";
-    const PROJECT_ITEM_CTX_FIND_THIS_READS_LABEL: &'static str = "Find What This Reads From";
-    const PROJECT_ITEM_CTX_FIND_THIS_WRITES_LABEL: &'static str = "Find What This Writes To";
-    const PROJECT_ITEM_CTX_FIND_THIS_ACCESSES_LABEL: &'static str = "Find What This Accesses";
+    const PROJECT_ITEM_CTX_FIND_THIS_READS_LABEL: &'static str = "查找此地址读取的内容";
+    const PROJECT_ITEM_CTX_FIND_THIS_WRITES_LABEL: &'static str = "查找此地址写入的内容";
+    const PROJECT_ITEM_CTX_FIND_THIS_ACCESSES_LABEL: &'static str = "查找此地址访问的内容";
     const PROJECT_ITEM_CTX_FIND_THIS_READS_ID: &'static str = "project_hierarchy_ctx_find_this_reads";
     const PROJECT_ITEM_CTX_FIND_THIS_WRITES_ID: &'static str = "project_hierarchy_ctx_find_this_writes";
     const PROJECT_ITEM_CTX_FIND_THIS_ACCESSES_ID: &'static str = "project_hierarchy_ctx_find_this_accesses";
-    const PROJECT_ITEM_CTX_REPLACE_WITH_NO_OPERATION_LABEL: &'static str = "Replace with Code That Does Nothing";
+    const PROJECT_ITEM_CTX_REPLACE_WITH_NO_OPERATION_LABEL: &'static str = "替换为空操作代码";
     const PROJECT_ITEM_CTX_REPLACE_WITH_NO_OPERATION_ID: &'static str = "project_hierarchy_ctx_replace_with_nop";
-    const PROJECT_ITEM_CTX_RESTORE_ORIGINAL_CODE_LABEL: &'static str = "Restore Original Code";
+    const PROJECT_ITEM_CTX_RESTORE_ORIGINAL_CODE_LABEL: &'static str = "恢复原始代码";
     const PROJECT_ITEM_CTX_RESTORE_ORIGINAL_CODE_ID: &'static str = "project_hierarchy_ctx_restore_original_code";
-    const PROJECT_ITEM_CTX_PROMOTE_TO_SYMBOL_LABEL: &'static str = "Promote to Symbol";
+    const PROJECT_ITEM_CTX_PROMOTE_TO_SYMBOL_LABEL: &'static str = "提升为符号";
     const PROJECT_ITEM_CTX_PROMOTE_TO_SYMBOL_ID: &'static str = "project_hierarchy_ctx_promote_to_symbol";
     const PROJECT_ITEM_CTX_STRIP_SYMBOL_INFORMATION_ID: &'static str = "project_hierarchy_ctx_strip_symbol_information";
-    const PROJECT_ITEM_CTX_CUT_LABEL: &'static str = "Cut";
+    const PROJECT_ITEM_CTX_CUT_LABEL: &'static str = "剪切";
     const PROJECT_ITEM_CTX_CUT_ID: &'static str = "project_hierarchy_ctx_cut";
-    const PROJECT_ITEM_CTX_COPY_LABEL: &'static str = "Copy";
+    const PROJECT_ITEM_CTX_COPY_LABEL: &'static str = "复制";
     const PROJECT_ITEM_CTX_COPY_ID: &'static str = "project_hierarchy_ctx_copy";
-    const PROJECT_ITEM_CTX_PASTE_LABEL: &'static str = "Paste";
+    const PROJECT_ITEM_CTX_PASTE_LABEL: &'static str = "粘贴";
     const PROJECT_ITEM_CTX_PASTE_ID: &'static str = "project_hierarchy_ctx_paste";
-    const PROJECT_ITEM_CTX_DELETE_LABEL: &'static str = "Delete";
+    const PROJECT_ITEM_CTX_DELETE_LABEL: &'static str = "删除";
     const PROJECT_ITEM_CTX_DELETE_ID: &'static str = "project_hierarchy_ctx_delete";
 
     pub fn new(
@@ -875,7 +875,7 @@ impl<'lifetime> ProjectHierarchyProjectItemContextMenuView<'lifetime> {
 
             if runtime_pointer.get_offset_segments().is_empty() {
                 return vec![PointerScannerContextAction::Address {
-                    label: "Open in Pointer Scan",
+                    label: "在指针扫描中打开",
                     address: runtime_pointer.get_address(),
                     module_name: runtime_pointer.get_module_name().to_string(),
                     data_type_id,
@@ -884,13 +884,13 @@ impl<'lifetime> ProjectHierarchyProjectItemContextMenuView<'lifetime> {
 
             return vec![
                 PointerScannerContextAction::Address {
-                    label: "Open Base Address in Pointer Scan",
+                    label: "在指针扫描中打开基址",
                     address: runtime_pointer.get_address(),
                     module_name: runtime_pointer.get_module_name().to_string(),
                     data_type_id: data_type_id.clone(),
                 },
                 PointerScannerContextAction::ResolvedPointer {
-                    label: "Open Resolved Address in Pointer Scan",
+                    label: "在指针扫描中打开解析后的地址",
                     pointer: runtime_pointer,
                     data_type_id,
                 },
@@ -909,13 +909,13 @@ impl<'lifetime> ProjectHierarchyProjectItemContextMenuView<'lifetime> {
 
             return vec![
                 PointerScannerContextAction::Address {
-                    label: "Open Base Address in Pointer Scan",
+                    label: "在指针扫描中打开基址",
                     address: pointer.get_address(),
                     module_name: pointer.get_module_name().to_string(),
                     data_type_id: data_type_id.clone(),
                 },
                 PointerScannerContextAction::ResolvedPointer {
-                    label: "Open Resolved Address in Pointer Scan",
+                    label: "在指针扫描中打开解析后的地址",
                     pointer,
                     data_type_id,
                 },

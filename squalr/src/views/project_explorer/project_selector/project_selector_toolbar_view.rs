@@ -54,7 +54,7 @@ impl Widget for ProjectSelectorToolbarView {
             let button_refresh = user_interface.add_sized(
                 button_size,
                 Button::new_from_theme(&theme)
-                    .with_tooltip_text("Refresh project list.")
+                    .with_tooltip_text("刷新项目列表。")
                     .background_color(Color32::TRANSPARENT),
             );
             IconDraw::draw(user_interface, button_refresh.rect, &theme.icon_library.icon_handle_navigation_refresh);
@@ -67,7 +67,7 @@ impl Widget for ProjectSelectorToolbarView {
             let button_create = user_interface.add_sized(
                 button_size,
                 Button::new_from_theme(&theme)
-                    .with_tooltip_text("Browse to open a project folder.")
+                    .with_tooltip_text("浏览并打开项目文件夹。")
                     .background_color(Color32::TRANSPARENT),
             );
             IconDraw::draw(user_interface, button_create.rect, &theme.icon_library.icon_handle_file_system_browse_folder);
@@ -80,7 +80,7 @@ impl Widget for ProjectSelectorToolbarView {
             let button_create = user_interface.add_sized(
                 button_size,
                 Button::new_from_theme(&theme)
-                    .with_tooltip_text("Create new project.")
+                    .with_tooltip_text("创建新项目。")
                     .background_color(Color32::TRANSPARENT),
             );
             IconDraw::draw(user_interface, button_create.rect, &theme.icon_library.icon_handle_common_add);

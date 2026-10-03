@@ -150,34 +150,34 @@ impl Widget for PointerScannerToolbarView {
             let action_button_size = [36.0, 28.0];
             let has_active_pointer_scan_session = pointer_scanner_view_data.has_active_session();
             let target_placeholder = if has_active_pointer_scan_session {
-                "Enter validation address..."
+                "输入校验地址..."
             } else {
-                "Enter target address..."
+                "输入目标地址..."
             };
             let are_session_actions_disabled = pointer_scanner_view_data.has_mutating_session_request_in_progress();
             let start_scan_tooltip = if has_active_pointer_scan_session {
                 if has_opened_process {
-                    "Validate the active pointer scan session with the validation target address."
+                    "使用校验目标地址校验当前指针扫描会话。"
                 } else {
-                    "Attach to a process before validating the active pointer scan session."
+                    "请先附加到一个进程再校验当前指针扫描会话。"
                 }
             } else {
                 if has_opened_process {
-                    "Start a new pointer scan session."
+                    "开始新的指针扫描会话。"
                 } else {
-                    "Attach to a process before starting a pointer scan session."
+                    "请先附加到一个进程再开始指针扫描会话。"
                 }
             };
             let start_value_scan_tooltip = if has_active_pointer_scan_session {
                 if has_opened_process {
-                    "Validate the active value-seeded pointer scan session."
+                    "校验当前数值种子的指针扫描会话。"
                 } else {
-                    "Attach to a process before validating the active value-seeded pointer scan session."
+                    "请先附加到一个进程再校验当前数值种子指针扫描会话。"
                 }
             } else if has_opened_process {
-                "Start a value-seeded pointer scan session."
+                "开始数值种子的指针扫描会话。"
             } else {
-                "Attach to a process before starting a value-seeded pointer scan session."
+                "请先附加到一个进程再开始数值种子指针扫描会话。"
             };
 
             user_interface.scope_builder(builder, |user_interface| {
@@ -191,7 +191,7 @@ impl Widget for PointerScannerToolbarView {
                             .draw_icon_button(
                                 user_interface,
                                 &theme.icon_library.icon_handle_scan_new,
-                                "Clear the active pointer scan session.",
+                                "清除当前指针扫描会话。",
                                 action_button_size,
                                 Color32::TRANSPARENT,
                                 are_session_actions_disabled,
@@ -209,7 +209,7 @@ impl Widget for PointerScannerToolbarView {
                                 &unsigned_data_type,
                                 false,
                                 true,
-                                "Depth",
+                                "深度",
                                 "pointer_scanner_max_depth",
                             )
                             .width(84.0)
@@ -225,7 +225,7 @@ impl Widget for PointerScannerToolbarView {
                                 &unsigned_data_type,
                                 false,
                                 true,
-                                "Offset",
+                                "偏移",
                                 "pointer_scanner_offset_radius",
                             )
                             .width(100.0)
@@ -342,7 +342,7 @@ impl Widget for PointerScannerToolbarView {
                             .draw_icon_button(
                                 user_interface,
                                 &theme.icon_library.icon_handle_common_add,
-                                "Persist the selected pointer chain to the current project.",
+                                "将选中的指针链保存到当前项目。",
                                 action_button_size,
                                 Color32::TRANSPARENT,
                                 false,
@@ -368,9 +368,9 @@ impl Widget for PointerScannerToolbarView {
                             &mut pointer_scanner_view_data.target_value_input
                         };
                         let value_placeholder = if has_active_pointer_scan_session {
-                            "Enter validation value..."
+                            "输入校验数值..."
                         } else {
-                            "Enter target value..."
+                            "输入目标数值..."
                         };
 
                         user_interface.add_space(Self::LEADING_ROW_PADDING);

@@ -8,36 +8,36 @@ pub struct ScanCompareTypeToStringConverter {}
 impl ScanCompareTypeToStringConverter {
     pub fn convert_scan_compare_type_immediate_to_string(scan_compare_type_immediate: &ScanCompareTypeImmediate) -> &'static str {
         match scan_compare_type_immediate {
-            ScanCompareTypeImmediate::Equal => "Equal to",
-            ScanCompareTypeImmediate::NotEqual => "Not equal to",
-            ScanCompareTypeImmediate::GreaterThan => "Greater than",
-            ScanCompareTypeImmediate::GreaterThanOrEqual => "Greater than or equal to",
-            ScanCompareTypeImmediate::LessThan => "Less than",
-            ScanCompareTypeImmediate::LessThanOrEqual => "Less than or equal to",
+            ScanCompareTypeImmediate::Equal => "等于",
+            ScanCompareTypeImmediate::NotEqual => "不等于",
+            ScanCompareTypeImmediate::GreaterThan => "大于",
+            ScanCompareTypeImmediate::GreaterThanOrEqual => "大于等于",
+            ScanCompareTypeImmediate::LessThan => "小于",
+            ScanCompareTypeImmediate::LessThanOrEqual => "小于等于",
         }
     }
 
     pub fn convert_scan_compare_type_delta_to_string(scan_compare_type_delta: &ScanCompareTypeDelta) -> &'static str {
         match scan_compare_type_delta {
-            ScanCompareTypeDelta::IncreasedByX => "Increased by x",
-            ScanCompareTypeDelta::DecreasedByX => "Decreased by x",
-            ScanCompareTypeDelta::MultipliedByX => "Multiplied by x",
-            ScanCompareTypeDelta::DividedByX => "Divided by x",
-            ScanCompareTypeDelta::ModuloByX => "Modulo by x",
-            ScanCompareTypeDelta::ShiftLeftByX => "Shifted left by x",
-            ScanCompareTypeDelta::ShiftRightByX => "Shifted right by x",
-            ScanCompareTypeDelta::LogicalAndByX => "Logical AND by x",
-            ScanCompareTypeDelta::LogicalOrByX => "Logical OR by x",
-            ScanCompareTypeDelta::LogicalXorByX => "Logical XOR by x",
+            ScanCompareTypeDelta::IncreasedByX => "增加 x",
+            ScanCompareTypeDelta::DecreasedByX => "减少 x",
+            ScanCompareTypeDelta::MultipliedByX => "乘以 x",
+            ScanCompareTypeDelta::DividedByX => "除以 x",
+            ScanCompareTypeDelta::ModuloByX => "取模 x",
+            ScanCompareTypeDelta::ShiftLeftByX => "左移 x",
+            ScanCompareTypeDelta::ShiftRightByX => "右移 x",
+            ScanCompareTypeDelta::LogicalAndByX => "逻辑与 x",
+            ScanCompareTypeDelta::LogicalOrByX => "逻辑或 x",
+            ScanCompareTypeDelta::LogicalXorByX => "逻辑异或 x",
         }
     }
 
     pub fn convert_scan_compare_type_relative_to_string(scan_compare_type_relative: &ScanCompareTypeRelative) -> &'static str {
         match scan_compare_type_relative {
-            ScanCompareTypeRelative::Changed => "Changed",
-            ScanCompareTypeRelative::Unchanged => "Unchanged",
-            ScanCompareTypeRelative::Increased => "Increased",
-            ScanCompareTypeRelative::Decreased => "Decreased",
+            ScanCompareTypeRelative::Changed => "已变化",
+            ScanCompareTypeRelative::Unchanged => "未变化",
+            ScanCompareTypeRelative::Increased => "增大",
+            ScanCompareTypeRelative::Decreased => "减小",
         }
     }
 

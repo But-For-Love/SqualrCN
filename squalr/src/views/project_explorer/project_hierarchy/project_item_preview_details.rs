@@ -320,7 +320,7 @@ mod tests {
     fn instruction_project_item_preview_uses_first_disassembled_instruction() {
         let engine_unprivileged_state = create_engine_unprivileged_state();
         let project_item =
-            ProjectItemTypeAddress::new_project_item("Instruction", 0x1234, "game.exe", "", DataValue::new(DataTypeRef::new("i_x64"), vec![0x90]));
+            ProjectItemTypeAddress::new_project_item("指令", 0x1234, "game.exe", "", DataValue::new(DataTypeRef::new("i_x64"), vec![0x90]));
         let virtual_snapshot_query_result =
             create_value_virtual_snapshot_query_result(DataValue::new(DataTypeRef::new("i_x64"), vec![0x90, 0x90, 0x90, 0x90]), true);
 
@@ -338,7 +338,7 @@ mod tests {
     fn instruction_project_item_preview_clears_on_failed_read() {
         let engine_unprivileged_state = create_engine_unprivileged_state();
         let mut project_item =
-            ProjectItemTypeAddress::new_project_item("Instruction", 0x1234, "game.exe", "", DataValue::new(DataTypeRef::new("i_x64"), vec![0x90]));
+            ProjectItemTypeAddress::new_project_item("指令", 0x1234, "game.exe", "", DataValue::new(DataTypeRef::new("i_x64"), vec![0x90]));
         ProjectItemTypeAddress::set_field_freeze_data_value_interpreter(&mut project_item, "inc dword ptr [eax]");
         let virtual_snapshot_query_result = create_value_virtual_snapshot_query_result(DataValue::new(DataTypeRef::new("i_x64"), Vec::new()), false);
 
@@ -356,7 +356,7 @@ mod tests {
     fn instruction_project_item_preview_disassembles_byte_window_as_block() {
         let engine_unprivileged_state = create_engine_unprivileged_state();
         let project_item =
-            ProjectItemTypeAddress::new_project_item("Instruction", 0x1234, "game.exe", "", DataValue::new(DataTypeRef::new("i_x64"), vec![0x90]));
+            ProjectItemTypeAddress::new_project_item("指令", 0x1234, "game.exe", "", DataValue::new(DataTypeRef::new("i_x64"), vec![0x90]));
         let virtual_snapshot_query_result =
             create_value_virtual_snapshot_query_result(DataValue::new(DataTypeRef::new("i_x64"), vec![0xFF, 0x00, 0x90, 0x90]), true);
 

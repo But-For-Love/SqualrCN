@@ -54,7 +54,7 @@ impl<'view> SymbolLayoutListPanelView<'view> {
             SearchBoxView::new(
                 self.app_context.clone(),
                 &mut edited_filter_text,
-                "Filter symbol layouts...",
+                "筛选符号布局...",
                 "symbol_layout_editor_filter_text",
             )
             .width(user_interface.available_width())
@@ -84,7 +84,7 @@ impl<'view> SymbolLayoutListPanelView<'view> {
         self.render_filter_text_box(user_interface);
 
         user_interface.add(
-            ListHeaderView::new(self.app_context.clone(), "Symbol Layout", "Kind | Entries | Uses")
+            ListHeaderView::new(self.app_context.clone(), "符号布局", "种类 | 条目 | 引用次数")
                 .height(SymbolLayoutEditorView::LIST_ROW_HEIGHT)
                 .horizontal_padding(8.0),
         );
@@ -160,7 +160,7 @@ impl<'view> SymbolLayoutListPanelView<'view> {
                     .get_struct_layout_descriptors()
                     .is_empty()
                 {
-                    user_interface.label(RichText::new("No symbol layouts yet.").color(self.app_context.theme.foreground_preview));
+                    user_interface.label(RichText::new("暂无符号布局。").color(self.app_context.theme.foreground_preview));
                 }
             });
     }

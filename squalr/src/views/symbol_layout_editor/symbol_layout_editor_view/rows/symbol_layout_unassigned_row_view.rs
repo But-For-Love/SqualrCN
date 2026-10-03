@@ -103,7 +103,7 @@ impl<'view> SymbolLayoutUnassignedRowView<'view> {
 
         let move_up_response = render_next_button(
             &theme.icon_library.icon_handle_navigation_up_arrow_small,
-            "Move this unassigned span up.",
+            "将未分配区域上移。",
             !can_move_up,
         );
         if move_up_response.clicked() {
@@ -112,7 +112,7 @@ impl<'view> SymbolLayoutUnassignedRowView<'view> {
 
         let move_down_response = render_next_button(
             &theme.icon_library.icon_handle_navigation_down_arrow_small,
-            "Move this unassigned span down.",
+            "将未分配区域下移。",
             !can_move_down,
         );
         if move_down_response.clicked() {
@@ -142,7 +142,7 @@ impl<'view> SymbolLayoutUnassignedRowView<'view> {
             SymbolLayoutEditorViewData::hide_field_context_menu(self.symbol_layout_editor_view_data.clone());
         }
 
-        let left_text = format!("UNASSIGNED[{}]", self.row_context.size_in_bytes);
+        let left_text = format!("未分配[{}]", self.row_context.size_in_bytes);
         let right_text = format!("0x{:X}", self.row_context.offset_in_bytes);
         let label_position = pos2(row_rect.min.x + SymbolLayoutEditorView::FIELD_ROW_LEFT_PADDING, row_rect.center().y);
         let right_text_x = button_area_left - SymbolLayoutEditorView::FIELD_ROW_LEFT_PADDING;

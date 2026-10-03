@@ -98,7 +98,7 @@ impl<'a> SymbolTreeDeleteConfirmationView<'a> {
                                     let button_cancel = draw_sized_action_button(
                                         &self.app_context,
                                         user_interface,
-                                        "Cancel",
+                                        "取消",
                                         button_size,
                                         theme.background_control_secondary,
                                         theme.background_control_secondary_dark,

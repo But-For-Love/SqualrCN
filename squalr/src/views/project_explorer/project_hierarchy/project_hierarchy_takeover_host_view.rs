@@ -164,7 +164,7 @@ impl<'a> ProjectHierarchyTakeoverHostView<'a> {
                 user_interface.horizontal(|user_interface| {
                     user_interface.add_space(groupbox_side_padding);
                     user_interface.add(
-                        GroupBox::new_from_theme(theme, "Delete project item(s)", |user_interface| {
+                        GroupBox::new_from_theme(theme, "删除项目条目", |user_interface| {
                             ScrollArea::vertical()
                                 .id_salt("project_hierarchy_delete_confirmation")
                                 .max_height(160.0)
@@ -186,7 +186,7 @@ impl<'a> ProjectHierarchyTakeoverHostView<'a> {
                                 });
 
                             user_interface.add_space(12.0);
-                            self.show_binary_action_buttons(user_interface, "Delete", true, |button_action| {
+                            self.show_binary_action_buttons(user_interface, "删除", true, |button_action| {
                                 action = button_action.map_or(ProjectHierarchyTakeoverHostAction::Cancel, |_| {
                                     ProjectHierarchyTakeoverHostAction::DeleteProjectItems(project_item_paths.to_vec())
                                 });
@@ -213,7 +213,7 @@ impl<'a> ProjectHierarchyTakeoverHostView<'a> {
         user_interface.add_space(12.0);
         user_interface.vertical_centered(|user_interface| {
             user_interface.label(
-                RichText::new("Overwrite conflicting symbol claim(s)?")
+                RichText::new("覆盖冲突的符号声明？")
                     .font(theme.font_library.font_noto_sans.font_normal.clone())
                     .color(theme.foreground),
             );
@@ -240,7 +240,7 @@ impl<'a> ProjectHierarchyTakeoverHostView<'a> {
             });
 
         user_interface.add_space(8.0);
-        self.show_binary_action_buttons(user_interface, "Overwrite", false, |button_action| {
+        self.show_binary_action_buttons(user_interface, "覆盖", false, |button_action| {
             action = button_action.map_or(ProjectHierarchyTakeoverHostAction::Cancel, |_| {
                 ProjectHierarchyTakeoverHostAction::PromoteSymbolOverwrite(project_item_paths.to_vec())
             });
@@ -270,7 +270,7 @@ impl<'a> ProjectHierarchyTakeoverHostView<'a> {
 
                 let button_cancel = user_interface.add_sized(
                     button_size,
-                    Button::new(RichText::new("Cancel").color(theme.foreground))
+                    Button::new(RichText::new("取消").color(theme.foreground))
                         .fill(theme.background_control_secondary)
                         .stroke(Stroke::new(1.0, theme.background_control_secondary_dark)),
                 );

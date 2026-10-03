@@ -61,7 +61,7 @@ impl SymbolTreeToolbarView {
                 toolbar_user_interface,
                 theme,
                 &theme.icon_library.icon_handle_common_add,
-                "Add module.",
+                "添加模块。",
                 self.can_create_module_root,
             )
             .clicked()

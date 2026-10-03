@@ -24,7 +24,7 @@ pub struct ProjectHierarchyEmptySpaceContextMenuView<'lifetime> {
 }
 
 impl<'lifetime> ProjectHierarchyEmptySpaceContextMenuView<'lifetime> {
-    const PROJECT_ITEM_CTX_PASTE_LABEL: &'static str = "Paste";
+    const PROJECT_ITEM_CTX_PASTE_LABEL: &'static str = "粘贴";
     const PROJECT_ITEM_CTX_PASTE_ID: &'static str = "project_hierarchy_empty_ctx_paste";
 
     pub fn new(

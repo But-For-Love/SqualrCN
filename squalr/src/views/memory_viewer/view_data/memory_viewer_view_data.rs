@@ -469,7 +469,7 @@ impl MemoryViewerViewData {
                     })
                     .map(format_absolute_address)
             })
-            .unwrap_or_else(|| String::from("Go to address"))
+            .unwrap_or_else(|| String::from("跳转到地址"))
     }
 
     pub fn seek_to_input_address(memory_viewer_view_data: Dependency<Self>) {
@@ -888,22 +888,22 @@ impl MemoryViewerViewData {
         normalized_region: Option<&NormalizedRegion>,
     ) -> String {
         let Some(normalized_region) = normalized_region else {
-            return String::from("No page selected.");
+            return String::from("未选择分页。");
         };
         let module_label = modules
             .iter()
             .find(|normalized_module| normalized_module.contains_address(normalized_region.get_base_address()))
             .map(|normalized_module| normalized_module.get_module_name().to_string())
-            .unwrap_or_else(|| String::from("(No Module)"));
+            .unwrap_or_else(|| String::from("（无模块）"));
         let page_size_label = StorageSizeConversions::value_to_metric_size(normalized_region.get_region_size() as u128);
 
         format!(
-            "Base 0x{:X} | Size {} | {}{}",
+            "基址 0x{:X} | 大小 {} | {}{}",
             normalized_region.get_base_address(),
             page_size_label,
             module_label,
             if unreadable_page_base_addresses.contains(&normalized_region.get_base_address()) {
-                " | Unreadable"
+                " | 不可读"
             } else {
                 ""
             }

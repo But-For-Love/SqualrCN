@@ -131,7 +131,7 @@ impl<'lifetime> ProjectEditTakeOverView<'lifetime> {
         header_user_interface.painter().text(
             pos2(title_rect.left() + Self::HEADER_TITLE_PADDING_X, title_rect.center().y),
             Align2::LEFT_CENTER,
-            "Edit project",
+            "编辑项目",
             theme.font_library.font_noto_sans.font_window_title.clone(),
             theme.foreground,
         );
@@ -143,7 +143,7 @@ impl<'lifetime> ProjectEditTakeOverView<'lifetime> {
                 let cancel_response = self.render_header_icon_button(
                     user_interface,
                     &theme.icon_library.icon_handle_navigation_cancel,
-                    "Cancel project editing.",
+                    "取消项目编辑。",
                     theme.background_control_secondary,
                     theme.submenu_border,
                     Self::HEADER_HEIGHT,
@@ -158,7 +158,7 @@ impl<'lifetime> ProjectEditTakeOverView<'lifetime> {
                 let delete_response = self.render_header_icon_button(
                     user_interface,
                     &theme.icon_library.icon_handle_common_delete,
-                    "Delete this project.",
+                    "删除此项目。",
                     theme.background_control_danger,
                     theme.background_control_danger_dark,
                     Self::HEADER_HEIGHT,
@@ -180,7 +180,7 @@ impl<'lifetime> ProjectEditTakeOverView<'lifetime> {
                 ),
                 Layout::top_down(Align::Min),
                 |user_interface| {
-                    user_interface.label(RichText::new("Name").strong().color(theme.foreground));
+                    user_interface.label(RichText::new("名称").strong().color(theme.foreground));
                     user_interface.add_space(Self::ROW_SPACING);
 
                     let mut validation_result = Ok(());
@@ -202,7 +202,7 @@ impl<'lifetime> ProjectEditTakeOverView<'lifetime> {
                                         &string_data_type_ref,
                                         false,
                                         true,
-                                        "Project name",
+                                        "项目名称",
                                         Self::NAME_EDITOR_ID,
                                     )
                                     .width(name_editor_width)
@@ -223,7 +223,7 @@ impl<'lifetime> ProjectEditTakeOverView<'lifetime> {
                                 let save_response = self.render_header_icon_button(
                                     user_interface,
                                     &theme.icon_library.icon_handle_common_check_mark,
-                                    "Save project name.",
+                                    "保存项目名称。",
                                     theme.background_control_primary,
                                     theme.background_control_primary_dark,
                                     Self::ROW_HEIGHT,

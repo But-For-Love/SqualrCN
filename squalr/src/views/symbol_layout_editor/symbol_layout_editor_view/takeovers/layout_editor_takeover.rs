@@ -93,7 +93,7 @@ impl SymbolLayoutEditorView {
                     && render_symbol_layout_add_entry_button(
                         self.app_context.clone(),
                         user_interface,
-                        "Add a new union variant.",
+                        "添加新的联合变体。",
                         Self::ICON_BUTTON_WIDTH,
                         Self::FIELD_ROW_HEIGHT,
                     )
@@ -104,7 +104,7 @@ impl SymbolLayoutEditorView {
             |user_interface| {
                 if show_layout_name_editor {
                     user_interface.add(
-                        GroupBox::new_from_theme(&self.app_context.theme, "Size", |user_interface| {
+                        GroupBox::new_from_theme(&self.app_context.theme, "大小", |user_interface| {
                             render_symbol_layout_size_editor(self.app_context.clone(), user_interface, &mut edited_draft, Self::FIELD_ROW_HEIGHT);
                         })
                         .desired_width(user_interface.available_width()),
@@ -114,7 +114,7 @@ impl SymbolLayoutEditorView {
                     user_interface.add(
                         GroupBox::new_from_theme(
                             &self.app_context.theme,
-                            if is_creating_new_layout { "New Symbol Layout" } else { "Symbol Layout" },
+                            if is_creating_new_layout { "新建符号布局" } else { "符号布局" },
                             |user_interface| {
                                 let previous_layout_kind = edited_draft.layout_kind;
 
@@ -151,11 +151,11 @@ impl SymbolLayoutEditorView {
 
                                 if !is_creating_new_layout {
                                     let status_text = if usage_count == 0 {
-                                        String::from("Not used by any symbol claims yet.")
+                                        String::from("尚未被任何符号声明使用。")
                                     } else if usage_count == 1 {
-                                        String::from("Used by 1 symbol claim.")
+                                        String::from("被 1 个符号声明使用。")
                                     } else {
-                                        format!("Used by {} symbol claims.", usage_count)
+                                        format!("被 {} 个符号声明使用。", usage_count)
                                     };
                                     user_interface.label(RichText::new(status_text).color(self.app_context.theme.foreground_preview));
                                 }
@@ -168,7 +168,7 @@ impl SymbolLayoutEditorView {
                     user_interface.add(
                         GroupBox::new_from_theme(
                             &self.app_context.theme,
-                            if is_union_layout { "Edit Union Variants" } else { "Edit Symbol Layout" },
+                            if is_union_layout { "编辑联合变体" } else { "编辑符号布局" },
                             |user_interface| {
                                 SymbolLayoutDraftFieldTreeView::new(
                                     self,
@@ -189,7 +189,7 @@ impl SymbolLayoutEditorView {
                                     if render_symbol_layout_centered_add_entry_button(
                                         self.app_context.clone(),
                                         user_interface,
-                                        "Add a new field entry.",
+                                        "添加新的字段条目。",
                                         tail_unassigned_offset.is_some(),
                                         Self::TAKE_OVER_ACTION_BUTTON_WIDTH,
                                         Self::FIELD_ROW_HEIGHT,
@@ -209,7 +209,7 @@ impl SymbolLayoutEditorView {
                     user_interface.add(
                         GroupBox::new_from_theme(
                             theme,
-                            if is_union_layout { "Edit Union Variants" } else { "Edit Symbol Layout" },
+                            if is_union_layout { "编辑联合变体" } else { "编辑符号布局" },
                             |user_interface| {
                                 render_symbol_layout_size_editor(self.app_context.clone(), user_interface, &mut edited_draft, Self::FIELD_ROW_HEIGHT);
                                 user_interface.add_space(Self::TAKE_OVER_GROUPBOX_SPACING);
@@ -232,7 +232,7 @@ impl SymbolLayoutEditorView {
                                     if render_symbol_layout_centered_add_entry_button(
                                         self.app_context.clone(),
                                         user_interface,
-                                        "Add a new field entry.",
+                                        "添加新的字段条目。",
                                         tail_unassigned_offset.is_some(),
                                         Self::TAKE_OVER_ACTION_BUTTON_WIDTH,
                                         Self::FIELD_ROW_HEIGHT,
@@ -258,7 +258,7 @@ impl SymbolLayoutEditorView {
                 }
 
                 user_interface.add_space(Self::TAKE_OVER_SECTION_SPACING);
-                let (cancel_response, accept_response) = self.render_take_over_action_buttons(user_interface, "Accept", can_save);
+                let (cancel_response, accept_response) = self.render_take_over_action_buttons(user_interface, "确定", can_save);
                 if cancel_response.clicked() {
                     should_cancel_take_over = true;
                 }

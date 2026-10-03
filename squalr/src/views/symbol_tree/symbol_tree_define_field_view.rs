@@ -199,28 +199,28 @@ impl<'a> SymbolTreeDefineFieldView<'a> {
         let struct_layout_id =
             build_define_field_symbol_layout_id(define_field_draft.data_type_selection.visible_data_type(), define_field_draft.container_type);
         let Some(field_size) = resolve_type_size(&struct_layout_id) else {
-            return Some(format!("Cannot resolve byte size for `{}`.", struct_layout_id));
+            return Some(format!("无法解析 `{}` 的字节大小。", struct_layout_id));
         };
 
         if field_size == 0 {
-            return Some(format!("`{}` has no byte size.", struct_layout_id));
+            return Some(format!("`{}` 没有字节大小。", struct_layout_id));
         }
 
         let relative_field_end = match relative_offset.checked_add(field_size) {
             Some(relative_field_end) => relative_field_end,
-            None => return Some(String::from("Field range is too large.")),
+            None => return Some(String::from("字段范围过大。")),
         };
 
         if relative_field_end > segment_length {
             if field_size > segment_length {
                 return Some(format!(
-                    "`{}` uses {} byte(s); selected span has {}.",
+                    "`{}` 占用 {} 个字节；所选范围有 {}。",
                     struct_layout_id, field_size, segment_length
                 ));
             }
 
             return Some(format!(
-                "`{}` uses {} byte(s); choose 0 to {}.",
+                "`{}` 占用 {} 个字节；请选择 0 到 {}。",
                 struct_layout_id,
                 field_size,
                 segment_length.saturating_sub(field_size)
@@ -237,7 +237,7 @@ impl<'a> SymbolTreeDefineFieldView<'a> {
         let theme = &self.app_context.theme;
         let original_define_field_draft = self.define_field_draft.clone();
         let mut edited_define_field_draft = original_define_field_draft.clone();
-        let mut define_field_plan_result = Err(String::from("Field is not ready."));
+        let mut define_field_plan_result = Err(String::from("字段尚未就绪。"));
         let mut action = SymbolTreeDefineFieldAction::None;
 
         user_interface.allocate_ui_with_layout(
@@ -247,11 +247,11 @@ impl<'a> SymbolTreeDefineFieldView<'a> {
                 let panel_width = user_interface.available_width();
 
                 user_interface.add(
-                    GroupBox::new_from_theme(theme, "Define Field", |user_interface| {
+                    GroupBox::new_from_theme(theme, "定义字段", |user_interface| {
                         user_interface.label(RichText::new(format!("{} + 0x{:X}", self.module_name, self.segment_offset)).color(theme.foreground_preview));
                         user_interface.add_space(8.0);
 
-                        user_interface.label(RichText::new("Name").color(theme.foreground));
+                        user_interface.label(RichText::new("名称").color(theme.foreground));
                         user_interface.add_space(2.0);
                         render_string_data_value_box(
                             self.app_context.clone(),
@@ -264,7 +264,7 @@ impl<'a> SymbolTreeDefineFieldView<'a> {
                         user_interface.add_space(8.0);
 
                         let max_relative_offset = self.segment_length.saturating_sub(1);
-                        user_interface.label(RichText::new(format!("Offset in UNASSIGNED (0 to {})", max_relative_offset)).color(theme.foreground));
+                        user_interface.label(RichText::new(format!("在未分配区间中的偏移（0 到 {}）", max_relative_offset)).color(theme.foreground));
                         user_interface.add_space(2.0);
                         render_offset_data_value_box(
                             self.app_context.clone(),
@@ -321,7 +321,7 @@ impl<'a> SymbolTreeDefineFieldView<'a> {
                         );
 
                         if let Err(validation_error) = define_field_plan_result.as_ref() {
-                            if validation_error == "Field name is required." {
+                            if validation_error == "字段名称为必填项。" {
                                 user_interface.add_space(6.0);
                                 user_interface.label(RichText::new(validation_error).color(theme.error_red));
                             }
@@ -340,7 +340,7 @@ impl<'a> SymbolTreeDefineFieldView<'a> {
                                 let button_cancel = draw_sized_action_button(
                                     &self.app_context,
                                     user_interface,
-                                    "Cancel",
+                                    "取消",
                                     button_size,
                                     theme.background_control_secondary,
                                     theme.background_control_secondary_dark,
@@ -365,7 +365,7 @@ impl<'a> SymbolTreeDefineFieldView<'a> {
                                 let button_create = draw_sized_action_button(
                                     &self.app_context,
                                     user_interface,
-                                    "Create",
+                                    "创建",
                                     button_size,
                                     create_fill,
                                     create_stroke,
@@ -456,11 +456,11 @@ impl<'a> SymbolTreeDefineFieldView<'a> {
 
     fn define_field_container_label(container_type: ContainerType) -> String {
         match container_type {
-            ContainerType::None => String::from("Value"),
+            ContainerType::None => String::from("数值"),
             _ => container_type
                 .get_pointer_size()
-                .map(|pointer_size| format!("Ptr {}", pointer_size))
-                .unwrap_or_else(|| String::from("Value")),
+                .map(|pointer_size| format!("指针 {}", pointer_size))
+                .unwrap_or_else(|| String::from("数值")),
         }
     }
 
@@ -491,7 +491,7 @@ impl<'a> SymbolTreeDefineFieldView<'a> {
                 menu_id,
                 None,
                 |popup_user_interface: &mut Ui, should_close: &mut bool| {
-                    let value_response = popup_user_interface.add(ComboBoxItemView::new(self.app_context.clone(), "Value", None, width));
+                    let value_response = popup_user_interface.add(ComboBoxItemView::new(self.app_context.clone(), "数值", None, width));
 
                     if value_response.clicked() {
                         selected_container_type = Some(ContainerType::None);
@@ -501,7 +501,7 @@ impl<'a> SymbolTreeDefineFieldView<'a> {
                     popup_user_interface.separator();
 
                     for pointer_size in pointer_sizes {
-                        let pointer_label = format!("Ptr {}", pointer_size);
+                        let pointer_label = format!("指针 {}", pointer_size);
                         let pointer_response = popup_user_interface.add(ComboBoxItemView::new(self.app_context.clone(), &pointer_label, None, width));
 
                         if pointer_response.clicked() {
@@ -557,7 +557,7 @@ impl<'a> SymbolTreeDefineFieldView<'a> {
                     popup_user_interface.add_space(4.0);
                     let search_box_id = format!("symbol_tree_module_field_type_search_{}", menu_id);
                     popup_user_interface.add(
-                        SearchBoxView::new(self.app_context.clone(), &mut search_text, "Search types", &search_box_id)
+                        SearchBoxView::new(self.app_context.clone(), &mut search_text, "搜索类型", &search_box_id)
                             .width((popup_width - 8.0).max(1.0))
                             .height(SYMBOL_TREE_TAKE_OVER_ROW_HEIGHT),
                     );
@@ -570,7 +570,7 @@ impl<'a> SymbolTreeDefineFieldView<'a> {
                     let filtered_type_options = Self::filter_module_field_type_options(&type_options, &search_text);
 
                     if filtered_type_options.is_empty() {
-                        popup_user_interface.label(RichText::new("No matching types").color(self.app_context.theme.foreground_preview));
+                        popup_user_interface.label(RichText::new("没有匹配的类型").color(self.app_context.theme.foreground_preview));
                         return;
                     }
 

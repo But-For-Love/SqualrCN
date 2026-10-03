@@ -37,7 +37,7 @@ impl SymbolResolverCommandDispatcher {
                 log::error!(
                     "Failed to persist symbol resolver `{}` through project-symbols upsert-resolver command: {}.",
                     response.resolver_id,
-                    response.error.as_deref().unwrap_or("unknown error")
+                    response.error.as_deref().unwrap_or("未知错误")
                 );
             }
         });
@@ -52,7 +52,7 @@ impl SymbolResolverCommandDispatcher {
                 log::error!(
                     "Failed to delete symbol resolver `{}` through project-symbols delete-resolver command: {}.",
                     response.resolver_id,
-                    response.error.as_deref().unwrap_or("unknown error")
+                    response.error.as_deref().unwrap_or("未知错误")
                 );
             }
         });

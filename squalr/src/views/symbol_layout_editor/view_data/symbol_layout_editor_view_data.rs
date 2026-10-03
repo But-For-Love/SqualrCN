@@ -35,9 +35,9 @@ impl SymbolLayoutFieldOffsetMode {
 
     pub fn label(&self) -> &'static str {
         match self {
-            Self::Sequential => "Sequential",
-            Self::Static => "Static",
-            Self::Resolver => "Resolver",
+            Self::Sequential => "顺序",
+            Self::Static => "静态",
+            Self::Resolver => "解析器",
         }
     }
 }
@@ -54,8 +54,8 @@ impl SymbolLayoutFieldElementType {
 
     pub fn label(&self) -> &'static str {
         match self {
-            Self::BuiltInDataType => "Data Type",
-            Self::SymbolLayout => "Symbol Layout",
+            Self::BuiltInDataType => "数据类型",
+            Self::SymbolLayout => "符号布局",
         }
     }
 }
@@ -1545,7 +1545,7 @@ impl SymbolLayoutFieldEditDraft {
                     return Err(String::from("Byte offset is required."));
                 }
 
-                let offset_in_bytes = Self::parse_static_offset_text(trimmed_offset).ok_or_else(|| format!("Invalid byte offset: {}.", trimmed_offset))?;
+                let offset_in_bytes = Self::parse_static_offset_text(trimmed_offset).ok_or_else(|| format!("字节偏移无效：{}。", trimmed_offset))?;
 
                 Ok(SymbolicFieldOffsetResolution::new_static(offset_in_bytes))
             }

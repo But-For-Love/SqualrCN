@@ -72,7 +72,7 @@ impl PluginsView {
     }
 
     fn format_bool(value: bool) -> &'static str {
-        if value { "Yes" } else { "No" }
+        if value { "是" } else { "否" }
     }
 
     fn format_plugin_capabilities(plugin_capabilities: &[squalr_engine_api::plugins::PluginCapability]) -> String {
@@ -85,10 +85,10 @@ impl PluginsView {
 
     fn format_activation_state(activation_state: PluginActivationState) -> &'static str {
         match activation_state {
-            PluginActivationState::Idle => "Idle",
-            PluginActivationState::Available => "Available",
-            PluginActivationState::Activating => "Activating",
-            PluginActivationState::Activated => "Activated",
+            PluginActivationState::Idle => "空闲",
+            PluginActivationState::Available => "可用",
+            PluginActivationState::Activating => "正在激活",
+            PluginActivationState::Activated => "已激活",
         }
     }
 }
@@ -142,7 +142,7 @@ impl Widget for PluginsView {
                     let button_refresh = user_interface.add_sized(
                         vec2(36.0, toolbar_height),
                         Button::new_from_theme(&theme)
-                            .with_tooltip_text("Refresh plugin list.")
+                            .with_tooltip_text("刷新插件列表。")
                             .background_color(Color32::TRANSPARENT),
                     );
                     IconDraw::draw(user_interface, button_refresh.rect, &theme.icon_library.icon_handle_navigation_refresh);
@@ -160,7 +160,7 @@ impl Widget for PluginsView {
                         user_interface.add_space(8.0);
                         user_interface.add(
                             Label::new(
-                                RichText::new("No project open — plugin changes will not be saved.")
+                                RichText::new("未打开项目 — 插件更改不会被保存。")
                                     .font(theme.font_library.font_noto_sans.font_normal.clone())
                                     .color(theme.background_control_warning),
                             )
@@ -265,7 +265,7 @@ impl Widget for PluginsView {
                         user_interface.add(
                             Label::new(
                                 RichText::new(format!(
-                                    "Capabilities: {}",
+                                    "功能：{}",
                                     Self::format_plugin_capabilities(plugin_metadata.get_plugin_capabilities())
                                 ))
                                 .font(theme.font_library.font_noto_sans.font_normal.clone())
@@ -276,7 +276,7 @@ impl Widget for PluginsView {
                         user_interface.add_space(12.0);
                         user_interface.add(
                             Label::new(
-                                RichText::new(format!("Built in: {}", Self::format_bool(plugin_metadata.get_is_built_in())))
+                                RichText::new(format!("内置：{}", Self::format_bool(plugin_metadata.get_is_built_in())))
                                     .font(theme.font_library.font_noto_sans.font_normal.clone())
                                     .color(theme.foreground),
                             )
@@ -285,7 +285,7 @@ impl Widget for PluginsView {
                         user_interface.add_space(12.0);
                         user_interface.add(
                             Label::new(
-                                RichText::new(format!("Enabled: {}", Self::format_bool(selected_plugin_state.get_is_enabled())))
+                                RichText::new(format!("已启用：{}", Self::format_bool(selected_plugin_state.get_is_enabled())))
                                     .font(theme.font_library.font_noto_sans.font_normal.clone())
                                     .color(theme.foreground),
                             )
@@ -295,7 +295,7 @@ impl Widget for PluginsView {
                         user_interface.add(
                             Label::new(
                                 RichText::new(format!(
-                                    "Available on current target: {}",
+                                    "当前目标可用：{}",
                                     Self::format_bool(selected_plugin_state.get_can_activate_for_current_process())
                                 ))
                                 .font(theme.font_library.font_noto_sans.font_normal.clone())
@@ -307,7 +307,7 @@ impl Widget for PluginsView {
                         user_interface.add(
                             Label::new(
                                 RichText::new(format!(
-                                    "Activation on current target: {}",
+                                    "在当前目标上的激活状态：{}",
                                     Self::format_activation_state(selected_plugin_state.get_activation_state())
                                 ))
                                 .font(theme.font_library.font_noto_sans.font_normal.clone())
@@ -319,7 +319,7 @@ impl Widget for PluginsView {
                     details_user_interface.add_space(4.0);
                     details_user_interface.add(
                         Label::new(
-                            RichText::new(format!("Plugin ID: {}", plugin_metadata.get_plugin_id()))
+                            RichText::new(format!("插件 ID：{}", plugin_metadata.get_plugin_id()))
                                 .font(theme.font_library.font_noto_sans.font_small.clone())
                                 .color(theme.foreground_preview),
                         )
@@ -328,7 +328,7 @@ impl Widget for PluginsView {
                 } else {
                     details_user_interface.add(
                         Label::new(
-                            RichText::new("Select a plugin to inspect its details.")
+                            RichText::new("选择插件以查看其详情。")
                                 .font(theme.font_library.font_noto_sans.font_normal.clone())
                                 .color(theme.foreground_preview),
                         )
@@ -383,7 +383,7 @@ impl PluginsView {
         };
         let can_increase_priority = plugin_position > 0;
         let can_decrease_priority = plugin_position + 1 < plugin_states.len();
-        let menu_width = ContextMenuSizing::width_for_labels(&self.app_context, user_interface, ["Increase priority", "Decrease priority"]);
+        let menu_width = ContextMenuSizing::width_for_labels(&self.app_context, user_interface, ["提高优先级", "降低优先级"]);
         let mut is_menu_open = true;
 
         ContextMenu::new(
@@ -394,7 +394,7 @@ impl PluginsView {
                 let theme = &self.app_context.theme;
                 let no_check_state = None;
                 let increase_priority_response = user_interface.add(
-                    ToolbarMenuItemView::new(self.app_context.clone(), "Increase priority", "increase_priority", &no_check_state, menu_width)
+                    ToolbarMenuItemView::new(self.app_context.clone(), "提高优先级", "increase_priority", &no_check_state, menu_width)
                         .icon(theme.icon_library.icon_handle_navigation_up_arrow_small.clone())
                         .disabled(!can_increase_priority),
                 );
@@ -410,7 +410,7 @@ impl PluginsView {
                 }
 
                 let decrease_priority_response = user_interface.add(
-                    ToolbarMenuItemView::new(self.app_context.clone(), "Decrease priority", "decrease_priority", &no_check_state, menu_width)
+                    ToolbarMenuItemView::new(self.app_context.clone(), "降低优先级", "decrease_priority", &no_check_state, menu_width)
                         .icon(
                             theme
                                 .icon_library

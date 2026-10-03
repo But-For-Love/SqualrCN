@@ -68,7 +68,7 @@ impl Widget for ProjectHierarchyToolbarView {
             let button_add = user_interface.add_sized(
                 button_size,
                 Button::new_from_theme(&theme)
-                    .with_tooltip_text("Add a new project item.")
+                    .with_tooltip_text("添加新的项目条目。")
                     .background_color(Color32::TRANSPARENT)
                     .disabled(is_busy || has_take_over_state),
             );
@@ -98,7 +98,7 @@ impl Widget for ProjectHierarchyToolbarView {
             let button_close = user_interface.add_sized(
                 button_size,
                 Button::new_from_theme(&theme)
-                    .with_tooltip_text("Close this project.")
+                    .with_tooltip_text("关闭此项目。")
                     .background_color(Color32::TRANSPARENT),
             );
             IconDraw::draw(user_interface, button_close.rect, &theme.icon_library.icon_handle_close);

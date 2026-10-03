@@ -78,7 +78,7 @@ impl<'a> SymbolTreeModuleCreateView<'a> {
                 user_interface.horizontal(|user_interface| {
                     user_interface.add_space(SYMBOL_TREE_TAKE_OVER_GROUPBOX_SIDE_PADDING);
                     user_interface.add(
-                        GroupBox::new_from_theme(theme, "New Module", |user_interface| {
+                        GroupBox::new_from_theme(theme, "新建模块", |user_interface| {
                             Self::render_create_module_root_details(&self.app_context, user_interface, &mut edited_draft);
                             create_module_root_request = Self::build_module_root_create_request_from_draft(&edited_draft);
 
@@ -95,7 +95,7 @@ impl<'a> SymbolTreeModuleCreateView<'a> {
                                     let button_cancel = draw_sized_action_button(
                                         &self.app_context,
                                         user_interface,
-                                        "Cancel",
+                                        "取消",
                                         button_size,
                                         theme.background_control_secondary,
                                         theme.background_control_secondary_dark,
@@ -120,7 +120,7 @@ impl<'a> SymbolTreeModuleCreateView<'a> {
                                     let button_create = draw_sized_action_button(
                                         &self.app_context,
                                         user_interface,
-                                        "Create",
+                                        "创建",
                                         button_size,
                                         create_fill,
                                         create_stroke,
@@ -156,7 +156,7 @@ impl<'a> SymbolTreeModuleCreateView<'a> {
     ) {
         let theme = &app_context.theme;
 
-        user_interface.label(RichText::new("Module Name").color(theme.foreground));
+        user_interface.label(RichText::new("模块名称").color(theme.foreground));
         user_interface.add_space(2.0);
         render_string_data_value_box(
             app_context.clone(),
@@ -168,7 +168,7 @@ impl<'a> SymbolTreeModuleCreateView<'a> {
         );
         user_interface.add_space(8.0);
 
-        user_interface.label(RichText::new("Initial Module Size").color(theme.foreground));
+        user_interface.label(RichText::new("初始模块大小").color(theme.foreground));
         user_interface.add_space(2.0);
         render_offset_data_value_box(
             app_context.clone(),

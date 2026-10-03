@@ -133,11 +133,11 @@ impl<'a> Widget for DataValueBoxConvertItemView<'a> {
         );
 
         let text = if self.is_conversion_available {
-            format!("Convert to {}", self.target_anonymous_value_string_format)
+            format!("转换为 {}", self.target_anonymous_value_string_format)
         } else if self.is_value_owned {
-            format!("Interpret as {}", self.target_anonymous_value_string_format)
+            format!("解释为 {}", self.target_anonymous_value_string_format)
         } else {
-            format!("Display as {}", self.target_anonymous_value_string_format)
+            format!("显示为 {}", self.target_anonymous_value_string_format)
         };
 
         user_interface.painter().text(

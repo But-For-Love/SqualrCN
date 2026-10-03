@@ -27,7 +27,7 @@ impl SymbolLayoutEditorView {
 
         self.render_take_over_panel(
             user_interface,
-            "Delete Symbol Layout",
+            "删除符号布局",
             0.0,
             Self::TAKE_OVER_CONTENT_PADDING_X,
             Self::TAKE_OVER_SECTION_SPACING,
@@ -35,11 +35,11 @@ impl SymbolLayoutEditorView {
             |user_interface| {
                 let theme = &self.app_context.theme;
                 user_interface.add(
-                    GroupBox::new_from_theme(theme, "Confirmation", |user_interface| {
-                        user_interface.label(RichText::new(format!("Delete `{}`?", layout_id)).color(theme.foreground));
+                    GroupBox::new_from_theme(theme, "确认", |user_interface| {
+                        user_interface.label(RichText::new(format!("删除 `{}`？", layout_id)).color(theme.foreground));
                         user_interface.add_space(4.0);
                         let (usage_text, usage_text_color) = if usage_count == 0 {
-                            (String::from("No existing references will be changed."), theme.foreground_preview)
+                            (String::from("不会改变任何已有的引用。"), theme.foreground_preview)
                         } else {
                             (format!("{} existing references will be changed to raw u8.", usage_count), theme.warning)
                         };

@@ -145,7 +145,7 @@ impl Widget for SymbolLayoutEditorView {
                     Layout::centered_and_justified(Direction::TopDown),
                     |user_interface| {
                         user_interface
-                            .label(RichText::new("Open a project to author reusable symbol layouts.").color(self.app_context.theme.foreground_preview));
+                            .label(RichText::new("打开一个项目以编写可复用的符号布局。").color(self.app_context.theme.foreground_preview));
                     },
                 )
                 .response;
@@ -287,7 +287,7 @@ impl Widget for SymbolLayoutEditorView {
                         self.render_symbol_layout_take_over(
                             &mut content_user_interface,
                             &project_symbol_catalog,
-                            "Rename Symbol Layout",
+                            "重命名符号布局",
                             baseline_project_symbol_catalog.as_ref(),
                             baseline_draft.as_ref(),
                             draft.as_ref(),
@@ -302,7 +302,7 @@ impl Widget for SymbolLayoutEditorView {
                         self.render_symbol_layout_take_over(
                             &mut content_user_interface,
                             &project_symbol_catalog,
-                            "Edit Symbol Layout",
+                            "编辑符号布局",
                             baseline_project_symbol_catalog.as_ref(),
                             baseline_draft.as_ref(),
                             draft.as_ref(),

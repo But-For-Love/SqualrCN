@@ -89,15 +89,15 @@ impl<'lifetime> SymbolTreeListView<'lifetime> {
     const SYMBOL_TREE_CTX_OPEN_MEMORY_VIEWER_ID: &'static str = "symbol_tree_ctx_open_memory_viewer";
     const SYMBOL_TREE_CTX_OPEN_CODE_VIEWER_LABEL: &'static str = OPEN_IN_CODE_VIEWER_LABEL;
     const SYMBOL_TREE_CTX_OPEN_CODE_VIEWER_ID: &'static str = "symbol_tree_ctx_open_code_viewer";
-    const SYMBOL_TREE_CTX_ADD_TO_PROJECT_LABEL: &'static str = "Add to Project";
+    const SYMBOL_TREE_CTX_ADD_TO_PROJECT_LABEL: &'static str = "添加到项目";
     const SYMBOL_TREE_CTX_ADD_TO_PROJECT_ID: &'static str = "symbol_tree_ctx_add_to_project";
-    const SYMBOL_TREE_CTX_EDIT_SYMBOL_LAYOUT_LABEL: &'static str = "Edit Symbol Layout...";
+    const SYMBOL_TREE_CTX_EDIT_SYMBOL_LAYOUT_LABEL: &'static str = "编辑符号布局...";
     const SYMBOL_TREE_CTX_EDIT_SYMBOL_LAYOUT_ID: &'static str = "symbol_tree_ctx_edit_symbol_layout";
-    const SYMBOL_TREE_CTX_RENAME_LABEL: &'static str = "Rename";
+    const SYMBOL_TREE_CTX_RENAME_LABEL: &'static str = "重命名";
     const SYMBOL_TREE_CTX_RENAME_ID: &'static str = "symbol_tree_ctx_rename";
-    const SYMBOL_TREE_CTX_NEW_MODULE_LABEL: &'static str = "New Module";
+    const SYMBOL_TREE_CTX_NEW_MODULE_LABEL: &'static str = "新建模块";
     const SYMBOL_TREE_CTX_NEW_MODULE_ID: &'static str = "symbol_tree_ctx_new_module";
-    const SYMBOL_TREE_CTX_DELETE_LABEL: &'static str = "Delete";
+    const SYMBOL_TREE_CTX_DELETE_LABEL: &'static str = "删除";
     const SYMBOL_TREE_CTX_DELETE_ID: &'static str = "symbol_tree_ctx_delete";
 
     pub fn new(

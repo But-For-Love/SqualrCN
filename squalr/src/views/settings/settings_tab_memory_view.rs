@@ -168,7 +168,7 @@ impl Widget for SettingsTabMemoryView {
                     .auto_shrink([false, false])
                     .show(user_interface, |user_interface| {
                         user_interface.add(
-                            GroupBox::new_from_theme(theme, "Required Protection Flags", |user_interface| {
+                            GroupBox::new_from_theme(theme, "必需的保护标志", |user_interface| {
                                 user_interface.vertical(|user_interface| {
                                     user_interface.horizontal(|user_interface| {
                                         if user_interface
@@ -190,7 +190,7 @@ impl Widget for SettingsTabMemoryView {
 
                                         user_interface.add_space(8.0);
                                         user_interface.label(
-                                            RichText::new("Write")
+                                            RichText::new("写入")
                                                 .font(theme.font_library.font_noto_sans.font_normal.clone())
                                                 .color(theme.foreground),
                                         );
@@ -216,7 +216,7 @@ impl Widget for SettingsTabMemoryView {
 
                                         user_interface.add_space(8.0);
                                         user_interface.label(
-                                            RichText::new("Execute")
+                                            RichText::new("执行")
                                                 .font(theme.font_library.font_noto_sans.font_normal.clone())
                                                 .color(theme.foreground),
                                         );
@@ -242,7 +242,7 @@ impl Widget for SettingsTabMemoryView {
 
                                         user_interface.add_space(8.0);
                                         user_interface.label(
-                                            RichText::new("Copy on Write")
+                                            RichText::new("写时复制")
                                                 .font(theme.font_library.font_noto_sans.font_normal.clone())
                                                 .color(theme.foreground),
                                         );
@@ -253,7 +253,7 @@ impl Widget for SettingsTabMemoryView {
                         );
                         user_interface.add_space(8.0);
                         user_interface.add(
-                            GroupBox::new_from_theme(theme, "Excluded Protection Flags", |user_interface| {
+                            GroupBox::new_from_theme(theme, "排除的保护标志", |user_interface| {
                                 user_interface.vertical(|user_interface| {
                                     user_interface.horizontal(|user_interface| {
                                         if user_interface
@@ -275,7 +275,7 @@ impl Widget for SettingsTabMemoryView {
 
                                         user_interface.add_space(8.0);
                                         user_interface.label(
-                                            RichText::new("Write")
+                                            RichText::new("写入")
                                                 .font(theme.font_library.font_noto_sans.font_normal.clone())
                                                 .color(theme.foreground),
                                         );
@@ -301,7 +301,7 @@ impl Widget for SettingsTabMemoryView {
 
                                         user_interface.add_space(8.0);
                                         user_interface.label(
-                                            RichText::new("Execute")
+                                            RichText::new("执行")
                                                 .font(theme.font_library.font_noto_sans.font_normal.clone())
                                                 .color(theme.foreground),
                                         );
@@ -327,7 +327,7 @@ impl Widget for SettingsTabMemoryView {
 
                                         user_interface.add_space(8.0);
                                         user_interface.label(
-                                            RichText::new("Copy on Write")
+                                            RichText::new("写时复制")
                                                 .font(theme.font_library.font_noto_sans.font_normal.clone())
                                                 .color(theme.foreground),
                                         );
@@ -339,7 +339,7 @@ impl Widget for SettingsTabMemoryView {
                         user_interface.add_space(8.0);
 
                         user_interface.add(
-                            GroupBox::new_from_theme(theme, "Memory Types", |user_interface| {
+                            GroupBox::new_from_theme(theme, "内存类型", |user_interface| {
                                 user_interface.add_space(4.0);
                                 user_interface.vertical(|user_interface| {
                                     user_interface.horizontal(|user_interface| {
@@ -362,7 +362,7 @@ impl Widget for SettingsTabMemoryView {
 
                                         user_interface.add_space(8.0);
                                         user_interface.label(
-                                            RichText::new("None")
+                                            RichText::new("无")
                                                 .font(theme.font_library.font_noto_sans.font_normal.clone())
                                                 .color(theme.foreground),
                                         );
@@ -388,7 +388,7 @@ impl Widget for SettingsTabMemoryView {
 
                                         user_interface.add_space(8.0);
                                         user_interface.label(
-                                            RichText::new("Image")
+                                            RichText::new("镜像")
                                                 .font(theme.font_library.font_noto_sans.font_normal.clone())
                                                 .color(theme.foreground),
                                         );
@@ -414,7 +414,7 @@ impl Widget for SettingsTabMemoryView {
 
                                         user_interface.add_space(8.0);
                                         user_interface.label(
-                                            RichText::new("Private")
+                                            RichText::new("私有")
                                                 .font(theme.font_library.font_noto_sans.font_normal.clone())
                                                 .color(theme.foreground),
                                         );
@@ -440,7 +440,7 @@ impl Widget for SettingsTabMemoryView {
 
                                         user_interface.add_space(8.0);
                                         user_interface.label(
-                                            RichText::new("Mapped")
+                                            RichText::new("已映射")
                                                 .font(theme.font_library.font_noto_sans.font_normal.clone())
                                                 .color(theme.foreground),
                                         );
@@ -451,7 +451,7 @@ impl Widget for SettingsTabMemoryView {
                         );
                         user_interface.add_space(8.0);
                         user_interface.add(
-                            GroupBox::new_from_theme(theme, "Virtual Memory Querying", |user_interface| {
+                            GroupBox::new_from_theme(theme, "虚拟内存查询", |user_interface| {
                                 user_interface.vertical(|user_interface| {
                                     user_interface.horizontal(|user_interface| {
                                         if user_interface
@@ -473,7 +473,7 @@ impl Widget for SettingsTabMemoryView {
 
                                         user_interface.add_space(8.0);
                                         user_interface.label(
-                                            RichText::new("Query All memory")
+                                            RichText::new("查询所有内存")
                                                 .font(theme.font_library.font_noto_sans.font_normal.clone())
                                                 .color(theme.foreground),
                                         );
@@ -499,7 +499,7 @@ impl Widget for SettingsTabMemoryView {
 
                                         user_interface.add_space(8.0);
                                         user_interface.label(
-                                            RichText::new("Query All Usermode Memory")
+                                            RichText::new("查询所有用户态内存")
                                                 .font(theme.font_library.font_noto_sans.font_normal.clone())
                                                 .color(theme.foreground),
                                         );
@@ -515,7 +515,7 @@ impl Widget for SettingsTabMemoryView {
 
                                         user_interface.add_space(8.0);
                                         user_interface.label(
-                                            RichText::new("Query Custom Range")
+                                            RichText::new("查询自定义范围")
                                                 .font(theme.font_library.font_noto_sans.font_normal.clone())
                                                 .color(theme.foreground),
                                         );

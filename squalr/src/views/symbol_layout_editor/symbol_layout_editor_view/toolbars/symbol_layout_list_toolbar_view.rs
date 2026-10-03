@@ -93,7 +93,7 @@ impl Widget for SymbolLayoutListToolbarView<'_> {
         let new_layout_response = self.render_icon_button(
             &mut toolbar_user_interface,
             &theme.icon_library.icon_handle_common_add,
-            "Create a new reusable symbol layout.",
+            "创建一个新的可复用符号布局。",
             self.is_take_over_active,
         );
 

@@ -274,7 +274,7 @@ impl Widget for SymbolTreeView {
                     user_interface.available_size(),
                     Layout::centered_and_justified(Direction::TopDown),
                     |user_interface| {
-                        user_interface.label(RichText::new("Open a project to browse the Symbol Tree.").color(self.app_context.theme.foreground_preview));
+                        user_interface.label(RichText::new("打开一个项目以浏览符号树。").color(self.app_context.theme.foreground_preview));
                     },
                 )
                 .response;
@@ -542,7 +542,7 @@ impl Widget for SymbolTreeView {
                             user_interface.horizontal(|user_interface| {
                                 user_interface.add_space(Self::SYMBOL_TREE_TEXT_PADDING_X);
                                 user_interface.label(
-                                    RichText::new("This project has no authored symbols yet.")
+                                    RichText::new("此项目尚无自定义符号。")
                                         .font(theme.font_library.font_noto_sans.font_normal.clone())
                                         .color(theme.foreground_preview),
                                 );

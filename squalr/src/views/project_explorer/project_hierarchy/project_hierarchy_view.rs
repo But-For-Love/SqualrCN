@@ -177,13 +177,13 @@ impl Widget for ProjectHierarchyView {
 
                 match pending_operation {
                     ProjectHierarchyPendingOperation::Deleting => {
-                        user_interface.label("Deleting project item(s)...");
+                        user_interface.label("正在删除项目条目...");
                     }
                     ProjectHierarchyPendingOperation::Promoting => {
-                        user_interface.label("Promoting project item(s) to symbols...");
+                        user_interface.label("正在将项目条目提升为符号...");
                     }
                     ProjectHierarchyPendingOperation::Reordering => {
-                        user_interface.label("Reordering project item(s)...");
+                        user_interface.label("正在重新排序项目条目...");
                     }
                     _ => {}
                 }

@@ -131,19 +131,19 @@ impl Widget for ElementScannerToolbarView {
             .map(|process_selector_view_data| process_selector_view_data.opened_process.is_some())
             .unwrap_or(false);
         let new_scan_tooltip = if has_opened_process {
-            "New scan."
+            "新建扫描。"
         } else {
-            "Attach to a process before starting a new scan."
+            "请先附加到一个进程再开始新的扫描。"
         };
         let collect_values_tooltip = if has_opened_process {
-            "Collect values."
+            "采集数值。"
         } else {
-            "Attach to a process before collecting values."
+            "请先附加到一个进程再采集数值。"
         };
         let start_scan_tooltip = if has_opened_process {
-            "Start scan."
+            "开始扫描。"
         } else {
-            "Attach to a process before scanning."
+            "请先附加到一个进程再扫描。"
         };
 
         let visible_data_type_ref = element_scanner_view_data
@@ -289,11 +289,11 @@ impl Widget for ElementScannerToolbarView {
         let selected_scan_mode = effective_scan_mode;
         let mut selected_display_format = active_display_format;
         let scan_value_placeholder = if is_instruction_sequence_data_type {
-            "Enter instructions. Use Shift+Enter or Enter for new lines."
+            "输入指令。使用 Shift+Enter 或 Enter 换行。"
         } else if selected_scan_mode == ElementScannerScanMode::Pattern {
-            "Enter hex bytes or wildcards..."
+            "输入十六进制字节或通配符..."
         } else {
-            "Enter a value..."
+            "输入数值..."
         };
 
         // Constraint rows.
@@ -365,7 +365,7 @@ impl Widget for ElementScannerToolbarView {
                             button_size,
                             Button::new_from_theme(theme)
                                 .background_color(Color32::TRANSPARENT)
-                                .with_tooltip_text("Add new scan constraint."),
+                                .with_tooltip_text("添加新的扫描条件。"),
                         );
                         IconDraw::draw(user_interface, add_new_scan_constraint_button.rect, &theme.icon_library.icon_handle_common_add);
 
@@ -377,7 +377,7 @@ impl Widget for ElementScannerToolbarView {
                             button_size,
                             Button::new_from_theme(theme)
                                 .background_color(Color32::TRANSPARENT)
-                                .with_tooltip_text("Add new scan constraint."),
+                                .with_tooltip_text("添加新的扫描条件。"),
                         );
                         IconDraw::draw(
                             user_interface,

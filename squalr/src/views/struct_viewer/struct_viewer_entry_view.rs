@@ -440,8 +440,8 @@ impl<'lifetime> StructViewerEntryView<'lifetime> {
                 .get_struct_layout_descriptors()
                 .iter()
                 .map(|struct_layout_descriptor| struct_layout_descriptor.get_struct_layout_id()),
-            "Search structs",
-            "No matching structs",
+            "搜索结构体",
+            "没有匹配的结构体",
         )
     }
 
@@ -457,8 +457,8 @@ impl<'lifetime> StructViewerEntryView<'lifetime> {
                 .get_symbolic_resolver_descriptors()
                 .iter()
                 .map(|resolver_descriptor| resolver_descriptor.get_resolver_id()),
-            "Search resolvers",
-            "No matching resolvers",
+            "搜索解析器",
+            "没有匹配的解析器",
         )
     }
 
@@ -660,7 +660,7 @@ impl<'lifetime> Widget for StructViewerEntryView<'lifetime> {
                             ),
                             Button::new_from_theme(theme)
                                 .background_color(epaint::Color32::TRANSPARENT)
-                                .with_tooltip_text("Commit value."),
+                                .with_tooltip_text("提交数值。"),
                         );
 
                         IconDraw::draw(user_interface, commit_response.rect, &theme.icon_library.icon_handle_common_check_mark);
@@ -715,7 +715,7 @@ impl<'lifetime> Widget for StructViewerEntryView<'lifetime> {
                         ),
                         Button::new_from_theme(theme)
                             .background_color(epaint::Color32::TRANSPARENT)
-                            .with_tooltip_text("Edit instruction."),
+                            .with_tooltip_text("编辑指令。"),
                     );
 
                     IconDraw::draw(user_interface, edit_response.rect, &theme.icon_library.icon_handle_common_edit);
@@ -807,7 +807,7 @@ impl<'lifetime> Widget for StructViewerEntryView<'lifetime> {
                     ),
                     Button::new_from_theme(theme)
                         .background_color(epaint::Color32::TRANSPARENT)
-                        .with_tooltip_text("Edit offsets."),
+                        .with_tooltip_text("编辑偏移。"),
                 );
 
                 IconDraw::draw(user_interface, edit_response.rect, &theme.icon_library.icon_handle_common_edit);
@@ -823,13 +823,13 @@ impl<'lifetime> Widget for StructViewerEntryView<'lifetime> {
                 );
                 let button_response = user_interface.put(
                     button_rect,
-                    Button::new_from_theme(theme).with_tooltip_text("Open this value in the Memory Viewer."),
+                    Button::new_from_theme(theme).with_tooltip_text("在内存查看器中打开此数值。"),
                 );
 
                 user_interface.painter().text(
                     button_response.rect.center(),
                     Align2::CENTER_CENTER,
-                    "Edit in Memory Viewer",
+                    "在内存查看器中编辑",
                     theme.font_library.font_noto_sans.font_normal.clone(),
                     theme.foreground,
                 );
@@ -845,13 +845,13 @@ impl<'lifetime> Widget for StructViewerEntryView<'lifetime> {
                 );
                 let button_response = user_interface.put(
                     button_rect,
-                    Button::new_from_theme(theme).with_tooltip_text("Open this value in the Code Viewer."),
+                    Button::new_from_theme(theme).with_tooltip_text("在代码查看器中打开此数值。"),
                 );
 
                 user_interface.painter().text(
                     button_response.rect.center(),
                     Align2::CENTER_CENTER,
-                    "Edit in Code Viewer",
+                    "在代码查看器中编辑",
                     theme.font_library.font_noto_sans.font_normal.clone(),
                     theme.foreground,
                 );
@@ -1202,7 +1202,7 @@ impl<'lifetime> Widget for StructViewerEntryView<'lifetime> {
                 let symbol_layout_search_id = Id::new(("symbol_layout_field_search", symbol_layout_selector_id.as_str(), user_interface.id().value()));
                 let mut selected_struct_layout_id = None;
                 let symbol_layout_label = if current_struct_layout_id.trim().is_empty() {
-                    "Select symbol layout"
+                    "选择符号布局"
                 } else {
                     current_struct_layout_id.as_str()
                 };
@@ -1227,7 +1227,7 @@ impl<'lifetime> Widget for StructViewerEntryView<'lifetime> {
                             });
                             let search_box_id = format!("{}_search", symbol_layout_selector_id);
                             let search_response = popup_user_interface.add(
-                                SearchBoxView::new(self.app_context.clone(), &mut search_text, "Search structs", &search_box_id)
+                                SearchBoxView::new(self.app_context.clone(), &mut search_text, "搜索结构体", &search_box_id)
                                     .width(symbol_layout_popup_width)
                                     .height(Self::COMBO_BOX_ROW_HEIGHT),
                             );
@@ -1273,7 +1273,7 @@ impl<'lifetime> Widget for StructViewerEntryView<'lifetime> {
                                     }
 
                                     if !has_visible_layout {
-                                        self.render_combo_message_row(scroll_user_interface, symbol_layout_popup_width, "No matching structs");
+                                        self.render_combo_message_row(scroll_user_interface, symbol_layout_popup_width, "没有匹配的结构体");
                                     }
                                 });
                         },
@@ -1305,7 +1305,7 @@ impl<'lifetime> Widget for StructViewerEntryView<'lifetime> {
                 ));
                 let mut selected_resolver_id = None;
                 let resolver_label = if current_resolver_id.trim().is_empty() {
-                    "Select resolver"
+                    "选择解析器"
                 } else {
                     current_resolver_id.as_str()
                 };
@@ -1329,7 +1329,7 @@ impl<'lifetime> Widget for StructViewerEntryView<'lifetime> {
                             });
                             let search_box_id = format!("{}_search", resolver_selector_id);
                             let search_response = popup_user_interface.add(
-                                SearchBoxView::new(self.app_context.clone(), &mut search_text, "Search resolvers", &search_box_id)
+                                SearchBoxView::new(self.app_context.clone(), &mut search_text, "搜索解析器", &search_box_id)
                                     .width(resolver_popup_width)
                                     .height(Self::COMBO_BOX_ROW_HEIGHT),
                             );
@@ -1367,7 +1367,7 @@ impl<'lifetime> Widget for StructViewerEntryView<'lifetime> {
                                     }
 
                                     if !has_visible_resolver {
-                                        self.render_combo_message_row(scroll_user_interface, resolver_popup_width, "No matching resolvers");
+                                        self.render_combo_message_row(scroll_user_interface, resolver_popup_width, "没有匹配的解析器");
                                     }
                                 });
                         },

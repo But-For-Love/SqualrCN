@@ -78,9 +78,9 @@ impl Widget for MainShortcutBarView {
             Some(opened_proces) => opened_proces.get_name(),
             None => {
                 if process_selector_view_data.is_opening_process {
-                    "Opening process..."
+                    "正在打开进程..."
                 } else {
-                    "Select a process..."
+                    "选择进程..."
                 }
             }
         };
@@ -96,7 +96,7 @@ impl Widget for MainShortcutBarView {
                     if user_interface
                         .add(ComboBoxItemView::new(
                             self.app_context.clone(),
-                            "--- Detach from current process ---",
+                            "--- 从当前进程分离 ---",
                             None,
                             process_dropdown_list_width,
                         ))
@@ -212,7 +212,7 @@ impl MainShortcutBarView {
             if process_selector_view_data.opened_process.is_some() {
                 longest_label_width = longest_label_width.max(
                     fonts
-                        .layout_no_wrap(String::from("--- Detach from current process ---"), font_id.clone(), text_color)
+                        .layout_no_wrap(String::from("--- 从当前进程分离 ---"), font_id.clone(), text_color)
                         .size()
                         .x,
                 );

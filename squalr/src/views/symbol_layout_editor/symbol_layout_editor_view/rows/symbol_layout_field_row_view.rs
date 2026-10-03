@@ -82,7 +82,7 @@ impl<'view> SymbolLayoutFieldRowView<'view> {
                     .is_empty()
                 {
                     format!(
-                        "[{}] display resolver({})",
+                        "[{}] 显示解析器({})",
                         fixed_array_length,
                         field_draft.container_edit.display_count_resolver_id.trim()
                     )
@@ -115,7 +115,7 @@ impl<'view> SymbolLayoutFieldRowView<'view> {
                     .is_empty()
                 {
                     format!(
-                        "*({})[{}] display resolver({})",
+                        "*({})[{}] 显示解析器({})",
                         field_draft.container_edit.pointer_size,
                         fixed_array_length,
                         field_draft.container_edit.display_count_resolver_id.trim()
@@ -193,7 +193,7 @@ impl<'view> SymbolLayoutFieldRowView<'view> {
         let entry_name = if self.layout_kind.is_union() { "variant" } else { "field" };
         let move_up_response = render_next_button(
             &theme.icon_library.icon_handle_navigation_up_arrow_small,
-            &format!("Move this {} up.", entry_name),
+            &format!("将 {} 上移。", entry_name),
             !self.can_move_up,
         );
         if move_up_response.clicked() {
@@ -202,7 +202,7 @@ impl<'view> SymbolLayoutFieldRowView<'view> {
 
         let move_down_response = render_next_button(
             &theme.icon_library.icon_handle_navigation_down_arrow_small,
-            &format!("Move this {} down.", entry_name),
+            &format!("将 {} 下移。", entry_name),
             !self.can_move_down,
         );
         if move_down_response.clicked() {

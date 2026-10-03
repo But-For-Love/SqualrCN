@@ -108,7 +108,7 @@ impl<'view, 'draft> SymbolLayoutDraftFieldTreeView<'view, 'draft> {
             })
         else {
             Self::render_union_variant_child_row(user_interface, |user_interface| {
-                UnionVariantPreviewRowView::new(self.symbol_layout_editor_view.app_context.clone(), "UNASSIGNED", "variant layout unresolved")
+                UnionVariantPreviewRowView::new(self.symbol_layout_editor_view.app_context.clone(), "未分配", "变体布局未解析")
                     .show(user_interface);
             });
             return None;
@@ -401,7 +401,7 @@ impl<'view, 'draft> SymbolLayoutDraftFieldTreeView<'view, 'draft> {
                     render_symbol_layout_centered_add_entry_button(
                         self.symbol_layout_editor_view.app_context.clone(),
                         user_interface,
-                        "Add a new field to this union variant.",
+                        "为此联合变体添加新字段。",
                         variant_tail_unassigned_offset.is_some(),
                         SymbolLayoutEditorView::TAKE_OVER_ACTION_BUTTON_WIDTH,
                         SymbolLayoutEditorView::FIELD_ROW_HEIGHT,

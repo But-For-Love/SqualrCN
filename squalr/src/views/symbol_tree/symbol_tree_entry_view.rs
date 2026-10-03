@@ -297,21 +297,21 @@ impl<'lifetime> SymbolTreeEntryView<'lifetime> {
     fn build_hover_rows(&self) -> Vec<(&'static str, String)> {
         let mut hover_rows = Vec::new();
 
-        hover_rows.push(("Type", self.symbol_tree_entry.get_display_type_id()));
-        hover_rows.push(("Address", format!("0x{:X}", self.symbol_tree_entry.get_locator().get_focus_address())));
+        hover_rows.push(("类型", self.symbol_tree_entry.get_display_type_id()));
+        hover_rows.push(("地址", format!("0x{:X}", self.symbol_tree_entry.get_locator().get_focus_address())));
 
         if !self.size_tooltip_text.is_empty() {
-            hover_rows.push(("Size", self.size_tooltip_text.to_string()));
+            hover_rows.push(("大小", self.size_tooltip_text.to_string()));
         }
 
-        hover_rows.push(("Symbol Chain", self.symbol_tree_entry.get_full_path().to_string()));
+        hover_rows.push(("符号链", self.symbol_tree_entry.get_full_path().to_string()));
 
         if !matches!(self.symbol_tree_entry.get_kind(), SymbolTreeNodeKind::ModuleSpace { .. }) {
-            hover_rows.push(("Locator", self.symbol_tree_entry.get_locator().to_string()));
+            hover_rows.push(("定位器", self.symbol_tree_entry.get_locator().to_string()));
         }
 
         if !self.preview_value.is_empty() {
-            hover_rows.push(("Value", self.preview_value.to_string()));
+            hover_rows.push(("数值", self.preview_value.to_string()));
         }
 
         hover_rows

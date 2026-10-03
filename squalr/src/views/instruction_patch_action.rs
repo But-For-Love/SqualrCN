@@ -61,7 +61,7 @@ impl InstructionPatchAction {
                     patch_restore_address_response
                         .status
                         .get_message()
-                        .unwrap_or("unknown error")
+                        .unwrap_or("未知错误")
                 );
             } else {
                 refresh_engine_unprivileged_state
@@ -86,7 +86,7 @@ impl InstructionPatchAction {
                     patch_apply_response
                         .status
                         .get_message()
-                        .unwrap_or("unknown error")
+                        .unwrap_or("未知错误")
                 );
             } else {
                 refresh_engine_unprivileged_state

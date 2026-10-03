@@ -68,7 +68,7 @@ impl Widget for ProcessSelectorToolbarView {
 
             let button_windowed_only = user_interface.add(Checkbox::new_from_theme(theme).with_check_state_bool(show_windowed_processes_only));
             user_interface.add_space(4.0);
-            user_interface.label(RichText::new("Windowed").color(theme.foreground));
+            user_interface.label(RichText::new("窗口模式").color(theme.foreground));
 
             if button_windowed_only.clicked() {
                 ProcessSelectorViewData::set_show_windowed_processes_only(

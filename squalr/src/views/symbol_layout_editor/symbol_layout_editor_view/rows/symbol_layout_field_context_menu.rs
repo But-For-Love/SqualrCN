@@ -21,7 +21,7 @@ pub(in crate::views::symbol_layout_editor::symbol_layout_editor_view) fn render_
     let mut open = true;
     let mut pending_field_row_action = None;
     let entry_name = if layout_kind.is_union() { "variant" } else { "field" };
-    let remove_label = if layout_kind.is_union() { "Remove variant" } else { "Unassign" };
+    let remove_label = if layout_kind.is_union() { "移除变体" } else { "取消分配" };
     let context_menu_id = context_menu_target
         .get_layout_id()
         .map(|layout_id| format!("symbol_layout_field_context_menu_{}", layout_id))
@@ -36,7 +36,7 @@ pub(in crate::views::symbol_layout_editor::symbol_layout_editor_view) fn render_
                 .add(
                     ToolbarMenuItemView::new(
                         symbol_layout_editor_view.app_context.clone(),
-                        &format!("Move {} up", entry_name),
+                        &format!("上移 {}", entry_name),
                         "symbol_layout_field_ctx_move_up",
                         &None,
                         SymbolLayoutEditorView::FIELD_CONTEXT_MENU_WIDTH,
@@ -54,7 +54,7 @@ pub(in crate::views::symbol_layout_editor::symbol_layout_editor_view) fn render_
                 .add(
                     ToolbarMenuItemView::new(
                         symbol_layout_editor_view.app_context.clone(),
-                        &format!("Move {} down", entry_name),
+                        &format!("下移 {}", entry_name),
                         "symbol_layout_field_ctx_move_down",
                         &None,
                         SymbolLayoutEditorView::FIELD_CONTEXT_MENU_WIDTH,
@@ -77,7 +77,7 @@ pub(in crate::views::symbol_layout_editor::symbol_layout_editor_view) fn render_
                 .add(
                     ToolbarMenuItemView::new(
                         symbol_layout_editor_view.app_context.clone(),
-                        &format!("Insert new {} below", entry_name),
+                        &format!("在下方插入新的 {}", entry_name),
                         "symbol_layout_field_ctx_insert_below",
                         &None,
                         SymbolLayoutEditorView::FIELD_CONTEXT_MENU_WIDTH,

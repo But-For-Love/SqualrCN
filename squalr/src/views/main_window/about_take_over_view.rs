@@ -26,28 +26,28 @@ impl AboutTakeOverView {
 
     fn build_rows() -> [(&'static str, String); 4] {
         [
-            ("Application", Self::application_label().to_string()),
-            ("Version", env!("CARGO_PKG_VERSION").to_string()),
-            ("Platform", Self::platform_label().to_string()),
-            ("Architecture", std::env::consts::ARCH.to_string()),
+            ("应用程序", Self::application_label().to_string()),
+            ("版本", env!("CARGO_PKG_VERSION").to_string()),
+            ("平台", Self::platform_label().to_string()),
+            ("架构", std::env::consts::ARCH.to_string()),
         ]
     }
 
     fn application_label() -> &'static str {
         #[cfg(target_os = "android")]
         {
-            "Android GUI"
+            "Android 版"
         }
 
         #[cfg(not(target_os = "android"))]
         {
-            "Desktop GUI"
+            "桌面版"
         }
     }
 
     fn platform_label() -> &'static str {
         match std::env::consts::OS {
-            "windows" => "Windows",
+            "windows" => "窗口",
             "macos" => "macOS",
             "linux" => "Linux",
             "android" => "Android",
@@ -111,7 +111,7 @@ impl AboutTakeOverView {
                             );
                             user_interface.add_space(4.0);
                             user_interface.label(
-                                RichText::new("Dynamic analysis and reverse-engineering toolkit.")
+                                RichText::new("动态分析与逆向工程工具集。")
                                     .font(theme.font_library.font_noto_sans.font_normal.clone())
                                     .color(theme.foreground_preview),
                             );
@@ -161,7 +161,7 @@ impl AboutTakeOverView {
                                     let open_website_response = user_interface.add_sized(
                                         [button_width, button_height],
                                         Button::new(
-                                            RichText::new("Open Website")
+                                            RichText::new("打开官网")
                                                 .font(theme.font_library.font_noto_sans.font_normal.clone())
                                                 .color(theme.foreground),
                                         )
@@ -189,7 +189,7 @@ impl AboutTakeOverView {
                                     user_interface.painter().text(
                                         close_response.rect.center(),
                                         eframe::egui::Align2::CENTER_CENTER,
-                                        "Close",
+                                        "关闭",
                                         theme.font_library.font_noto_sans.font_normal.clone(),
                                         theme.foreground,
                                     );

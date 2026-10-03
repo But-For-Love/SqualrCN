@@ -20,13 +20,13 @@ pub struct OutputContextMenuView<'lifetime> {
 }
 
 impl<'lifetime> OutputContextMenuView<'lifetime> {
-    const OUTPUT_LOG_COPY_LABEL: &'static str = "Copy";
+    const OUTPUT_LOG_COPY_LABEL: &'static str = "复制";
     const OUTPUT_LOG_COPY_ID: &'static str = "output_log_ctx_copy";
-    const OUTPUT_INPUT_CUT_LABEL: &'static str = "Cut";
+    const OUTPUT_INPUT_CUT_LABEL: &'static str = "剪切";
     const OUTPUT_INPUT_CUT_ID: &'static str = "output_input_ctx_cut";
-    const OUTPUT_INPUT_COPY_LABEL: &'static str = "Copy";
+    const OUTPUT_INPUT_COPY_LABEL: &'static str = "复制";
     const OUTPUT_INPUT_COPY_ID: &'static str = "output_input_ctx_copy";
-    const OUTPUT_INPUT_PASTE_LABEL: &'static str = "Paste";
+    const OUTPUT_INPUT_PASTE_LABEL: &'static str = "粘贴";
     const OUTPUT_INPUT_PASTE_ID: &'static str = "output_input_ctx_paste";
 
     pub fn new(

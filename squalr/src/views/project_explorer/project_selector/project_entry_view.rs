@@ -207,7 +207,7 @@ impl<'lifetime> Widget for ProjectEntryView<'lifetime> {
                         button_size,
                         Button::new_from_theme(theme)
                             .background_color(Color32::TRANSPARENT)
-                            .with_tooltip_text("Edit project."),
+                            .with_tooltip_text("编辑项目。"),
                     );
                     IconDraw::draw(user_interface, edit_response.rect, &theme.icon_library.icon_handle_common_edit);
 

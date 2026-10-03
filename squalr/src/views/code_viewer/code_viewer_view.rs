@@ -257,7 +257,7 @@ impl CodeViewerView {
         Self::draw_column_header_text(
             user_interface,
             jumps_rect,
-            "Jumps",
+            "跳转",
             Align2::CENTER_CENTER,
             pos2(jumps_rect.center().x, header_text_y),
             theme,
@@ -265,7 +265,7 @@ impl CodeViewerView {
         Self::draw_column_header_text(
             user_interface,
             column_layout.address_rect,
-            "Address",
+            "地址",
             Align2::LEFT_CENTER,
             pos2(column_layout.address_rect.min.x + Self::TEXT_LEFT_PADDING, header_text_y),
             theme,
@@ -273,7 +273,7 @@ impl CodeViewerView {
         Self::draw_column_header_text(
             user_interface,
             column_layout.bytes_rect,
-            "Bytes",
+            "字节",
             Align2::LEFT_CENTER,
             pos2(column_layout.bytes_rect.min.x + Self::TEXT_LEFT_PADDING, header_text_y),
             theme,
@@ -281,7 +281,7 @@ impl CodeViewerView {
         Self::draw_column_header_text(
             user_interface,
             column_layout.text_rect,
-            "Assembly",
+            "汇编",
             Align2::LEFT_CENTER,
             pos2(column_layout.text_rect.min.x + Self::TEXT_LEFT_PADDING, header_text_y),
             theme,
@@ -461,9 +461,9 @@ impl CodeViewerView {
         selected_instruction_addresses: &HashSet<u64>,
     ) -> String {
         if selected_instruction_addresses.contains(&context_menu_address) && selected_instruction_addresses.len() > 1 {
-            String::from("Add Instructions to Project")
+            String::from("将指令添加到项目")
         } else {
-            String::from("Add Instruction to Project")
+            String::from("将指令添加到项目")
         }
     }
 
@@ -514,9 +514,9 @@ impl CodeViewerView {
         selected_instruction_addresses: &HashSet<u64>,
     ) -> String {
         if selected_instruction_addresses.contains(&context_menu_address) && selected_instruction_addresses.len() > 1 {
-            String::from("Edit Instructions")
+            String::from("编辑指令")
         } else {
-            String::from("Edit Instruction")
+            String::from("编辑指令")
         }
     }
 
@@ -708,7 +708,7 @@ impl CodeViewerView {
                 &validation_data_type,
                 false,
                 true,
-                "Type assembly here. Press Enter to write.",
+                "在此输入汇编。按 Enter 写入。",
                 Self::INSTRUCTION_EDIT_INPUT_ID,
             )
             .width(edit_box_width)
@@ -728,7 +728,7 @@ impl CodeViewerView {
             vec2(32.0, Self::TOOLBAR_ROW_HEIGHT),
             Button::new_from_theme(theme)
                 .background_color(Color32::TRANSPARENT)
-                .with_tooltip_text("Cancel instruction edit."),
+                .with_tooltip_text("取消指令编辑。"),
         );
         IconDraw::draw(&edit_row_user_interface, cancel_button.rect, &theme.icon_library.icon_handle_navigation_cancel);
 
@@ -736,7 +736,7 @@ impl CodeViewerView {
             vec2(32.0, Self::TOOLBAR_ROW_HEIGHT),
             Button::new_from_theme(theme)
                 .background_color(Color32::TRANSPARENT)
-                .with_tooltip_text("Assemble and commit this instruction edit."),
+                .with_tooltip_text("汇编并提交此指令编辑。"),
         );
         IconDraw::draw(&edit_row_user_interface, commit_button.rect, &theme.icon_library.icon_handle_common_check_mark);
 
@@ -811,12 +811,12 @@ impl CodeViewerView {
             CodeViewerInstructionEditStatus::Invalid(error) => (error.clone(), None),
             CodeViewerInstructionEditStatus::PendingFillWithNops { remaining_byte_count, .. } => (
                 format!(
-                    "Replacement is {} byte(s) shorter. Fill the remainder with code that does nothing?",
+                    "替换内容短了 {} 个字节。是否用空操作代码填充剩余部分？",
                     remaining_byte_count
                 ),
                 Some((
-                    "Fill + Write",
-                    "Write the replacement and pad the remaining bytes with no-operations.",
+                    "填充并写入",
+                    "写入替换内容，并用空操作指令填充剩余字节。",
                     theme.background_control_primary,
                     theme.background_control_primary_dark,
                 )),
@@ -828,10 +828,10 @@ impl CodeViewerView {
             } => {
                 if *nop_fill_byte_count == 0 {
                     (
-                        format!("Replacement will overwrite {} byte(s) from following instruction(s).", overwritten_byte_count),
+                        format!("替换内容将覆盖后续指令的 {} 个字节。", overwritten_byte_count),
                         Some((
-                            "Overwrite Multiple",
-                            "Write the replacement and overwrite the following complete instruction bytes.",
+                            "覆盖多项",
+                            "写入替换内容，并覆盖后续完整的指令字节。",
                             theme.background_control_warning,
                             theme.background_control_warning_dark,
                         )),
@@ -839,12 +839,12 @@ impl CodeViewerView {
                 } else {
                     (
                         format!(
-                            "Replacement crosses instruction boundaries. Fill {} trailing byte(s) with no-operations?",
+                            "替换内容跨越了指令边界。是否用空操作填充末尾 {} 个字节？",
                             nop_fill_byte_count
                         ),
                         Some((
-                            "Fill + Overwrite",
-                            "Write the replacement and pad the remaining partially overwritten instruction bytes with no-operations.",
+                            "填充并覆盖",
+                            "写入替换内容，并用空操作指令填充被部分覆盖的指令字节。",
                             theme.background_control_warning,
                             theme.background_control_warning_dark,
                         )),
@@ -917,10 +917,10 @@ impl CodeViewerView {
                 theme,
                 theme.background_control_secondary,
                 theme.background_control_secondary_dark,
-                "Cancel this pending instruction write.",
+                "取消等待中的指令写入。",
             ),
         );
-        draw_button_label(&button_user_interface, cancel_button_response.rect, "Cancel", theme);
+        draw_button_label(&button_user_interface, cancel_button_response.rect, "取消", theme);
 
         if cancel_button_response.clicked() {
             CodeViewerViewData::cancel_instruction_edit(self.code_viewer_view_data.clone());
@@ -966,7 +966,7 @@ impl Widget for CodeViewerView {
                     vec2(36.0, Self::TOOLBAR_ROW_HEIGHT),
                     Button::new_from_theme(theme)
                         .background_color(Color32::TRANSPARENT)
-                        .with_tooltip_text("Refresh memory pages."),
+                        .with_tooltip_text("刷新内存分页。"),
                 );
                 IconDraw::draw(&toolbar_user_interface, refresh_button.rect, &theme.icon_library.icon_handle_navigation_refresh);
 
@@ -1022,7 +1022,7 @@ impl Widget for CodeViewerView {
                     vec2(36.0, Self::TOOLBAR_ROW_HEIGHT),
                     Button::new_from_theme(theme)
                         .background_color(Color32::TRANSPARENT)
-                        .with_tooltip_text("Seek the code viewer to the requested address."),
+                        .with_tooltip_text("将代码查看器定位到请求的地址。"),
                 );
                 IconDraw::draw(
                     &toolbar_user_interface,
@@ -1258,7 +1258,7 @@ impl Widget for CodeViewerView {
                             if user_interface
                                 .add(ToolbarMenuItemView::new(
                                     self.app_context.clone(),
-                                    "Copy bytes",
+                                    "复制字节",
                                     "code_viewer_ctx_copy_bytes",
                                     &None,
                                     Self::CONTEXT_MENU_WIDTH,
@@ -1280,7 +1280,7 @@ impl Widget for CodeViewerView {
                             if user_interface
                                 .add(ToolbarMenuItemView::new(
                                     self.app_context.clone(),
-                                    "Copy instruction",
+                                    "复制指令",
                                     "code_viewer_ctx_copy_instruction",
                                     &None,
                                     Self::CONTEXT_MENU_WIDTH,
@@ -1300,7 +1300,7 @@ impl Widget for CodeViewerView {
                             if user_interface
                                 .add(ToolbarMenuItemView::new(
                                     self.app_context.clone(),
-                                    "Copy address",
+                                    "复制地址",
                                     "code_viewer_ctx_copy_address",
                                     &None,
                                     Self::CONTEXT_MENU_WIDTH,
@@ -1322,7 +1322,7 @@ impl Widget for CodeViewerView {
                                 && user_interface
                                     .add(ToolbarMenuItemView::new(
                                         self.app_context.clone(),
-                                        "Paste bytes",
+                                        "粘贴字节",
                                         "code_viewer_ctx_paste_bytes",
                                         &None,
                                         Self::CONTEXT_MENU_WIDTH,
@@ -1343,7 +1343,7 @@ impl Widget for CodeViewerView {
                                 && user_interface
                                     .add(ToolbarMenuItemView::new(
                                         self.app_context.clone(),
-                                        "Paste instruction",
+                                        "粘贴指令",
                                         "code_viewer_ctx_paste_instruction",
                                         &None,
                                         Self::CONTEXT_MENU_WIDTH,

@@ -64,7 +64,7 @@ impl<'lifetime> ProjectDeleteConfirmationTakeOverView<'lifetime> {
         panel_user_interface.painter().text(
             pos2(header_rect.left() + Self::HEADER_TITLE_PADDING_X, header_rect.center().y),
             Align2::LEFT_CENTER,
-            "Delete project",
+            "删除项目",
             theme.font_library.font_noto_sans.font_window_title.clone(),
             theme.foreground,
         );
@@ -84,10 +84,10 @@ impl<'lifetime> ProjectDeleteConfirmationTakeOverView<'lifetime> {
                         Layout::centered_and_justified(Direction::TopDown),
                         |user_interface| {
                             user_interface.add(
-                                GroupBox::new_from_theme(theme, "Confirmation", |user_interface| {
+                                GroupBox::new_from_theme(theme, "确认", |user_interface| {
                                     user_interface.vertical_centered(|user_interface| {
                                         user_interface.label(
-                                            RichText::new("Delete this project?")
+                                            RichText::new("删除此项目？")
                                                 .font(theme.font_library.font_noto_sans.font_header.clone())
                                                 .color(theme.foreground),
                                         );
@@ -101,7 +101,7 @@ impl<'lifetime> ProjectDeleteConfirmationTakeOverView<'lifetime> {
                                         user_interface.label(RichText::new(self.project_directory_path.display().to_string()).color(theme.foreground_preview));
                                         user_interface.add_space(Self::ROW_SPACING);
                                         user_interface
-                                            .label(RichText::new("This permanently removes the project directory and its files.").color(theme.warning));
+                                            .label(RichText::new("这将永久删除项目目录及其文件。").color(theme.warning));
                                     });
 
                                     user_interface.add_space(12.0);
@@ -115,7 +115,7 @@ impl<'lifetime> ProjectDeleteConfirmationTakeOverView<'lifetime> {
 
                                             let cancel_response = user_interface.add_sized(
                                                 vec2(Self::BUTTON_WIDTH, Self::BUTTON_HEIGHT),
-                                                eframe::egui::Button::new(RichText::new("Cancel").color(theme.foreground))
+                                                eframe::egui::Button::new(RichText::new("取消").color(theme.foreground))
                                                     .fill(theme.background_control_primary)
                                                     .stroke(Stroke::new(1.0, theme.background_control_primary_dark)),
                                             );
@@ -125,7 +125,7 @@ impl<'lifetime> ProjectDeleteConfirmationTakeOverView<'lifetime> {
 
                                             let delete_response = user_interface.add_sized(
                                                 vec2(Self::BUTTON_WIDTH, Self::BUTTON_HEIGHT),
-                                                eframe::egui::Button::new(RichText::new("Delete").color(theme.foreground))
+                                                eframe::egui::Button::new(RichText::new("删除").color(theme.foreground))
                                                     .fill(theme.background_control_danger)
                                                     .stroke(Stroke::new(1.0, theme.background_control_danger_dark)),
                                             );

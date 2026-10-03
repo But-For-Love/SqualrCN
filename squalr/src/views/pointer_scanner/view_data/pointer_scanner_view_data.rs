@@ -133,7 +133,7 @@ impl PointerScannerViewData {
             target_data_type_selection: DataTypeSelection::new(Self::target_data_type_ref(DataTypeI32::DATA_TYPE_ID)),
             max_depth_input: Self::create_unsigned_input(String::from("5")),
             offset_radius_input: Self::create_unsigned_input(String::from("2048")),
-            status_message: String::from("No pointer scan session."),
+            status_message: String::from("没有指针扫描会话。"),
             pointer_scan_summary: None,
             browse_page_size: ScanSettings::default().results_page_size as u64,
             current_context_parent_node_id: None,
@@ -202,7 +202,7 @@ impl PointerScannerViewData {
                 if pointer_scan_reset_response.success {
                     pointer_scanner_view_data_guard.clear_session_state_preserving_inputs();
                 } else {
-                    pointer_scanner_view_data_guard.status_message = String::from("Pointer scan reset failed. See logs.");
+                    pointer_scanner_view_data_guard.status_message = String::from("指针扫描重置失败，请查看日志。");
                 }
             }
             PointerScanResponse::Start { pointer_scan_start_response } => {
@@ -218,7 +218,7 @@ impl PointerScannerViewData {
                         pointer_scanner_view_data_guard.status_message = Self::format_start_completed_status(pointer_scan_summary);
                     }
                 } else {
-                    pointer_scanner_view_data_guard.status_message = String::from("Cannot start pointer scan without an opened process.");
+                    pointer_scanner_view_data_guard.status_message = String::from("未打开进程，无法开始指针扫描。");
                 }
             }
             PointerScanResponse::Summary { pointer_scan_summary_response } => {
@@ -394,10 +394,10 @@ impl PointerScannerViewData {
             }
 
             let Some(max_depth) = Self::parse_unsigned_input(&pointer_scanner_view_data_guard.max_depth_input) else {
-                pointer_scanner_view_data_guard.status_message = String::from("Cannot start pointer scan: invalid max depth.");
+                pointer_scanner_view_data_guard.status_message = String::from("无法开始指针扫描：最大深度无效。");
                 pointer_scanner_view_data_guard.request_repaint();
                 log::error!(
-                    "Invalid pointer scan max depth: {}",
+                    "指针扫描最大深度无效：{}",
                     pointer_scanner_view_data_guard
                         .max_depth_input
                         .get_anonymous_value_string()
@@ -405,10 +405,10 @@ impl PointerScannerViewData {
                 return;
             };
             let Some(offset_radius) = Self::parse_unsigned_input(&pointer_scanner_view_data_guard.offset_radius_input) else {
-                pointer_scanner_view_data_guard.status_message = String::from("Cannot start pointer scan: invalid offset.");
+                pointer_scanner_view_data_guard.status_message = String::from("无法开始指针扫描：偏移无效。");
                 pointer_scanner_view_data_guard.request_repaint();
                 log::error!(
-                    "Invalid pointer scan offset radius: {}",
+                    "指针扫描偏移范围无效：{}",
                     pointer_scanner_view_data_guard
                         .offset_radius_input
                         .get_anonymous_value_string()
@@ -467,7 +467,7 @@ impl PointerScannerViewData {
                             pointer_scanner_view_data_guard.status_message = Self::format_start_completed_status(pointer_scan_summary);
                         }
                     } else if pointer_scanner_view_data_guard.should_apply_session_request(session_request_revision) {
-                        pointer_scanner_view_data_guard.status_message = String::from("Cannot start pointer scan without an opened process.");
+                        pointer_scanner_view_data_guard.status_message = String::from("未打开进程，无法开始指针扫描。");
                     }
 
                     pointer_scanner_view_data_guard.request_repaint();
@@ -499,12 +499,12 @@ impl PointerScannerViewData {
             }
 
             let Some(max_depth) = Self::parse_unsigned_input(&pointer_scanner_view_data_guard.max_depth_input) else {
-                pointer_scanner_view_data_guard.status_message = String::from("Cannot start pointer scan: invalid max depth.");
+                pointer_scanner_view_data_guard.status_message = String::from("无法开始指针扫描：最大深度无效。");
                 pointer_scanner_view_data_guard.request_repaint();
                 return;
             };
             let Some(offset_radius) = Self::parse_unsigned_input(&pointer_scanner_view_data_guard.offset_radius_input) else {
-                pointer_scanner_view_data_guard.status_message = String::from("Cannot start pointer scan: invalid offset.");
+                pointer_scanner_view_data_guard.status_message = String::from("无法开始指针扫描：偏移无效。");
                 pointer_scanner_view_data_guard.request_repaint();
                 return;
             };
@@ -567,7 +567,7 @@ impl PointerScannerViewData {
                             pointer_scanner_view_data_guard.status_message = Self::format_start_completed_status(pointer_scan_summary);
                         }
                     } else if pointer_scanner_view_data_guard.should_apply_session_request(session_request_revision) {
-                        pointer_scanner_view_data_guard.status_message = String::from("Cannot start pointer scan without an opened process.");
+                        pointer_scanner_view_data_guard.status_message = String::from("未打开进程，无法开始指针扫描。");
                     }
 
                     pointer_scanner_view_data_guard.request_repaint();
@@ -667,9 +667,9 @@ impl PointerScannerViewData {
                 .as_ref()
                 .map(PointerScanSummary::get_session_id)
             else {
-                pointer_scanner_view_data_guard.status_message = String::from("Cannot validate pointer scan without an active session.");
+                pointer_scanner_view_data_guard.status_message = String::from("没有活动的会话，无法校验指针扫描。");
                 pointer_scanner_view_data_guard.request_repaint();
-                log::error!("Cannot validate pointer scan without an active pointer scan session.");
+                log::error!("没有活动的指针扫描会话，无法校验指针扫描。");
                 return;
             };
 
@@ -757,7 +757,7 @@ impl PointerScannerViewData {
                 .as_ref()
                 .map(PointerScanSummary::get_session_id)
             else {
-                pointer_scanner_view_data_guard.status_message = String::from("Cannot validate pointer scan without an active session.");
+                pointer_scanner_view_data_guard.status_message = String::from("没有活动的会话，无法校验指针扫描。");
                 pointer_scanner_view_data_guard.request_repaint();
                 return;
             };
@@ -1140,7 +1140,7 @@ impl PointerScannerViewData {
     pub fn build_page_stats_text(pointer_scanner_view_data: Dependency<Self>) -> String {
         let pointer_scanner_view_data_guard = match pointer_scanner_view_data.read("Pointer scanner build page stats") {
             Some(pointer_scanner_view_data_guard) => pointer_scanner_view_data_guard,
-            None => return String::from("Entries 0-0 of 0"),
+            None => return String::from("条目 0-0，共 0 项"),
         };
 
         pointer_scanner_view_data_guard.build_page_stats_text_internal()
@@ -1149,7 +1149,7 @@ impl PointerScannerViewData {
     pub fn build_current_context_text(pointer_scanner_view_data: Dependency<Self>) -> String {
         let pointer_scanner_view_data_guard = match pointer_scanner_view_data.read("Pointer scanner build current context text") {
             Some(pointer_scanner_view_data_guard) => pointer_scanner_view_data_guard,
-            None => return String::from("Roots"),
+            None => return String::from("根节点"),
         };
 
         pointer_scanner_view_data_guard.build_current_context_text_internal()
@@ -1245,7 +1245,7 @@ impl PointerScannerViewData {
             .nodes_by_id
             .get(&selected_node_id)?;
         if selected_pointer_scan_node.has_children() {
-            log::warn!("Select a leaf pointer node before adding it to the project.");
+            log::warn!("请先选择一个叶子指针节点再添加到项目。");
             return None;
         }
         let project_item_name = pointer_scanner_view_data_guard.build_selected_project_item_name()?;
@@ -1327,16 +1327,16 @@ impl PointerScannerViewData {
                 .replace_selected_data_types(vec![normalized_target_data_type_ref]);
             pointer_scanner_view_data_guard.status_message = if let Some(virtual_address) = resolved_virtual_address {
                 format!(
-                    "Pointer scanner target autofilled from {}+0x{:X} as guest address {}.",
+                    "指针扫描目标已从 {}+0x{:X} 自动填充为客机地址 {}。",
                     module_name,
                     address,
                     Self::format_address(virtual_address)
                 )
             } else if module_name.trim().is_empty() {
-                String::from("Pointer scanner target autofilled from the project explorer.")
+                String::from("指针扫描目标已从项目浏览器自动填充。")
             } else {
                 format!(
-                    "Pointer scanner target autofilled from {}+0x{:X}. Stored module-relative addresses are not resolved here, so verify the live target before starting.",
+                    "指针扫描目标已从 {}+0x{:X} 自动填充。此处不会解析保存的模块相对地址，请在开始前确认实际目标。",
                     module_name, address
                 )
             };
@@ -1370,7 +1370,7 @@ impl PointerScannerViewData {
         self.pending_page_requests.clear();
         self.queued_page_requests.clear();
         self.selected_node_id = None;
-        self.status_message = String::from("No pointer scan session.");
+        self.status_message = String::from("没有指针扫描会话。");
     }
 
     pub fn parse_u64_input(input: &str) -> Option<u64> {
@@ -1473,7 +1473,7 @@ impl PointerScannerViewData {
             self.validation_target_address_input = Self::create_hex_input(String::new());
             self.target_value_input = Self::create_unsigned_input(String::new());
             self.validation_target_value_input = Self::create_unsigned_input(String::new());
-            self.status_message = String::from("No pointer scan session.");
+            self.status_message = String::from("没有指针扫描会话。");
         }
     }
 
@@ -1661,7 +1661,7 @@ impl PointerScannerViewData {
     }
 
     fn build_page_stats_text_internal(&self) -> String {
-        let label = if self.current_context_parent_node_id.is_some() { "Offsets" } else { "Roots" };
+        let label = if self.current_context_parent_node_id.is_some() { "偏移列表" } else { "根节点" };
         let total_node_count = if self.current_context_parent_node_id.is_none() {
             self.pointer_scan_summary
                 .as_ref()
@@ -1693,8 +1693,8 @@ impl PointerScannerViewData {
         match self.current_context_parent_node_id {
             Some(parent_node_id) => self
                 .build_pointer_context_text(parent_node_id)
-                .unwrap_or_else(|| String::from("Context unavailable")),
-            None => String::from("Roots"),
+                .unwrap_or_else(|| String::from("上下文不可用")),
+            None => String::from("根节点"),
         }
     }
 
@@ -1720,8 +1720,8 @@ impl PointerScannerViewData {
         let primary_text = self
             .current_context_parent_node_id
             .and_then(|parent_node_id| self.nodes_by_id.get(&parent_node_id))
-            .map(|parent_pointer_scan_node| format!("Return to depth {}", parent_pointer_scan_node.get_depth()))
-            .unwrap_or_else(|| String::from("Return"));
+            .map(|parent_pointer_scan_node| format!("返回到深度 {}", parent_pointer_scan_node.get_depth()))
+            .unwrap_or_else(|| String::from("返回"));
 
         PointerScannerTreeRow {
             node_id: 0,
@@ -1881,14 +1881,14 @@ impl PointerScannerViewData {
 
     fn format_pointer_scan_node_type(pointer_scan_node_type: PointerScanNodeType) -> &'static str {
         match pointer_scan_node_type {
-            PointerScanNodeType::Static => "Static",
-            PointerScanNodeType::Heap => "Heap",
+            PointerScanNodeType::Static => "静态",
+            PointerScanNodeType::Heap => "堆",
         }
     }
 
     fn format_summary_status(pointer_scan_summary: &PointerScanSummary) -> String {
         format!(
-            "Session {} | Target {} | Space {} | Roots {} | Nodes {} (Static {} / Heap {})",
+            "会话 {} | 目标 {} | 空间 {} | 根节点 {} | 节点 {}（静态 {} / 堆 {}）",
             pointer_scan_summary.get_session_id(),
             Self::format_target_descriptor(pointer_scan_summary.get_target_descriptor()),
             pointer_scan_summary.get_address_space(),
@@ -1900,13 +1900,13 @@ impl PointerScannerViewData {
     }
 
     fn format_start_completed_status(pointer_scan_summary: &PointerScanSummary) -> String {
-        format!("Pointer scan complete | {}", Self::format_summary_status(pointer_scan_summary))
+        format!("指针扫描完成 | {}", Self::format_summary_status(pointer_scan_summary))
     }
 
     fn format_refreshing_summary_status(session_id: Option<u64>) -> String {
         match session_id {
-            Some(session_id) => format!("Refreshing pointer scan session {}...", session_id),
-            None => String::from("Refreshing pointer scan summary..."),
+            Some(session_id) => format!("正在刷新指针扫描会话 {}...", session_id),
+            None => String::from("正在刷新指针扫描摘要..."),
         }
     }
 
@@ -1918,7 +1918,7 @@ impl PointerScannerViewData {
         address_space: PointerScanAddressSpace,
     ) -> String {
         format!(
-            "Starting pointer scan | Target {} | Space {} | Pointer Size {} | Depth {} | Offset {}",
+            "开始指针扫描 | 目标 {} | 空间 {} | 指针大小 {} | 深度 {} | 偏移 {}",
             Self::format_status_input_value(target_address_input),
             address_space,
             pointer_size,
@@ -1936,7 +1936,7 @@ impl PointerScannerViewData {
         address_space: PointerScanAddressSpace,
     ) -> String {
         format!(
-            "Starting pointer scan | Value {} | Type {} | Space {} | Pointer Size {} | Depth {} | Offset {}",
+            "开始指针扫描 | 数值 {} | 类型 {} | 空间 {} | 指针大小 {} | 深度 {} | 偏移 {}",
             Self::format_status_input_value(target_value_input),
             target_data_type_ref.get_data_type_id(),
             address_space,
@@ -1951,7 +1951,7 @@ impl PointerScannerViewData {
         validation_target_address_input: &AnonymousValueString,
     ) -> String {
         format!(
-            "Validating pointer scan session {} | Target {}",
+            "正在校验指针扫描会话 {} | 目标 {}",
             session_id,
             Self::format_status_input_value(validation_target_address_input),
         )
@@ -1963,7 +1963,7 @@ impl PointerScannerViewData {
         target_data_type_ref: &DataTypeRef,
     ) -> String {
         format!(
-            "Validating pointer scan session {} | Value {} | Type {}",
+            "正在校验指针扫描会话 {} | 数值 {} | 类型 {}",
             session_id,
             Self::format_status_input_value(validation_target_value_input),
             target_data_type_ref.get_data_type_id(),
@@ -1971,7 +1971,7 @@ impl PointerScannerViewData {
     }
 
     fn format_resetting_scan_status() -> String {
-        String::from("Clearing pointer scan session...")
+        String::from("正在清除指针扫描会话...")
     }
 
     fn format_status_input_value(anonymous_value_string: &AnonymousValueString) -> String {
@@ -2030,7 +2030,7 @@ impl PointerScannerViewData {
     ) {
         if let Some(mut pointer_scanner_view_data_guard) = pointer_scanner_view_data.write(error_context) {
             pointer_scanner_view_data_guard.is_starting_scan = false;
-            pointer_scanner_view_data_guard.status_message = String::from("Pointer scan start failed. See logs.");
+            pointer_scanner_view_data_guard.status_message = String::from("指针扫描启动失败，请查看日志。");
             pointer_scanner_view_data_guard.request_repaint();
         }
     }
@@ -2041,7 +2041,7 @@ impl PointerScannerViewData {
     ) {
         if let Some(mut pointer_scanner_view_data_guard) = pointer_scanner_view_data.write(error_context) {
             pointer_scanner_view_data_guard.is_querying_summary = false;
-            pointer_scanner_view_data_guard.status_message = String::from("Pointer scan summary refresh failed. See logs.");
+            pointer_scanner_view_data_guard.status_message = String::from("指针扫描摘要刷新失败，请查看日志。");
             pointer_scanner_view_data_guard.request_repaint();
         }
     }
@@ -2052,7 +2052,7 @@ impl PointerScannerViewData {
     ) {
         if let Some(mut pointer_scanner_view_data_guard) = pointer_scanner_view_data.write(error_context) {
             pointer_scanner_view_data_guard.is_validating_scan = false;
-            pointer_scanner_view_data_guard.status_message = String::from("Pointer scan validation failed. See logs.");
+            pointer_scanner_view_data_guard.status_message = String::from("指针扫描校验失败，请查看日志。");
             pointer_scanner_view_data_guard.request_repaint();
         }
     }
@@ -2063,7 +2063,7 @@ impl PointerScannerViewData {
     ) {
         if let Some(mut pointer_scanner_view_data_guard) = pointer_scanner_view_data.write(error_context) {
             pointer_scanner_view_data_guard.is_resetting_scan = false;
-            pointer_scanner_view_data_guard.status_message = String::from("Pointer scan reset failed. See logs.");
+            pointer_scanner_view_data_guard.status_message = String::from("指针扫描重置失败，请查看日志。");
             pointer_scanner_view_data_guard.request_repaint();
         }
     }

@@ -117,7 +117,7 @@ impl<'lifetime> Widget for ScanCompareTypeSelectorView<'lifetime> {
             Some(selected_icon),
             |popup_user_interface: &mut Ui, should_close: &mut bool| {
                 popup_user_interface.vertical(|user_interface| {
-                    self.create_header(user_interface, "Relative", total_row_width);
+                    self.create_header(user_interface, "相对", total_row_width);
 
                     user_interface.horizontal(|user_interface| {
                         if user_interface
@@ -187,7 +187,7 @@ impl<'lifetime> Widget for ScanCompareTypeSelectorView<'lifetime> {
                         };
                     });
 
-                    self.create_header(user_interface, "Immediate", total_row_width);
+                    self.create_header(user_interface, "立即数", total_row_width);
 
                     user_interface.horizontal(|user_interface| {
                         if user_interface
@@ -289,7 +289,7 @@ impl<'lifetime> Widget for ScanCompareTypeSelectorView<'lifetime> {
                         };
                     });
 
-                    self.create_header(user_interface, "Delta", total_row_width);
+                    self.create_header(user_interface, "增量", total_row_width);
 
                     user_interface.horizontal(|user_interface| {
                         if user_interface
@@ -377,7 +377,7 @@ impl<'lifetime> Widget for ScanCompareTypeSelectorView<'lifetime> {
                         };
                     });
 
-                    self.create_header(user_interface, "Binary", total_row_width);
+                    self.create_header(user_interface, "二进制", total_row_width);
 
                     user_interface.horizontal(|user_interface| {
                         if user_interface

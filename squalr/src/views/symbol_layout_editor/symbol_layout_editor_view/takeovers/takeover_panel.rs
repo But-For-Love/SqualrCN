@@ -21,7 +21,7 @@ impl SymbolLayoutEditorView {
 
                 let cancel_response = user_interface.add_sized(
                     button_size,
-                    EguiButton::new(RichText::new("Cancel").color(theme.foreground))
+                    EguiButton::new(RichText::new("取消").color(theme.foreground))
                         .fill(theme.background_control_secondary)
                         .stroke(Stroke::new(1.0, theme.background_control_secondary_dark)),
                 );
@@ -57,7 +57,7 @@ impl SymbolLayoutEditorView {
         &self,
         user_interface: &mut Ui,
     ) -> (Response, Response) {
-        self.render_danger_take_over_action_buttons(user_interface, "Delete")
+        self.render_danger_take_over_action_buttons(user_interface, "删除")
     }
 
     pub(in crate::views::symbol_layout_editor::symbol_layout_editor_view) fn render_danger_take_over_action_buttons(
@@ -84,7 +84,7 @@ impl SymbolLayoutEditorView {
 
                 let cancel_response = user_interface.add_sized(
                     button_size,
-                    EguiButton::new(RichText::new("Cancel").color(theme.foreground))
+                    EguiButton::new(RichText::new("取消").color(theme.foreground))
                         .fill(theme.background_control_secondary)
                         .stroke(Stroke::new(1.0, theme.background_control_secondary_dark)),
                 );

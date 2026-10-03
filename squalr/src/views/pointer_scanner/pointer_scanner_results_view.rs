@@ -85,7 +85,7 @@ impl PointerScannerResultsView {
     ) {
         let theme = &self.app_context.theme;
         let header_font = theme.font_library.font_noto_sans.font_header.clone();
-        let primary_label = if is_root_context { "Module" } else { "Offset" };
+        let primary_label = if is_root_context { "模块" } else { "偏移" };
 
         self.draw_clipped_text(
             user_interface,
@@ -97,21 +97,21 @@ impl PointerScannerResultsView {
         self.draw_clipped_text(
             user_interface,
             Self::column_text_rectangle(primary_splitter_position_x, value_splitter_position_x, header_rectangle),
-            "Value",
+            "数值",
             header_font.clone(),
             theme.foreground,
         );
         self.draw_clipped_text(
             user_interface,
             Self::column_text_rectangle(value_splitter_position_x, resolved_splitter_position_x, header_rectangle),
-            "Resolved",
+            "已解析",
             header_font.clone(),
             theme.foreground,
         );
         self.draw_clipped_text(
             user_interface,
             Self::column_text_rectangle(resolved_splitter_position_x, header_rectangle.max.x, header_rectangle),
-            "Depth",
+            "深度",
             header_font,
             theme.foreground,
         );

@@ -97,10 +97,10 @@ impl<'a> SymbolTreeTakeoverHostView<'a> {
                 symbol_locator_key,
                 display_name,
             } => {
-                let description_text = String::from("This removes the authored symbol from the project.");
+                let description_text = String::from("这将从项目中移除该自定义符号。");
 
                 user_interface.add_space(8.0);
-                match SymbolTreeDeleteConfirmationView::new(self.app_context.clone(), "Delete this symbol", display_name, &description_text, false, "Delete")
+                match SymbolTreeDeleteConfirmationView::new(self.app_context.clone(), "删除此符号", display_name, &description_text, false, "删除")
                     .show(user_interface)
                 {
                     SymbolTreeDeleteConfirmationAction::Confirm => SymbolTreeTakeoverHostAction::DeleteSymbolClaim {
@@ -111,10 +111,10 @@ impl<'a> SymbolTreeTakeoverHostView<'a> {
                 }
             }
             SymbolTreeTakeOverState::DeleteModuleRootConfirmation { module_name } => {
-                let description_text = String::from("This removes the module root and all symbol claims inside it.");
+                let description_text = String::from("这将移除模块根节点及其内部所有符号声明。");
 
                 user_interface.add_space(8.0);
-                match SymbolTreeDeleteConfirmationView::new(self.app_context.clone(), "Delete this module", module_name, &description_text, false, "Delete")
+                match SymbolTreeDeleteConfirmationView::new(self.app_context.clone(), "删除此模块", module_name, &description_text, false, "删除")
                     .show(user_interface)
                 {
                     SymbolTreeDeleteConfirmationAction::Confirm => SymbolTreeTakeoverHostAction::DeleteModuleRoot {
@@ -137,11 +137,11 @@ impl<'a> SymbolTreeTakeoverHostView<'a> {
                 user_interface.add_space(8.0);
                 match SymbolTreeDeleteConfirmationView::new(
                     self.app_context.clone(),
-                    "Delete this field",
+                    "删除此字段",
                     display_name,
                     &description_text,
                     delete_confirmation_description.is_warning,
-                    "Delete",
+                    "删除",
                 )
                 .show(user_interface)
                 {

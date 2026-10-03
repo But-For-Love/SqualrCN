@@ -87,7 +87,7 @@ impl Widget for DockedWindowTitleBarView {
         if is_window_maximized {
             child_user_interface.add_space(8.0);
             child_user_interface.label(
-                RichText::new("Fullscreen")
+                RichText::new("全屏")
                     .color(theme.selected_border)
                     .font(theme.font_library.font_noto_sans.font_normal.clone()),
             );

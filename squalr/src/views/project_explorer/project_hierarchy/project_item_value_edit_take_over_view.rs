@@ -48,7 +48,7 @@ impl<'lifetime> ProjectItemValueEditTakeOverView<'lifetime> {
         user_interface.add_space(12.0);
         user_interface.vertical_centered(|user_interface| {
             user_interface.label(
-                RichText::new(format!("Edit value for {}.", self.project_item_name))
+                RichText::new(format!("编辑 {} 的数值。", self.project_item_name))
                     .font(theme.font_library.font_noto_sans.font_normal.clone())
                     .color(theme.foreground),
             );
@@ -88,7 +88,7 @@ impl<'lifetime> ProjectItemValueEditTakeOverView<'lifetime> {
 
                 let button_cancel = user_interface.add_sized(
                     button_size,
-                    Button::new(RichText::new("Cancel").color(theme.foreground))
+                    Button::new(RichText::new("取消").color(theme.foreground))
                         .fill(theme.background_control_secondary)
                         .stroke(Stroke::new(1.0, theme.background_control_secondary_dark)),
                 );
@@ -99,7 +99,7 @@ impl<'lifetime> ProjectItemValueEditTakeOverView<'lifetime> {
 
                 let commit_button_response = user_interface.add_sized(
                     button_size,
-                    Button::new(RichText::new("Commit").color(theme.foreground))
+                    Button::new(RichText::new("提交").color(theme.foreground))
                         .fill(theme.background_control_primary)
                         .stroke(Stroke::new(1.0, theme.background_control_primary_dark)),
                 );
