@@ -1,5 +1,5 @@
-use epaint::text::{FontData, FontDefinitions, FontFamily, Fonts};
 use epaint::AlphaFromCoverage;
+use epaint::text::{FontData, FontDefinitions, FontFamily, Fonts};
 use std::path::{Path, PathBuf};
 use std::sync::Arc;
 
@@ -161,10 +161,7 @@ impl CjkFontResolver {
 
         let sfnt_magic = u32::from_be_bytes([font_bytes[0], font_bytes[1], font_bytes[2], font_bytes[3]]);
 
-        matches!(
-            sfnt_magic,
-            0x0001_0000 | 0x7472_7565 | 0x4F54_544F | 0x7474_6366 | 0x7479_7031
-        )
+        matches!(sfnt_magic, 0x0001_0000 | 0x7472_7565 | 0x4F54_544F | 0x7474_6366 | 0x7479_7031)
     }
 
     /// Verifies that egui can parse the font payload without panicking.

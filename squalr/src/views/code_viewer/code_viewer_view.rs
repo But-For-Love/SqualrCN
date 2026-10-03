@@ -810,10 +810,7 @@ impl CodeViewerView {
         let (warning_text, primary_button) = match instruction_edit_status {
             CodeViewerInstructionEditStatus::Invalid(error) => (error.clone(), None),
             CodeViewerInstructionEditStatus::PendingFillWithNops { remaining_byte_count, .. } => (
-                format!(
-                    "替换内容短了 {} 个字节。是否用空操作代码填充剩余部分？",
-                    remaining_byte_count
-                ),
+                format!("替换内容短了 {} 个字节。是否用空操作代码填充剩余部分？", remaining_byte_count),
                 Some((
                     "填充并写入",
                     "写入替换内容，并用空操作指令填充剩余字节。",
@@ -838,10 +835,7 @@ impl CodeViewerView {
                     )
                 } else {
                     (
-                        format!(
-                            "替换内容跨越了指令边界。是否用空操作填充末尾 {} 个字节？",
-                            nop_fill_byte_count
-                        ),
+                        format!("替换内容跨越了指令边界。是否用空操作填充末尾 {} 个字节？", nop_fill_byte_count),
                         Some((
                             "填充并覆盖",
                             "写入替换内容，并用空操作指令填充被部分覆盖的指令字节。",

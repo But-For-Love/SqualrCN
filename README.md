@@ -12,6 +12,31 @@ First and foremost, Squalr is a lightning fast memory scanner, allowing the user
 
 Dynamic analysis is a first-class citizen in Squalr, unlike most reverse-engineering tools. This allows for workflows that simply are not possible otherwise by analyzing how a program behaves over time.
 
+----------------------
+
+## 简体中文汉化版（本分支）
+
+本分支在官方代码基础上完成了桌面 GUI 的简体中文汉化，可直接构建出中文版 Windows 程序。
+
+- 界面汉化：窗口标题、菜单、工具栏、右键菜单、按钮、标签、提示、占位符、确认对话框，以及扫描比较类型、显示格式等界面文案。
+- 中文字体回退：启动时自动定位系统中文字体（Windows 的微软雅黑/黑体/等线/思源黑体、macOS 的苹方、Linux 的 Noto CJK 等）；也可以在 `squalr.exe` 同级 `fonts` 目录放置自定义字体。
+- 保持英文的部分：引擎与插件日志、数据类型标识（`i32`、`u64`、`i_x64` 等）、窗口与动作标识、工程文件格式。
+
+构建与打包：
+
+```text
+cargo build -p squalr --release
+python ./scripts/package_windows_release.py
+```
+
+打包产物位于 `dist/`（可运行目录 + zip 压缩包）。
+
+中文文档：
+
+- [Squalr 中文版使用教程](docs/zh-CN/Squalr中文版使用教程.md)（同目录另有 `.docx` 版本）
+- [汉化工具与术语表](scripts/localization/README.md)
+
+
 -----------------------
 
 Squalr is a spiritual successor to Squalr-Sharp. Looking for the old C# repo? See [Squalr-Sharp](https://github.com/Squalr/Squalr-Sharp). Note that Squalr-Sharp is no longer maintained, as Squalr has become the focus.

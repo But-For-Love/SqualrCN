@@ -49,7 +49,9 @@ impl FontLibrary {
         };
         let fallback_font_name = cjk_font.font_name.clone();
 
-        fonts.font_data.insert(fallback_font_name.clone(), Arc::new(cjk_font.font_data));
+        fonts
+            .font_data
+            .insert(fallback_font_name.clone(), Arc::new(cjk_font.font_data));
 
         for family_font_names in fonts.families.values_mut() {
             if !family_font_names.contains(&fallback_font_name) {

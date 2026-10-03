@@ -377,7 +377,7 @@ impl Widget for ElementScannerToolbarView {
                             button_size,
                             Button::new_from_theme(theme)
                                 .background_color(Color32::TRANSPARENT)
-                                .with_tooltip_text("添加新的扫描条件。"),
+                                .with_tooltip_text("移除该扫描条件。"),
                         );
                         IconDraw::draw(
                             user_interface,
