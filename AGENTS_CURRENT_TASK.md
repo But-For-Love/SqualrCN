@@ -10,6 +10,7 @@ Our current task, from `README.md`, is:
 ## Current Tasklist
 - None open. The Simplified Chinese localization round (interface text, CJK font fallback, Chinese tutorial, Windows packaging) is complete and committed.
 - None open. The repository README is now Chinese-primary (`README.md`), with the english original kept as `README.en.md`, and the primary README shows the localized GUI.
+- None open. In-app auto update is removed, so a Chinese build can no longer be overwritten by the english upstream bundle.
 
 ## Important Information
 
@@ -24,6 +25,13 @@ Our current task, from `README.md`, is:
 - Verified this round: `cargo build -p squalr --release` is clean, the packaged exe launches standalone from `dist/` with a fully localized interface, a DPI aware capture of the shipped exe confirms Chinese glyph rendering plus the intended default dock layout (Project Explorer / Details Viewer / Element Scanner at 60/30/30 of the window width), and the shipped binary contains the expected localized strings while keeping technical ids (`i_x64`, `window_element_scanner`) intact.
 - README language split: `README.md` is Chinese-primary and carries the fork notes; the english original is kept verbatim as `README.en.md` (its fork section is replaced by a short english note). Both files cross link at the top.
 - The primary README and the Chinese tutorial share one screenshot, `docs/zh-CN/images/主界面.png`; `docs/Squalr.png` stays as the screenshot of the english README so the image path stays valid across an upstream merge.
+
+### Auto update removal
+- `SqualrEngine::initialize` no longer runs the updater and `squalr-engine/src/app_provisioner/updater/` is deleted (the self update path plus its `UpdateStatus`/`UpdateProgress`/`PerformUpdateTask` remnants). The now unused `self-replace` and `semver` dependencies are dropped with it.
+- Why: the updater read `Squalr/Squalr` releases and would `self_replace` the running binary with the english bundle as soon as upstream published a newer version, silently undoing the localization.
+- Still upstream facing, out of scope: `squalr-installer` (`AppInstaller`) and `AppProvisionerConfig::get_latest_version_url` still download the upstream bundle, so a Chinese release must not ship `squalr-installer.exe` unless it gets repointed.
+- `docs/release-artifact-contract.md` still describes the upstream tag driven CI contract; it stays as upstream documentation.
+- Observable proof: a fresh capture of the repackaged `dist/` build shows the output panel listing only startup logs (`openGL`, localized font path, `Squalr started`, vector size, startup message), with no `api.github.com` request and no `Squalr is up to date` line, and `squalr-cli --help` prints the same three startup lines.
 
 ### Known pre-existing issue
 - `cargo test -p squalr --lib` fails on `instruction_project_item_preview_disassembles_byte_window_as_block`: the test expects `"inc dword [rax]"` while the x86 plugin disassembles `"inc dword ptr [rax]"`. This failure reproduces on the unmodified upstream source (`git stash` check), so it is unrelated to the localization. The test expectation is likely stale.

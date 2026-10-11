@@ -39,3 +39,8 @@ Version placeholder: `${VERSION}` without `v` prefix.
 - Desktop installer/updater resolves the latest GitHub release JSON from the GitHub Releases API.
 - Desktop installer/updater requires only the matching platform bundle asset: `squalr-${VERSION}-<os>-<arch>.zip`.
 - Per-platform manifests, version marker files, and per-platform checksum files are not part of the auto-update flow.
+
+## Fork Note (Simplified Chinese localizations)
+- The in-app updater is removed from this repository, so `SqualrEngine::initialize` never queries or replaces the running binary. The packaging contract above only describes how CI names and aggregates release artifacts.
+- The installer crate (`squalr-installer`) is still wired to the upstream release API. Do not ship `squalr-installer.exe` in a Chinese release until it is repointed at this repository.
+- Because the in-app updater is gone, the desktop bundle asset name is only a download convention here, not an update mechanism.

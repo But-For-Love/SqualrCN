@@ -26,6 +26,10 @@ README, the Chinese user tutorial, and the localization tooling live in
 Remaining english by design: engine and plugin log output, data type ids (`i32`, `u64`,
 `i_x64`), window and action ids, and project file formats.
 
+In-app auto update is removed in this fork: the engine no longer queries the upstream
+GitHub release or replaces its own binary at startup, because the upstream bundle is the
+english build. Chinese builds are updated manually from this repository's releases.
+
 ----------------------
 
 Squalr is a spiritual successor to Squalr-Sharp.

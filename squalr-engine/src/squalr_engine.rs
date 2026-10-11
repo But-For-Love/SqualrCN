@@ -1,13 +1,9 @@
-use crate::app_provisioner::updater::app_updater::AppUpdater;
+use crate::engine_bindings::interprocess::interprocess_engine_api_unprivileged_bindings::InterprocessEngineApiUnprivilegedBindings;
 use crate::engine_bindings::standalone::standalone_engine_api_unprivileged_bindings::StandaloneEngineApiUnprivilegedBindings;
 use crate::engine_mode::EngineMode;
 use crate::engine_privileged_state::{EnginePrivilegedState, create_engine_privileged_state};
 use crate::startup_messages::get_random_startup_message;
 use crate::vectors::Vectors;
-use crate::{
-    app_provisioner::progress_tracker::ProgressTracker,
-    engine_bindings::interprocess::interprocess_engine_api_unprivileged_bindings::InterprocessEngineApiUnprivilegedBindings,
-};
 use squalr_engine_api::dependency_injection::dependency_container::DependencyContainer;
 use squalr_engine_api::engine::engine_api_unprivileged_bindings::EngineApiUnprivilegedBindings;
 use squalr_engine_session::engine_unprivileged_state::{EngineUnprivilegedState, EngineUnprivilegedStateOptions};
@@ -106,8 +102,6 @@ impl SqualrEngine {
             Vectors::get_hardware_vector_name(),
         );
         log::info!("{}", get_random_startup_message());
-
-        AppUpdater::run_update(ProgressTracker::new());
     }
 
     /// Gets the engine execution context to allow for API access to the engine privileged state.
